@@ -90,7 +90,8 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/03/30/9xFuJx.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/03/30/9xFUYt.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/03/30/9xFDOg.jpg">
-<meta property="og:updated_time" content="2018-03-30T13:32:52.916Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/31/9xY2qJ.gif">
+<meta property="og:updated_time" content="2018-03-31T06:41:01.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript笔记及技巧整理">
 <meta name="twitter:description" content="写在前面马上要面试了，重新温习一下基础，把慕课网上的前端工程师课程走了一遍，整理了一些平时不太注意到的、或是个人印象不够深刻的JavaScript相关知识，希望可以巩固一下自己的印象。也能保证自己随时可以查看这些笔记。 关于大小写JS是大小写敏感的 document.write()直接向HTML输出流写内容，也将就是直接在网页中输出内容。如果要使用write方法输出一个HTML标签，则要使用&amp;qu">
@@ -582,7 +583,152 @@
 </li>
 </ul>
 </li>
+<li><p>childNodes用于访问选定元素节点下的所有子节点的列表，返回的值可以看作是一个数组，具有length属性。</p>
+<ul>
+<li>语法<code>elementNode.childNodes</code></li>
+<li>如果选定的节点没有子节点，则该属性返回不包含节点的NodeList。</li>
 </ul>
+</li>
+<li><p>firstChild属性返回‘childNodes’数组的第一个子节点，如果选定的节点没有子节点，则该属性返回NULL。</p>
+<ul>
+<li>语法<code>node.firstChild</code></li>
+<li>firstChild属性与elementNode.childNodes[0]效果相同。</li>
+</ul>
+</li>
+<li><p>lastChild属性返回‘childNodes’数组的最后一个子节点，如果选定的节点没有子节点，则该属性返回NULL。</p>
+<ul>
+<li>语法<code>node.lastChild</code></li>
+<li>lastChild属性与elementNode.childNodes[elementNode.childNodes.length-1]效果相同。</li>
+</ul>
+</li>
+<li><p>parentNode用于获取指定节点的父节点</p>
+<ul>
+<li>语法<code>elementNode.parentNode</code></li>
+<li>父节点只能有一个</li>
+</ul>
+</li>
+<li><p>访问兄弟节点</p>
+<ul>
+<li>nextSibling属性可以返回某个节点之后紧跟的节点（处于同一树层级中）<ul>
+<li>语法<code>nodeObject.nextSibling</code></li>
+<li>如果无此节点，则该属性返回null</li>
+</ul>
+</li>
+<li>previousSibling属性可以返回某个节点之前紧跟的节点（处于同一树层级中）<ul>
+<li>语法<code>nodeObject.previousSibling</code></li>
+<li>如果无此节点，则该属性返回null</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>插入节点</p>
+<ul>
+<li><p>appendChild()用于在指定节点的最后一个子节点列表之后添加一个新的子节点</p>
+<ul>
+<li>语法<code>appendChild(newnode)</code></li>
+<li><p>例子：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var otest = document.getElementById(&quot;test&quot;);</span><br><span class="line">var newnode = document.createElement(&quot;p&quot;);</span><br><span class="line">newnode.innerHTML = &quot;This is a new p&quot;;</span><br><span class="line">otest.appendChild(newnode);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：应当由<strong>父节点</strong>来调用这个方法</p>
+</li>
+</ul>
+</li>
+<li><p>insertBefore()方法用于在已有的<strong>子节点</strong>之前插入一个新的子节点</p>
+<ul>
+<li>语法<code>insertBefore(newnode,node);</code></li>
+<li><p>例子：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var otest = document.getElementById(&quot;test&quot;);  </span><br><span class="line">var newnode = document.createElement(&quot;li&quot;);</span><br><span class="line">newnode.innerHTML = &quot;PHP&quot;;</span><br><span class="line">otest.insertBefore(newnode,otest.firstChild);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：应当是<strong>父节点</strong>来调用这个方法，并定义在某个<strong>子节点</strong>之前插入新节点</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>删除节点</p>
+<ul>
+<li>removeChild()方法用于从子节点列表中删除某个节点，如果删除成功，此方法返回被删除的节点，如果删除失败则返回NULL。</li>
+<li>语法<code>nodeObject.removeChild(node);</code></li>
+<li>注意: 把删除的子节点赋值给 x，这个子节点不在DOM树中，但是还存在内存中，可通过 x 操作。如果要完全删除对象，给 x 赋 null 值，代码如下:  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var otest = document.getElementById(&quot;div1&quot;);</span><br><span class="line">var x = otest.removeChild(otest.childNodes[1]);</span><br><span class="line">x = null;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>替换元素节点</p>
+<ul>
+<li>replaceChild方法实现子节点（对象）的替换，返回被替换对象的引用。</li>
+<li>语法<code>node.replaceChild(newnode,oldnode)</code></li>
+<li>注意，两个参数都是必须的，当oldnode被替换时，所有与之相关的属性内容都将被移除，并且newnode必须先被建立。</li>
+<li>需要<strong>父节点</strong>调用这个方法，因此可以使用<code>oldnode.parentNode.replaceChild(newnode,oldnode);</code>来进行替换。</li>
+</ul>
+</li>
+<li><p>创建元素节点</p>
+<ul>
+<li><p>createElement()方法可以创建元素节点，此方法可以返回一个element对象。</p>
+<ul>
+<li>语法<code>document.createElement(tagName);</code></li>
+</ul>
+</li>
+<li><p>createTextNode()方法创建新的文本节点，返回新创建的Text节点。</p>
+<ul>
+<li>语法<code>document.createTextNode(data);</code></li>
+<li>参数：data是字符串值，可以规定此节点的文本。</li>
+<li>注意：innerHTML和createTextNode都可以把一段内容添加到一个节点中，区别是如果这段内容中有html标签（如例子中的<strong></strong>）时表现就不同了，在createTextNode中会当作文本处理，不会被浏览器解析，但用innerHTML就会被当作HTML代码处理（如你的例子中Hello会被加粗显示）。</li>
+<li>例子：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var element = document.createElement(&quot;p&quot;);</span><br><span class="line">var textnode = document.createTextNode(&quot;I love Javascript!&quot;);</span><br><span class="line">element.appendChild(textnode);</span><br><span class="line">document.body.appendChild(element);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="浏览器窗口可视区域大小"><a href="#浏览器窗口可视区域大小" class="headerlink" title="浏览器窗口可视区域大小"></a>浏览器窗口可视区域大小</h3><ul>
+<li><p>获得浏览器窗口的尺寸（浏览器的视口，不包括工具栏和滚动条）的方法：</p>
+<ul>
+<li><p><strong>对于IE9+、Chrome、Firefox、Opera 以及 Safari：</strong></p>
+<ul>
+<li>window.innerHeight - 浏览器窗口的内部高度</li>
+<li>window.innerWidth - 浏览器窗口的内部宽度</li>
+</ul>
+</li>
+<li><p><strong>对于 Internet Explorer 8、7、6、5：</strong></p>
+<ul>
+<li>直接求<ul>
+<li><code>document.documentElement.clientHeight</code>表示HTML文档所在窗口的当前高度。</li>
+<li><code>document.documentElement.clientWidth</code>表示HTML文档所在窗口的当前宽度。</li>
+</ul>
+</li>
+<li>或者Document对象的body属性对应HTML文档的<body>标签<ul>
+<li><code>document.body.clientHeight</code></li>
+<li><code>document.body.clientWidth</code></li>
+</ul>
+</body></li>
+</ul>
+</li>
+<li><strong>在不同浏览器都实用的 JavaScript 方案：</strong>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var w= document.documentElement.clientWidth(或 document.body.clientWidth);</span><br><span class="line">var h= document.documentElement.clientHeight(或 document.body.clientHeight);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="网页尺寸"><a href="#网页尺寸" class="headerlink" title="网页尺寸"></a>网页尺寸</h3><ul>
+<li><p>scrollHeight和scrollWidth，分别用于获取网页内容的高度和宽度</p>
+<ul>
+<li><strong>针对IE、Opera:</strong>scrollHeight 是网页内容实际高度，可以小于 clientHeight。</li>
+<li><strong>针对NS、FF:</strong>scrollHeight 是网页内容高度，不过最小值是 clientHeight。也就是说网页内容实际高度小于 clientHeight 时，scrollHeight 返回 clientHeight 。</li>
+<li><p>浏览器兼容写法</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var w=document.documentElement.scrollWidth</span><br><span class="line">   || document.body.scrollWidth;</span><br><span class="line">var h=document.documentElement.scrollHeight</span><br><span class="line">   || document.body.scrollHeight;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意:区分大小写。并且，scrollHeight和scrollWidth还可获取Dom元素中内容实际占用的高度和宽度。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>offsetHeight和offsetWidth，分别用于获取网页内容的高度和宽度（包括滚动条和等边线，会随窗口的显示大小改变）<ul>
+<li>值：offsetHeight = clientHeight + 滚动条 + 边框。</li>
+<li>浏览器兼容性<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var w= document.documentElement.offsetWidth</span><br><span class="line">	|| document.body.offsetWidth;</span><br><span class="line">var h= document.documentElement.offsetHeight</span><br><span class="line">	|| document.body.offsetHeight;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="height、clientHeight、scrollHeight、offsetHeight区别"><a href="#height、clientHeight、scrollHeight、offsetHeight区别" class="headerlink" title="height、clientHeight、scrollHeight、offsetHeight区别"></a>height、clientHeight、scrollHeight、offsetHeight区别</h3><p><img src="https://s1.ax1x.com/2018/03/31/9xY2qJ.gif" alt="diffrent" title="diff"></p>
 
       
     </div>
@@ -784,7 +930,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于大小写"><span class="nav-number">2.</span> <span class="nav-text">关于大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document-write"><span class="nav-number">3.</span> <span class="nav-text">document.write()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confirm对话框"><span class="nav-number">4.</span> <span class="nav-text">confirm对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prompt消息对话框"><span class="nav-number">5.</span> <span class="nav-text">prompt消息对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-open"><span class="nav-number">6.</span> <span class="nav-text">window.open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-close"><span class="nav-number">7.</span> <span class="nav-text">window.close()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-innerHTML"><span class="nav-number">8.</span> <span class="nav-text">Object.innerHTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改变HTML样式"><span class="nav-number">9.</span> <span class="nav-text">改变HTML样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示和隐藏"><span class="nav-number">10.</span> <span class="nav-text">显示和隐藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制类名（className属性）"><span class="nav-number">11.</span> <span class="nav-text">控制类名（className属性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数组"><span class="nav-number">12.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数传参"><span class="nav-number">13.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">14.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间"><span class="nav-number">15.</span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串对象"><span class="nav-number">16.</span> <span class="nav-text">字符串对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math对象"><span class="nav-number">17.</span> <span class="nav-text">Math对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组对象"><span class="nav-number">18.</span> <span class="nav-text">数组对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计时器"><span class="nav-number">19.</span> <span class="nav-text">计时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#History对象"><span class="nav-number">20.</span> <span class="nav-text">History对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Location对象"><span class="nav-number">21.</span> <span class="nav-text">Location对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Navigator对象"><span class="nav-number">22.</span> <span class="nav-text">Navigator对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#userAgent"><span class="nav-number">23.</span> <span class="nav-text">userAgent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#screen对象"><span class="nav-number">24.</span> <span class="nav-text">screen对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件对象模型DOM"><span class="nav-number">25.</span> <span class="nav-text">文件对象模型DOM</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于大小写"><span class="nav-number">2.</span> <span class="nav-text">关于大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document-write"><span class="nav-number">3.</span> <span class="nav-text">document.write()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confirm对话框"><span class="nav-number">4.</span> <span class="nav-text">confirm对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prompt消息对话框"><span class="nav-number">5.</span> <span class="nav-text">prompt消息对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-open"><span class="nav-number">6.</span> <span class="nav-text">window.open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-close"><span class="nav-number">7.</span> <span class="nav-text">window.close()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-innerHTML"><span class="nav-number">8.</span> <span class="nav-text">Object.innerHTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改变HTML样式"><span class="nav-number">9.</span> <span class="nav-text">改变HTML样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示和隐藏"><span class="nav-number">10.</span> <span class="nav-text">显示和隐藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制类名（className属性）"><span class="nav-number">11.</span> <span class="nav-text">控制类名（className属性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数组"><span class="nav-number">12.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数传参"><span class="nav-number">13.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">14.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间"><span class="nav-number">15.</span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串对象"><span class="nav-number">16.</span> <span class="nav-text">字符串对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math对象"><span class="nav-number">17.</span> <span class="nav-text">Math对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组对象"><span class="nav-number">18.</span> <span class="nav-text">数组对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计时器"><span class="nav-number">19.</span> <span class="nav-text">计时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#History对象"><span class="nav-number">20.</span> <span class="nav-text">History对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Location对象"><span class="nav-number">21.</span> <span class="nav-text">Location对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Navigator对象"><span class="nav-number">22.</span> <span class="nav-text">Navigator对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#userAgent"><span class="nav-number">23.</span> <span class="nav-text">userAgent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#screen对象"><span class="nav-number">24.</span> <span class="nav-text">screen对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件对象模型DOM"><span class="nav-number">25.</span> <span class="nav-text">文件对象模型DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器窗口可视区域大小"><span class="nav-number">26.</span> <span class="nav-text">浏览器窗口可视区域大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网页尺寸"><span class="nav-number">27.</span> <span class="nav-text">网页尺寸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#height、clientHeight、scrollHeight、offsetHeight区别"><span class="nav-number">28.</span> <span class="nav-text">height、clientHeight、scrollHeight、offsetHeight区别</span></a></li></ol></div>
             
 
           </div>
