@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/03/30/9xFuJx.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/03/30/9xFUYt.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/03/30/9xFDOg.jpg">
-<meta property="og:updated_time" content="2018-03-30T13:18:25.820Z">
+<meta property="og:updated_time" content="2018-03-30T13:32:52.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript笔记及技巧整理">
 <meta name="twitter:description" content="写在前面马上要面试了，重新温习一下基础，把慕课网上的前端工程师课程走了一遍，整理了一些平时不太注意到的、或是个人印象不够深刻的JavaScript相关知识，希望可以巩固一下自己的印象。也能保证自己随时可以查看这些笔记。 关于大小写JS是大小写敏感的 document.write()直接向HTML输出流写内容，也将就是直接在网页中输出内容。如果要使用write方法输出一个HTML标签，则要使用&amp;qu">
@@ -531,6 +531,58 @@
 </li>
 <li>availwidth和availHeight属性是可用的宽度和高度，会减去界面特性，如任务栏。</li>
 </ul>
+<h3 id="文件对象模型DOM"><a href="#文件对象模型DOM" class="headerlink" title="文件对象模型DOM"></a>文件对象模型DOM</h3><ul>
+<li>getElement<strong>s</strong>ByName()方法返回带有指定名称的节点对象的集合。<ul>
+<li>语法：<code>document.getElement**s**ByName(name)</code></li>
+<li>与getElementById()不同的地方在于这个方法使通过元素的name属性查询元素而不是通过id属性。</li>
+<li>因为文档中的name属性有可能不唯一，所以这个方法返回的是元素的数组而不是一个元素。</li>
+</ul>
+</li>
+<li>getElement<strong>s</strong>ByTagName()方法返回带有指定标签名的节点对象的集合，返回元素的顺序是它们在文档中的顺序。<ul>
+<li>语法<code>document.getElement**s**ByTagName(Tagname)</code></li>
+<li>Tagname是标签的名称，如p，a，img等标签名。</li>
+</ul>
+</li>
+<li>getAttribute()方法通过元素节点的属性名称获取属性的值。<ul>
+<li>语法<code>elementNode.getAttribute(name)</code></li>
+<li>elementNode是通过上述几个方法获取到的元素节点。</li>
+</ul>
+</li>
+<li><p>setAttribute()方法增加一个指定名称和值的性属性，或者把一个现有的属性设定为指定的值。</p>
+<ul>
+<li>语法<code>elementNode.setAttribute(name,value)</code></li>
+<li>类似getAttribute()方法，此方法也是只能通过元素节点对象调用的函数。</li>
+</ul>
+</li>
+<li><p>节点属性：</p>
+<ul>
+<li>在文档对象模型 (DOM) 中，每个节点都是一个对象。DOM 节点有三个重要的属性 ：<ul>
+<li>nodeName : 节点的名称，是只读的<ul>
+<li>元素节点的 nodeName 与标签名相同</li>
+<li>属性节点的 nodeName 是属性的名称</li>
+<li>文本节点的 nodeName 永远是 #text</li>
+<li>文档节点的 nodeName 永远是 #document</li>
+</ul>
+</li>
+<li>nodeValue ：节点的值<ul>
+<li>元素节点的 nodeValue 是 undefined 或 null</li>
+<li>文本节点的 nodeValue 是文本自身</li>
+<li>属性节点的 nodeValue 是属性的值</li>
+</ul>
+</li>
+<li>nodeType ：节点的类型，是只读的。以下常用的几种结点类型<ul>
+<li>元素    -&gt;      1</li>
+<li>属性    -&gt;      2</li>
+<li>文本    -&gt;      3</li>
+<li>注释    -&gt;      8</li>
+<li>文档    -&gt;      9</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -732,7 +784,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于大小写"><span class="nav-number">2.</span> <span class="nav-text">关于大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document-write"><span class="nav-number">3.</span> <span class="nav-text">document.write()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confirm对话框"><span class="nav-number">4.</span> <span class="nav-text">confirm对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prompt消息对话框"><span class="nav-number">5.</span> <span class="nav-text">prompt消息对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-open"><span class="nav-number">6.</span> <span class="nav-text">window.open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-close"><span class="nav-number">7.</span> <span class="nav-text">window.close()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-innerHTML"><span class="nav-number">8.</span> <span class="nav-text">Object.innerHTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改变HTML样式"><span class="nav-number">9.</span> <span class="nav-text">改变HTML样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示和隐藏"><span class="nav-number">10.</span> <span class="nav-text">显示和隐藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制类名（className属性）"><span class="nav-number">11.</span> <span class="nav-text">控制类名（className属性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数组"><span class="nav-number">12.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数传参"><span class="nav-number">13.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">14.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间"><span class="nav-number">15.</span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串对象"><span class="nav-number">16.</span> <span class="nav-text">字符串对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math对象"><span class="nav-number">17.</span> <span class="nav-text">Math对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组对象"><span class="nav-number">18.</span> <span class="nav-text">数组对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计时器"><span class="nav-number">19.</span> <span class="nav-text">计时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#History对象"><span class="nav-number">20.</span> <span class="nav-text">History对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Location对象"><span class="nav-number">21.</span> <span class="nav-text">Location对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Navigator对象"><span class="nav-number">22.</span> <span class="nav-text">Navigator对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#userAgent"><span class="nav-number">23.</span> <span class="nav-text">userAgent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#screen对象"><span class="nav-number">24.</span> <span class="nav-text">screen对象</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于大小写"><span class="nav-number">2.</span> <span class="nav-text">关于大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document-write"><span class="nav-number">3.</span> <span class="nav-text">document.write()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confirm对话框"><span class="nav-number">4.</span> <span class="nav-text">confirm对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prompt消息对话框"><span class="nav-number">5.</span> <span class="nav-text">prompt消息对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-open"><span class="nav-number">6.</span> <span class="nav-text">window.open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-close"><span class="nav-number">7.</span> <span class="nav-text">window.close()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-innerHTML"><span class="nav-number">8.</span> <span class="nav-text">Object.innerHTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改变HTML样式"><span class="nav-number">9.</span> <span class="nav-text">改变HTML样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示和隐藏"><span class="nav-number">10.</span> <span class="nav-text">显示和隐藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制类名（className属性）"><span class="nav-number">11.</span> <span class="nav-text">控制类名（className属性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数组"><span class="nav-number">12.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数传参"><span class="nav-number">13.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">14.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间"><span class="nav-number">15.</span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串对象"><span class="nav-number">16.</span> <span class="nav-text">字符串对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math对象"><span class="nav-number">17.</span> <span class="nav-text">Math对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组对象"><span class="nav-number">18.</span> <span class="nav-text">数组对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计时器"><span class="nav-number">19.</span> <span class="nav-text">计时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#History对象"><span class="nav-number">20.</span> <span class="nav-text">History对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Location对象"><span class="nav-number">21.</span> <span class="nav-text">Location对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Navigator对象"><span class="nav-number">22.</span> <span class="nav-text">Navigator对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#userAgent"><span class="nav-number">23.</span> <span class="nav-text">userAgent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#screen对象"><span class="nav-number">24.</span> <span class="nav-text">screen对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件对象模型DOM"><span class="nav-number">25.</span> <span class="nav-text">文件对象模型DOM</span></a></li></ol></div>
             
 
           </div>
