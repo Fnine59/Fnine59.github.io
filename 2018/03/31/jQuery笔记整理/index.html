@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT, Fnine59" />
+  <meta name="keywords" content="jQuery," />
 
 
 
@@ -79,13 +79,25 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="59&#39;s Personal Blog">
-<meta property="og:url" content="http://fnine59.top/tags/JavaScript/index.html">
+<meta name="description" content="jQuery版本进入官方网站获取最新的版本http://jquery.com/download/，这里需要注意 jQuery 分 2 个系列版本 1.x 与 2.x，主要的区别在于 2.x 不再兼容 IE6、7、8浏览器，这样做的目的是为了兼容移动端开发。由于减少了一些代码，使得该版本比 jQuery 1.x 更小、更快。 $(document).ready 等页面的文档(document)中的节">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery笔记整理（基础篇）">
+<meta property="og:url" content="http://fnine59.top/2018/03/31/jQuery笔记整理/index.html">
 <meta property="og:site_name" content="59&#39;s Personal Blog">
+<meta property="og:description" content="jQuery版本进入官方网站获取最新的版本http://jquery.com/download/，这里需要注意 jQuery 分 2 个系列版本 1.x 与 2.x，主要的区别在于 2.x 不再兼容 IE6、7、8浏览器，这样做的目的是为了兼容移动端开发。由于减少了一些代码，使得该版本比 jQuery 1.x 更小、更快。 $(document).ready 等页面的文档(document)中的节">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/31/9xNAXD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/31/9xNahq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/31/9xNw90.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/31/9xUfaj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/31/9xaCQK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/03/31/9xaUS0.png">
+<meta property="og:updated_time" content="2018-03-31T08:38:28.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="59&#39;s Personal Blog">
+<meta name="twitter:title" content="jQuery笔记整理（基础篇）">
+<meta name="twitter:description" content="jQuery版本进入官方网站获取最新的版本http://jquery.com/download/，这里需要注意 jQuery 分 2 个系列版本 1.x 与 2.x，主要的区别在于 2.x 不再兼容 IE6、7、8浏览器，这样做的目的是为了兼容移动端开发。由于减少了一些代码，使得该版本比 jQuery 1.x 更小、更快。 $(document).ready 等页面的文档(document)中的节">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/03/31/9xNAXD.png">
 
 
 
@@ -115,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://fnine59.top/tags/JavaScript/"/>
+  <link rel="canonical" href="http://fnine59.top/2018/03/31/jQuery笔记整理/"/>
 
 
 
 
 
-  <title>标签: JavaScript | 59's Personal Blog</title>
+  <title>jQuery笔记整理（基础篇） | 59's Personal Blog</title>
   
 
 
@@ -140,7 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	<a href="https://github.com/Fnine59"><img style="position: absolute; top: 0; right: 0; 
 	border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
@@ -280,54 +292,369 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>JavaScript<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fnine59.top/2018/03/31/jQuery笔记整理/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fnine59">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="59's Personal Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/03/29/JavaScript笔记整理/" itemprop="url">
-              
-                <span itemprop="name">JavaScript笔记及技巧整理</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">jQuery笔记整理（基础篇）</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-29T14:50:03+08:00"
-              content="2018-03-29" >
-          03-29
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-31T15:03:46+08:00">
+                2018-03-31
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/31/jQuery笔记整理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/31/jQuery笔记整理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2018/03/31/jQuery笔记整理/" class="leancloud_visitors" data-flag-title="jQuery笔记整理（基础篇）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="jQuery版本"><a href="#jQuery版本" class="headerlink" title="jQuery版本"></a>jQuery版本</h3><p>进入官方网站获取最新的版本<a href="http://jquery.com/download/" target="_blank" rel="noopener">http://jquery.com/download/</a>，这里需要注意 jQuery 分 2 个系列版本 1.x 与 2.x，主要的区别在于 2.x 不再兼容 IE6、7、8浏览器，这样做的目的是为了兼容移动端开发。由于减少了一些代码，使得该版本比 jQuery 1.x 更小、更快。</p>
+<h3 id="document-ready"><a href="#document-ready" class="headerlink" title="$(document).ready"></a>$(document).ready</h3><ul>
+<li>等页面的文档(document)中的节点都加载完毕后，再执行后续代码。</li>
+</ul>
+<h3 id="jQuery对象和DOM对象的转换"><a href="#jQuery对象和DOM对象的转换" class="headerlink" title="jQuery对象和DOM对象的转换"></a>jQuery对象和DOM对象的转换</h3><ul>
+<li>jQuery-&gt;DOM：jQuery是一个类数组对象，而DOM对象就是一个单独的DOM元素。可以利用数组下标的方式读取到jQuery中的DOM对象。</li>
+<li>DOM-&gt;jQuery：如果传递给$(DOM)函数的参数是一个DOM对象，jQuery方法会把这个DOM对象给包装成一个新的jQuery对象。通过$(dom)方法将普通的dom对象加工成jQuery对象之后，我们就可以调用jQuery的方法了。</li>
+</ul>
+<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><ul>
+<li>id选择器<ul>
+<li>语法：<code>$( &quot;#id&quot; )</code></li>
+<li>注意：id是唯一的，每个id值在一个页面中只能使用一次。如果多个元素分配了相同的id，将只匹配该id选择集合的第一个DOM元素。但这种行为不应该发生;有超过一个元素的页面使用相同的id是无效的。</li>
+</ul>
+</li>
+<li>类选择器<ul>
+<li>语法：<code>$( &quot;.class&quot; )</code></li>
+</ul>
+</li>
+<li>元素选择器（根据给定的标记名称选择所有的元素）<ul>
+<li>语法：<code>$( &quot;element&quot; )</code></li>
+</ul>
+</li>
+<li>全选择器<ul>
+<li>语法<code>$( &quot;*&quot; )</code></li>
+</ul>
+</li>
+<li>层级选择器<br>  <img src="https://s1.ax1x.com/2018/03/31/9xNAXD.png" alt="层级选择器" title="层级选择器"><ul>
+<li><code>&gt;</code> （大于号）紧跟父子关系 如$(“div &gt; p”)表示选择div下的直接层是p的节点。</li>
+<li><code>+</code> （加号）  紧跟兄弟关系 如$(“div + p”)表示选择div同层的左右相邻的p节点。</li>
+<li><code>~</code> （波浪线）任意距离兄弟关系 如$(“div ~ p”)表示选择div同层的p节点。</li>
+<li><code></code> （空格）  任意层父子关系 如$(“div p”)表示选择div下的p节点（不管中间隔多少层）。</li>
+<li><code>,</code> （逗号）  表示选择器组合，如$(“div p, span p”)表示div下p节点和span下p节点。</li>
+</ul>
+</li>
+<li>基本筛选选择器<br>  <img src="https://s1.ax1x.com/2018/03/31/9xNahq.png" alt="基本筛选选择器" title="基本筛选选择器"><ul>
+<li>注意jQuery合集都是从0开始索引</li>
+</ul>
+</li>
+<li>内容筛选选择器<br>  <img src="https://s1.ax1x.com/2018/03/31/9xNw90.png" alt="内容筛选选择器" title="内容筛选选择器"><ul>
+<li>:contains与:has都有查找的意思，但是contains查找包含<strong>“指定文本”</strong>的元素，has查找包含<strong>“指定元素”</strong>的元素</li>
+</ul>
+</li>
+<li>可见性筛选选择器<ul>
+<li><code>$(&quot;:visible&quot;)</code> 选择所有显示的元素</li>
+<li><code>$(&quot;:hidden&quot;)</code> 选择所有隐藏的元素</li>
+<li>注意：:hidden选择器，不仅仅包含样式是display=”none”的元素，还包括隐藏表单、visibility等等。</li>
+<li>隐藏一个元素的方法有以下几种<ul>
+<li>CSS display的值是none</li>
+<li>type=”hidden”的表单元素</li>
+<li>宽度和高度都显式设置为0</li>
+<li>一个祖先元素是隐藏的，该元素是不会在页面上显示</li>
+<li>CSS visibility的值是hidden</li>
+<li>CSS opacity的指是0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>属性筛选选择器</p>
+<ul>
+<li>属性选择器让你可以基于属性来定位一个元素，可以只指定该元素的某个属性，这样所有使用该属性而不管它的值，这个元素都将被定位，也可以更加明确并定位在这些属性上使用特定值的元素。</li>
+<li>描述如下：<br><img src="https://s1.ax1x.com/2018/03/31/9xUfaj.png" alt="属性筛选选择器" title="属性筛选选择器"></li>
+<li>在这么多属性选择器中<code>[attr=&quot;value&quot;]</code>和<code>[attr*=&quot;value&quot;]</code>是最实用的，<code>[attr=&quot;value&quot;]</code>能帮我们定位不同类型的元素，特别是表单form元素的操作，比如说<code>input[type=&quot;text&quot;]</code>,<code>input[type=&quot;checkbox&quot;]</code>等。<code>[attr*=&quot;value&quot;]</code>能在网站中帮助我们匹配不同类型的文件。</li>
+</ul>
+</li>
+<li><p>表单元素选择器</p>
+<ul>
+<li>具体方法描述：<br><img src="https://s1.ax1x.com/2018/03/31/9xaCQK.png" alt="表单元素选择器" title="表单元素选择器"></li>
+<li>注意：除了input筛选选择器，几乎每个表单类别筛选器都对应一个input元素的type值。因此大部分表单类别筛选器可以使用属性筛选器替换。比如 <code>$(&#39;:password&#39;) == $(&#39;[type=password]&#39;)</code></li>
+</ul>
+</li>
+<li><p>表单对象属性筛选选择器</p>
+<ul>
+<li>具体方法描述：<br><img src="https://s1.ax1x.com/2018/03/31/9xaUS0.png" alt="表单对象属性筛选选择器" title="表单对象属性筛选选择器"></li>
+<li>注意：选择器适用于单选框和复选框，对于下拉框元素应该使用:selected选择器。在某些浏览器中，选择器:checked可能会错误选取到<option>元素，所以保险起见换用选择器input:checked，确保只会选取</option><input>元素。</li>
+</ul>
+</li>
+<li><p><strong>特殊选择器this</strong></p>
+<ul>
+<li>**this和$(this)的区别：<ul>
+<li><strong>this</strong>是JavaScript中的关键字，指的是当前的上下文对象，简单地说就是方法/属性的所有者。</li>
+<li><strong>$(this)</strong>：通过把$()方法传入当前的元素对象的引用this，把这个this加工成jQuery对象，我们就可以用jQuery提供的快捷方法直接处理样式了。</li>
+<li>总结来说，<strong>this，表示当前的上下文对象是一个html对象，可以调用html对象所拥有的属性和方法。$(this),代表的上下文对象是一个jquery的上下文对象，可以调用jQuery的方法和属性值。</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="jQuery的属性与样式"><a href="#jQuery的属性与样式" class="headerlink" title="jQuery的属性与样式"></a>jQuery的属性与样式</h3><ul>
+<li><strong>.attr()与.removeAttr()</strong><ul>
+<li>.attr()<ul>
+<li>attr(传入属性名)：获取属性的值</li>
+<li>attr(属性名, 属性值)：设置属性的值</li>
+<li>attr(属性名,函数值)：设置属性的函数值</li>
+<li>attr(attributes)：给指定元素设置多个属性值，即：{属性名一: “属性值一” , 属性名二: “属性值二” , … … }</li>
+</ul>
+</li>
+<li>.removeAttr()删除方法：为匹配的元素集合中的每个元素中移除一个属性（attribute）</li>
+<li>注意区分Attribute和Property的概念，property是DOM中的属性，是JavaScript里的对象，例如tagName，nodeName，nodeType，defaultChecked，和 defaultSelected等；而attribute是HTML标签上的特性，它的值只能够是字符串；例如html中常用的id、class、title、align等。</li>
+<li>获取Attribute就需要用.attr()，获取Property就需要用.prop()</li>
+</ul>
+</li>
+<li><p><strong>.html()与.text()</strong></p>
+<ul>
+<li>.html()方法获取集合中第一个匹配元素的html内容，或者设置每一个匹配元素的html内容，具体有3中用法如下：<ul>
+<li><code>.html()</code> 不传入值，就是获取集合中第一个匹配元素的HTML内容</li>
+<li><code>.html( htmlString )</code>  设置每一个匹配元素的html内容</li>
+<li><code>.html( function(index, oldhtml) )</code> 用来返回设置HTML内容的一个函数</li>
+</ul>
+</li>
+<li><p><strong>注意：</strong>因为.html()方法内部使用的是DOM的innerHTML属性来处理的，所以在设置与获取上需要注意的一个最重要的问题，这个操作是针对整个HTML内容（不仅仅只是文本内容）</p>
+</li>
+<li><p>.text()方法得到匹配元素集合中每个元素的文本内容结合，包括他们的后代，或设置匹配元素集合中每个元素的文本内容为指定的文本内容。具体有3种用法：</p>
+<ul>
+<li><code>.text()</code> 得到匹配元素集合中每个元素的合并文本，包括他们的后代</li>
+<li><code>.text( textString )</code> 用于设置匹配元素内容的文本</li>
+<li><code>.text( function(index, text) )</code> 用来返回设置文本内容的一个函数</li>
+</ul>
+</li>
+<li>.text()结果返回一个字符串，包含所有匹配元素的合并文本</li>
+</ul>
+</li>
+<li><strong>.val()</strong><ul>
+<li><code>.val()</code>无参数，获取匹配的元素集合中第一个元素的当前值</li>
+<li><code>.val( value )</code>，设置匹配的元素集合中每个元素的值</li>
+<li><code>.val( function )</code>，一个用来返回设置值的函数</li>
+</ul>
+</li>
+<li><strong>.html(),.text()和.val()的差异总结：  </strong><ul>
+<li><code>.html()</code>,<code>.text()</code>,<code>.val()</code>三种方法都是用来读取选定元素的内容；只不过<code>.html()</code>是用来读取元素的html内容（包括html标签），<code>.text()</code>用来读取元素的纯文本内容，包括其后代元素，<code>.val()</code>是用来读取表单元素的”value”值。其中<code>.html()</code>和<code>.text()</code>方法不能使用在表单元素上,而<code>.val()</code>只能使用在表单元素上；另外<code>.html()</code>方法使用在多个元素上时，只读取第一个元素；<code>.val()</code>方法和<code>.html()</code>相同，如果其应用在多个元素上时，只能读取第一个表单元素的”value”值，但是<code>.text()</code>和他们不一样，如果<code>.text()</code>应用在多个元素上时，将会读取所有选中元素的文本内容。</li>
+<li><code>.html(htmlString)</code>,<code>.text(textString)</code>和<code>.val(value)</code>三种方法都是用来替换选中元素的内容，如果三个方法同时运用在多个元素上时，那么将会替换所有选中元素的内容。</li>
+<li><code>.html()</code>,<code>.text()</code>,<code>.val()</code>都可以使用回调函数的返回值来动态的改变多个元素的内容。</li>
+</ul>
+</li>
+<li><strong>.addClass()与.removeClass()</strong><ul>
+<li><code>.addClass()</code>方法通过动态改变类名（class），可以让其修改元素呈现出不同的效果。用法如下：<ul>
+<li><code>.addClass( className )</code> : 为每个匹配元素所要增加的一个或多个样式名</li>
+<li><code>.addClass( function(index, currentClass) )</code>: 这个函数返回一个或更多用空格隔开的要增加的样式名</li>
+<li><strong>注意：</strong>.addClass()方法<strong>不会替换一个样式类名</strong>。它只是简单的添加一个样式类名到元素上。</li>
+</ul>
+</li>
+<li><code>.removeClass()</code>方法从匹配的元素中删除全部或者指定的class，用法如下：<ul>
+<li><code>.removeClass( [className ] )</code>：每个匹配元素移除的一个或多个用<strong>空格</strong>隔开的样式名</li>
+<li><code>.removeClass( function(index, class) )</code>： 一个函数，返回一个或多个将要被移除的样式名</li>
+<li><strong>注意：</strong>如果一个样式类名作为一个参数,只有这样式类会被从匹配的元素集合中删除 。 如果没有样式名作为参数，那么<strong>所有</strong>的样式类将被移除。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>.toggleClass()样式切换</strong><ul>
+<li>通过toggleClass方法动态添加删除Class，一次执行相当于addClass，再次执行相当于removeClass。用法如下：<ul>
+<li><code>.toggleClass( className )</code>：在匹配的元素集合中的每个元素上用来切换的一个或多个（用空格隔开）样式类名。</li>
+<li><code>.toggleClass( className, switch )</code>：一个布尔值，用于判断样式是否应该被添加或移除</li>
+<li><code>.toggleClass( [switch ] )</code>：一个用来判断样式类添加还是移除的 布尔值</li>
+<li><code>.toggleClass( function(index, class, switch) [, switch ] )</code>：用来返回在匹配的元素集合中的每个元素上用来切换的样式类名的一个函数。接收元素的索引位置和元素旧的样式类作为参数</li>
+<li><strong>注意：</strong>toggleClass是一个互斥的逻辑，也就是通过判断对应的元素上是否存在指定的Class名，<strong>如果有就删除，如果没有就增加</strong>。并且，toggleClass会保留原有的Class名后新增，通过空格隔开。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>.css()</strong><ul>
+<li>用于获取元素样式属性的计算值或者设置元素的CSS属性。用法如下：<ul>
+<li><strong>获取：</strong><ul>
+<li>.css( propertyName ) ：获取匹配元素集合中的第一个元素的样式属性的计算值</li>
+<li>.css( propertyNames )：传递一组数组，返回一个对象结果</li>
+</ul>
+</li>
+<li><strong>设置：</strong><ul>
+<li>.css(propertyName, value )：设置CSS</li>
+<li>.css( propertyName, function )：可以传入一个回调函数，返回取到对应的值进行处理</li>
+<li>.css( properties )：可以传一个对象，同时设置多个样式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>通过.css方法设置的样式属性优先级要高于.addClass方法</strong></li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/29/JavaScript笔记整理/" rel="next" title="JavaScript笔记及技巧整理">
+                <i class="fa fa-chevron-left"></i> JavaScript笔记及技巧整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -335,6 +662,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -355,8 +691,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -442,6 +787,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery版本"><span class="nav-number">1.</span> <span class="nav-text">jQuery版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document-ready"><span class="nav-number">2.</span> <span class="nav-text">$(document).ready</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery对象和DOM对象的转换"><span class="nav-number">3.</span> <span class="nav-text">jQuery对象和DOM对象的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器"><span class="nav-number">4.</span> <span class="nav-text">选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery的属性与样式"><span class="nav-number">5.</span> <span class="nav-text">jQuery的属性与样式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -574,6 +935,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -597,6 +962,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 102854, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 102854, xid: "2018/03/31/jQuery笔记整理/"});
 		
 
 		(function() {
