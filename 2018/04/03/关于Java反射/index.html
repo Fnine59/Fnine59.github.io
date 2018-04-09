@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="59&#39;s Personal Blog">
 <meta property="og:description" content="Class类的使用Java中其实有两种东西不是对象，一个是普通的数据类型（但有包装类来弥补了），另一个是Java中静态的成员。Java中的类其实也是对象，它是java.lang.Class类的实例对象。  既然任何一个类都是Class类的实例对象，那么Class类的实例对象应该如何表示呢？ 通过查看Class类的源代码可以知道，它具有一个私有的构造方法，在类的外部无法直接调用。因此我们无法使用ne">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-03T13:42:46.656Z">
+<meta property="og:updated_time" content="2018-04-04T03:10:45.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Java反射">
 <meta name="twitter:description" content="Class类的使用Java中其实有两种东西不是对象，一个是普通的数据类型（但有包装类来弥补了），另一个是Java中静态的成员。Java中的类其实也是对象，它是java.lang.Class类的实例对象。  既然任何一个类都是Class类的实例对象，那么Class类的实例对象应该如何表示呢？ 通过查看Class类的源代码可以知道，它具有一个私有的构造方法，在类的外部无法直接调用。因此我们无法使用ne">
@@ -421,6 +421,7 @@
     * 根据官网的解释，**c1，c2表示了Foo类的类类型（class type）**，证明万事万物皆对象，类也是对象，是Class类的实例对象，这个对象我们称为该类的类类型。
     * **不管用c1，c2或c3哪种表达方式都表示了Foo类的类类型，它们是相等的，因为一个类只能是Class类的一个实例对象。**
 </code></pre><p>我们完全可以通过类的类类型来创建该类的对象实例，即通过c1或c2或c3来创建Foo类的实例。可以使用<code>Foo foo = (Foo)c1.newInstance();</code>来创建Foo类的实例。这种办法<strong>需要该类有无参的构造方法</strong>。</p>
+<h1 id="Java动态加载类"><a href="#Java动态加载类" class="headerlink" title="Java动态加载类"></a>Java动态加载类</h1><p>编译时刻加载类是静态加载类、运行时刻加载类是动态加载类。</p>
 
       
     </div>
@@ -622,7 +623,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Class类的使用"><span class="nav-number">1.</span> <span class="nav-text">Class类的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Class类的使用"><span class="nav-number">1.</span> <span class="nav-text">Class类的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java动态加载类"><span class="nav-number">2.</span> <span class="nav-text">Java动态加载类</span></a></li></ol></div>
             
 
           </div>
