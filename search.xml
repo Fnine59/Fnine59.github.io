@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Linux学习笔记]]></title>
+    <url>%2F2018%2F04%2F15%2FLinux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[本篇文章整理自《Linux系统概述》课堂笔记，会有一些与Linux无关的课外知识补充。 使用工具推荐虚拟机：VMware（本文使用）、Virtualbox（免费） 虚拟机使用注意事项： 同时开启的所有虚拟机占用内存不要超过真实内存的一半。 一般来讲，建立一个win7内存至少1G+，而建立一个Linux系统内存1G即可，有些版本的Linux系统可能500M+也可以。 但内存也不要过小，否则虚拟机的性能将十分低，导致运行速度过慢。 虚拟机的运行：虚拟机与真实设备共用外存和CPU，内存则划分一块真实内存来使用，硬盘实际上是一个硬盘文件。 系统镜像（*.iso）：红帽企业版、CentOS、debian、openSUSE等，本文均使用红帽企业版。 （重点）Linux系统中硬盘设备的命名规则/dev/sda5其中，dev是Linux系统中硬盘设备文件所在的目录；sd表示为串口硬盘，相对的，hd表示为并口硬盘；a表示硬盘的顺序号；5表示分区的顺序号；综上所述，上述命名表示Linux系统中第一块串口硬盘的第5个分区。 课外知识补充计算机概括来讲可以分为几个部分硬件、软件、固件。其中，固件是安装在硬件（比如主板内）上的软件，它引导操作系统的运行。它可以完成比如开机时显示厂商的界面和设置启动顺序等的界面等。 区别内存与外存最直接的方法断电后数据丢失的就是内存，而断电后数据仍旧可以保存的则是外存。用这种方法可以明显得知，现在普遍流传的“手机内存”的叫法其实是错误的。 安装多系统时的安装顺序低版本→高版本，Windows→Linux。而lilo（或grub）负责多系统的引导，应当最后安装到MBR（分区表）中。 关于文件系统ISO9660 —— 光盘文件系统，其中除了存储的数据之外还有其他信息，夹带了这些信息可以用于防盗版，因为这样软件只能通过光盘安装，单纯的复制文件光盘中的内容是无法安装的。而.iso文件就相当于虚拟光盘，需要虚拟光驱来运行。FAT32 —— 此种文件系统不支持超过4G的文件，常应用在手机存储卡，win98，U盘等。NTFS —— 即NT FIle System（NT文件系统），是windows系统常用的文件系统。 windows系统相关 windows系统的内核：windows NT windows使用的文件系统：NTFS也就是NT File System]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[前端项目架构学习]]></title>
+    <url>%2F2018%2F04%2F15%2F%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[好的前端工程师和架构师一定是对数据非常敏感的，通过数据可以为用户提供更好的体验。 好的目录组织是一个好的架构的开始。每个目录要做什么事情一定要让它职责分明。除了目录组织的架构之外还有页面组织的架构。views中存放的都是视图代码，views中除了放一些页面之外，还可以将页面都共有的部分放到views/includes文件夹中，然后在其他页面中引入这些视图文件。视图页面一般不会有太复杂的逻辑关系，基本只有包含与被包含的关系，因此include中只需要平行摆放这些组件即可。当然，如果你的项目十分庞大，比如一个登录模块就有几十种，那么可以再使用文件夹来区分他们。 更高级一些的架构设计则包含了组件化和设计模式。这方面主要针对js代码，因为html和css的逻辑性并不是很强。Js中的继承和Extend是Js抽象的基础，因为js不像其他面向对象语言一样与生俱来这些功能。 Extend比如浅拷贝（适用于基本数据类型），深拷贝（使用于引用数据类型）。浅拷贝与深拷贝其实就是一个抽象出来的extend函数，使子元素具有父元素的属性。对于基本数据类型来说，就是循环复制父元素中的元素。 js中的继承，一特有的方式就是原型链继承。 划分命名空间，前端模块拆分的最基本的形式可以认为是闭包的一种应用，但是这种方式对于命名空间的管理过于随意。闭包有一个问题就是在闭包内声明的变量会常驻在内存中，因此要避免在闭包内声明过于大的变量。其实在实际项目中不会大规模的使用js的继承和扩展，一是因为项目逻辑一般不会那么复杂，二是因为一些类库为我们提供了便利，比如jQuery就提供了一个封装好的extend方法。 常用的是组件化，比如一个弹出窗口可以做成一个组件。我们可以使用开源框架来完成最终的组件的组织和管理，例如requirejs/seajs，这两个框架遵循了两种规范，一个是cmd规范，一个是amd规范，cmd指明模块是按需加载的，即依赖就近；amd则是依赖关系前置，即使用一个依赖于a,b,c三个模块的组件时，如果使用这个组件会先加载这三个模块，不管这三个模块在组件初始化的过程中用没用到。 模块化框架基本只用到两个方法，一个是define，也就是定义一个模块；一个是require，也就是使用一个模块。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>前端架构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[less学习笔记]]></title>
+    <url>%2F2018%2F04%2F14%2Fless%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>less</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Git常用命令整理]]></title>
     <url>%2F2018%2F04%2F14%2FGit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86%2F</url>
     <content type="text"><![CDATA[基础操作部分初始化git init 将修改提交到暂存区git add tips：使用git add .可以将当前工作区中的所有存在修改的文件一次性全部提交到暂存区 将暂存区提交到版本库git commit -m “commit message” 跳过暂存区，直接把工作区的修改提交到版本库git commit -a -m “commit message” 查看工作区状态git status 查看工作区修改内容，也就是查看工作区与暂存区的区别git diff 恢复到指定id的版本git reset -hard 查看提交历史git log 查看格式化后的提交历史git log –pretty=oneline 可以查看所有分支的所有操作记录（包括提交、回退、已删除的提交操作记录等）git reflog 查看工作区和版本库里面最新版本的区别git diff HEAD –reaadme.txt 切换分支或恢复工作树文件git checkout 切换到一个指定分支： git checkout 分支名称 创建并切换到新的分支中： git checkout -b 分支名称 撤销修改： git checkout – 一种情况是文件修改后还没有放到暂存区，此时撤销修改也就是回到了版本库中的状态。即，上一次git commit后，修改了文件，但没有执行git add，回到上一次git commit时的状态。 第二种情况是文件已经添加到了暂存区，又做了修改，此时撤销修改就回到了添加到暂存区时的状态。即，修改了文件，并且执行了git add，然后又修改了文件，此时会撤销到git add时的状态。 撤销暂存区的修改，但不修改工作区git reset HEAD 从版本库中删除文件git rm 远程仓库部分创建SSH Keyssh -keygen -t rsa -C “email@mail.com“ 创建与远程仓库的关联git remote add origin git@github.com:Fnine59/project_name.git tips: origin是远程仓库的名字 把本地库的所有内容都推送到远程库git push -u origin master tips: 第一次推送master分支时加上-u参数，则不仅会将本地的master分支推送到远程仓库中的master分支，还会将它们相互关联起来，这样以后推送或拉取时就可以简化命令了。 从远程仓库克隆项目git clone git@github.com:Fnine59/project_name.git (SSH协议形式) git clone https://github.com/Fnine59/project_name.git (HTTP协议形式) 从远程仓库拉取数据git fetch 查看远程仓库信息git remote git remote -v (查看远程库的详细信息) git remote show (更详细一些) 远程仓库重命名git remote rename 分支操作部分分支操作规范1234567master分支是主分支，因此要时刻与远程同步； dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步； bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug； feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。 创建并切换到example分支git checkout -b 查看分支git branch 创建example分支git branch 切换到example分支 git checkout 合并指定分支到当前分支git merge 删除example分支git branch -d 查看分支的合并情况git log –graph –pretty=oneline -abbrev -commit 查看分支合并图git log –graph 采用普通模式合并指定分支到当前分支git merge –no-ff -m “使用普通模式合并分支” 本地分支操作部分保存工作区现场，操作完其他后可以恢复工作区继续工作git stash 恢复保存的工作区现场，但是恢复后不删除stash内容git stash apply 删除保存的工作区现场git stash drop 恢复保存的工作区现场，同时删除stash内容git stash pop 强行删除分支git branch -D 远程分支操作部分将master分支推送到远程库对应的远程分支git push origin master 从远程仓库抓取分支git pull 建立本地example分支和远程example分支的关联git branch –set -upstream origin/ 标签操作部分新建标签git tag 根据提交的id创建带说明的标签git tag -a -m “tag message” commit id 查看所有标签git tag 查看的标签信息git show 推送一个本地标签到远程仓库中git push origin 推送本地所有未推送过的标签到远程git push origin –tags 删除标签git tag -d 删除远程标签git push originn :refs/tags/ 文件恢复从暂存区恢复文件到工作区可以使用 git checkout . 或 git checkout --&lt;file&gt;命令 从版本库恢复文件到工作区和暂存区使用 git checkout HEAD . 或 git checkout HEAD &lt;file&gt;命令，会从HEAD指向的master分支中的全部或部分文件来替换暂存区以及工作区中的文件 从版本库恢复提交到暂存区git reset –soft 从版本库恢复提交到暂存区和工作区，等同于checkout HEAD .git reset –hard]]></content>
