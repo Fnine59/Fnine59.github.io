@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s1.ax1x.com/2018/04/16/CeBkx1.md.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/04/16/CeBiG9.md.png">
-<meta property="og:updated_time" content="2018-04-16T13:37:09.814Z">
+<meta property="og:updated_time" content="2018-04-17T14:46:37.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux学习笔记">
 <meta name="twitter:description" content="本篇文章整理自《Linux系统概述》课堂笔记，会有一些与Linux无关的课外知识补充。考试重点在标题前用※标注，十分重要的点会标为彩色。Linux常用命令部分为避免符号混淆，不使用※标注重点，重点直接标为彩色，并且凡是该命令列出的选项均为常用或重点的选项。  基本概念整理操作系统的概念操作系统是控制和管理计算机系统内各种硬件和软件资源、有效地组织多道程序运行的系统软件（或程序集合），是用户与计算">
@@ -474,7 +474,7 @@
 <li>服务器一般为了性能，是不会使用GUI的。</li>
 </ul>
 <h2 id="※Linux系统中硬盘设备的命名规则"><a href="#※Linux系统中硬盘设备的命名规则" class="headerlink" title="※Linux系统中硬盘设备的命名规则"></a><font color="green">※Linux系统中硬盘设备的命名规则</font></h2><p>Linux通过字母和数字的组合来标志硬盘分区。前两个字母表示分区所在的设备的类型，如hd表示IDE硬盘即并口硬盘，sd表示SCSI/SATA/USB硬盘即串口硬盘，第三个字母表示分区在哪个设备上，如hda表示第一块IDE硬盘，hdb表示第二块IDE硬盘，sdc表示第三块串口硬盘等；最后的数字表示分区的次序，如数字1~4表示主分区或扩展分区，而逻辑分区从5开始。如果没有对磁盘分区，则一律不加数字，表示整块磁盘。<br>例：<code>/dev/sda5</code><br>其中，<code>dev</code>是Linux系统中硬盘设备文件所在的目录；<br><code>sd</code>表示为串口硬盘，相对的，hd表示为并口硬盘；<br><code>a</code>表示硬盘的顺序号；<br><code>5</code>表示分区的顺序号；<br>综上所述，上述命名表示Linux系统中第一块串口硬盘的第5个分区。</p>
-<h2 id="※Linux系统分区规则"><a href="#※Linux系统分区规则" class="headerlink" title="※Linux系统分区规则"></a>※Linux系统分区规则</h2><ul>
+<h2 id="※Linux系统分区规则"><a href="#※Linux系统分区规则" class="headerlink" title="※Linux系统分区规则"></a><font color="green">※Linux系统分区规则</font></h2><ul>
 <li>默认必须有一个<code>/</code>即<font color="green">根分区</font>，也就相当于Windows系统中的C盘；</li>
 <li>默认必须有一个<font color="green">swap分区</font>即交换空间，它用作虚拟内存，通常为内存的1-1.5倍大小甚至2倍。（补充：windows系统的虚拟内存为pagefile.sys，存储在C盘是个隐藏文件。虚拟内存防止所有内存空间突然全部用完的情况，虽然虚拟内存速度很慢，但可以预防紧急情况；还有一种情况是电脑突然待机，此时会把数据放到虚拟内存中）</li>
 <li>/boot分区是用于保证即使根分区出现问题也能启动计算机的，可以没有。<ul>
@@ -486,9 +486,11 @@
 </li>
 </ul>
 <h2 id="※在Unix或Linux系统上实现GUI的机制——X-Window"><a href="#※在Unix或Linux系统上实现GUI的机制——X-Window" class="headerlink" title="※在Unix或Linux系统上实现GUI的机制——X Window"></a>※在Unix或Linux系统上实现GUI的机制——X Window</h2><p>X Window模型如下图：<br><img src="https://s1.ax1x.com/2018/04/16/CeBkx1.md.png" alt="X Window" title="X Window"></p>
-<p>Window系统上鼠标点击时是由被点击的应用程序直接获得鼠标点击事件，而Linux系统上则不然，Linux系统在点击后首先通知X Server服务器，X Server收到后，根据大概的位置推算出被点击的是哪个应用程序，再通过X协议告知该应用程序。因此，Windows系统的GUI比Linux稍快。<br>整个X Window由三个部分组成：<br>X Server<br>X Client<br>X protocol:X Server与X Client之间的通信协议</p>
+<p>Window系统上鼠标点击时是由被点击的应用程序直接获得鼠标点击事件，而Linux系统上则不然，Linux系统在点击后首先通知X Server服务器，X Server收到后，根据大概的位置推算出被点击的是哪个应用程序，再通过X协议告知该应用程序。因此，Windows系统的GUI比Linux稍快。</p>
+<font color="green"><strong>※整个X Window由三个部分组成：</strong><br><br>X Server<br>X Client<br>X protocol:X Server与X Client之间的通信协议</font>
+
 <p>其中X Server与X Client可以不在同一台机器上。在启动X Window时，首先启动X Server，然后启动X Client，最后建立通信。</p>
-<h2 id="※Linux常用的文件系统"><a href="#※Linux常用的文件系统" class="headerlink" title="※Linux常用的文件系统"></a>※Linux常用的文件系统</h2><p>Linux常用的文件系统有ext4、xfs、f2fs、zfs、btrfs<br>补充：</p>
+<h2 id="※Linux常用的文件系统"><a href="#※Linux常用的文件系统" class="headerlink" title="※Linux常用的文件系统"></a><font color="green">※Linux常用的文件系统</font></h2><p>Linux常用的文件系统有ext4、xfs、f2fs、zfs、btrfs<br>补充：</p>
 <ul>
 <li>windows常用的文件系统有FAT32、NTFS、exFat</li>
 <li>ios常用的文件系统APFS</li>
@@ -500,12 +502,12 @@
 <li>.gz</li>
 <li>.tar.bz2</li>
 </ul>
-<h2 id="Linux系统的分区表"><a href="#Linux系统的分区表" class="headerlink" title="Linux系统的分区表"></a>Linux系统的分区表</h2><p>分区表有两种形式</p>
+<h2 id="※Linux系统的分区表"><a href="#※Linux系统的分区表" class="headerlink" title="※Linux系统的分区表"></a><font color="green">※Linux系统的分区表</font></h2><p>分区表有两种形式</p>
 <ul>
 <li>MBR：最多支持4个主分区，或者3个主分区以及一个扩展分区，扩展分区下可以划分出若干个逻辑分区</li>
 <li>GPT：支持几乎无限个分区数量，但Windows系统最多支持128个GPT分区</li>
 </ul>
-<h2 id="GNOME和KDE桌面"><a href="#GNOME和KDE桌面" class="headerlink" title="GNOME和KDE桌面"></a>GNOME和KDE桌面</h2><ul>
+<h2 id="※GNOME和KDE桌面"><a href="#※GNOME和KDE桌面" class="headerlink" title="※GNOME和KDE桌面"></a>※GNOME和KDE桌面</h2><ul>
 <li>GNOME：用GTK、GTK+等应用程序开发包开发的；而GTK是用C语言开发的</li>
 <li>KDE：用Qt库开发的，而Qt由c++开发。</li>
 </ul>
@@ -532,7 +534,7 @@
 <li>Windows系统的GUI与系统内核是高度集成的，它首先启动GUI，<strong><font color="green">命令行只是运行在GUI上的一个应用程序</font></strong>。</li>
 </ul>
 <h2 id="※Linux系统中根目录下每个文件夹的作用"><a href="#※Linux系统中根目录下每个文件夹的作用" class="headerlink" title="※Linux系统中根目录下每个文件夹的作用"></a><font color="green">※Linux系统中根目录下每个文件夹的作用</font></h2><ul>
-<li><font color="green"><strong>/bin</strong>/font&gt; ：即Binary（二进制）的缩写，用于存放一些命令文件</font></li>
+<li><font color="green"><strong>/bin</strong></font> ：即Binary（二进制）的缩写，用于存放一些命令文件</li>
 <li><font color="green"><strong>/sbin</strong></font> ：s代表super user，用于存放root用户专用的一些命令文件</li>
 <li><font color="green"><strong>/boot</strong></font> ：boot意为启动、引导，如果不为Linux系统单独建立一个分区则会生成一个boot文件夹，用于存放操作系统的内核以及启动时必需的文件</li>
 <li><font color="green"><strong>/dev</strong></font> ：device的缩写，用于存放一些硬件设备</li>
@@ -559,6 +561,14 @@
 <li>atime：访问时间，使用touch命令可以更新这个值</li>
 </ul>
 </li>
+<li>很多配置文件只能root用户修改</li>
+<li>Linux系统中的所有文件都有权限和主人</li>
+</ul>
+<h2 id="Linux系统的用户"><a href="#Linux系统的用户" class="headerlink" title="Linux系统的用户"></a>Linux系统的用户</h2><ul>
+<li>用户注册信息存放在/etc/passwd文件中，编号1000之后的是用户创建的用户，1000之前的是系统默认创建的用户</li>
+<li>Linux系统中要删除用户，实际上就是删除/etc/passwd中该用户的那一行信息，并删除<code>/home/用户名</code>这个用户主目录</li>
+<li>一般来讲，Linux系统上的home文件夹会单独放在一个分区，就如同windows系统中的D、E、F盘那样，因为重装系统时会格式化根分区，Windows会格式化C盘，将home单独放在一个分区可以避免用户数据丢失</li>
+<li>如果Linux的用户改名，主目录是不会改名的</li>
 </ul>
 <h2 id="Linux系统中的几种文件类型"><a href="#Linux系统中的几种文件类型" class="headerlink" title="Linux系统中的几种文件类型"></a><strong>Linux系统中的几种文件类型</strong></h2><ol>
 <li>普通文件</li>
@@ -566,11 +576,19 @@
 <li>设备文件</li>
 <li>符号链接文件：分为软链接和硬链接</li>
 </ol>
-<h1 id="Linux系统常用命令"><a href="#Linux系统常用命令" class="headerlink" title="Linux系统常用命令"></a>Linux系统常用命令</h1><h2 id="Shell提示符"><a href="#Shell提示符" class="headerlink" title="Shell提示符"></a><font color="green">Shell提示符</font></h2><ul>
+<h2 id="Linux系统中的路径"><a href="#Linux系统中的路径" class="headerlink" title="Linux系统中的路径"></a>Linux系统中的路径</h2><ul>
+<li>绝对路径，以根目录即<code>/</code>开头</li>
+<li>相对路径，以目录名开头或以<code>./</code>开头，比如<code>./etc/</code>也就相当于<code>etc/</code>，代表当前目录下有个etc文件夹</li>
+</ul>
+<h2 id="Linux系统中的硬链接和软链接"><a href="#Linux系统中的硬链接和软链接" class="headerlink" title="Linux系统中的硬链接和软链接"></a>Linux系统中的硬链接和软链接</h2><ul>
+<li>硬链接：不可以跨分区</li>
+<li>软链接：相当于windows系统中的快捷方式，可以跨分区，也称为符号链接</li>
+</ul>
+<h1 id="Linux系统常用命令"><a href="#Linux系统常用命令" class="headerlink" title="Linux系统常用命令"></a>Linux系统常用命令</h1><h2 id="※Shell提示符"><a href="#※Shell提示符" class="headerlink" title="※Shell提示符"></a><font color="green">※Shell提示符</font></h2><ul>
 <li>root用户： <code>#</code></li>
 <li>其他用户： <code>$</code></li>
 </ul>
-<h2 id="shell提示符前面字符串的含义"><a href="#shell提示符前面字符串的含义" class="headerlink" title="shell提示符前面字符串的含义"></a>shell提示符前面字符串的含义</h2><p><code>[root@localhost home]#</code></p>
+<h2 id="※shell提示符前面字符串的含义"><a href="#※shell提示符前面字符串的含义" class="headerlink" title="※shell提示符前面字符串的含义"></a><font color="green">※shell提示符前面字符串的含义</font></h2><p><code>[root@localhost home]#</code></p>
 <ul>
 <li>root代表当前登录的用户的用户名</li>
 <li>localhost代表当前登录的主机名</li>
@@ -706,8 +724,38 @@
 </ul>
 </li>
 </ol>
+<h2 id="※文件压缩命令"><a href="#※文件压缩命令" class="headerlink" title="※文件压缩命令"></a><font color="red">※文件压缩命令</font></h2><ol>
+<li>Linux常见的压缩格式<ul>
+<li>filename.tar.gz（最普通）</li>
+<li>filename.tar.bz2</li>
+<li>filename.tar.xz（最常用）</li>
+<li>.zip（通用，zip压缩包在各个系统上均可使用）</li>
+</ul>
+</li>
+<li><strong>filename.tar.gz</strong><ul>
+<li>压缩：tar <font color="red"><strong>z</strong></font><font color="green"><strong>c</strong></font>vf filename.tar.gz some_file_dirs</li>
+<li>解压：tar <font color="red"><strong>z</strong></font><font color="green"><strong>x</strong></font>vf filename.tar.gz (-c /路径)</li>
+<li>解释：z选项指定了用于gz包；c选项和x选项分别指定了压缩和解压；v选项指定了需要显示详细信息，这个选项可以省略；f选项指明文件；解压命令中的-C选项可以指明解压到指定路径</li>
+</ul>
+</li>
+<li><strong>filename.tar.bz2</strong><ul>
+<li>压缩：tar <font color="red"><strong>j</strong></font><font color="green"><strong>c</strong></font>vf filename.tar.bz2 some_file_dirs</li>
+<li>解压：tar <font color="red"><strong>j</strong></font><font color="green"><strong>x</strong></font>vf filename.tar.bz2</li>
+</ul>
+</li>
+<li><strong>filename.tar.xz</strong><ul>
+<li>压缩：tar <font color="red"><strong>J</strong></font><font color="green"><strong>c</strong></font>vf filename.tar.xz some_file_dirs</li>
+<li>解压：tar <font color="red"><strong>J</strong></font><font color="green"><strong>x</strong></font>vf filename.tar.xz</li>
+</ul>
+</li>
+<li><strong>filename.zip</strong><ul>
+<li>解压：unzip filename.zip</li>
+</ul>
+</li>
+<li>一点知识补充，其实现在微软的无论docx还是pptx格式的文件，只要这些后缀名带x的，实际上就是zip文件，是可以解压的</li>
+</ol>
 <h2 id="比较文件内容的命令"><a href="#比较文件内容的命令" class="headerlink" title="比较文件内容的命令"></a>比较文件内容的命令</h2><ol>
-<li>comm命令<ul>
+<li>comm命令（一般不用，一般会用vimdiff）<ul>
 <li>用途：用于对两个已经排序的文件进行逐行比较</li>
 <li>用法：<code>comm [选项] 文件1 文件2</code></li>
 </ul>
@@ -715,6 +763,168 @@
 <li>diff命令<ul>
 <li>用途：用来比较两个文本文件，并找出他们的不同</li>
 <li>用法：<code>diff [选项] 文件1 文件2</code></li>
+<li>注：diff命令会生成一个patch文件，这个文件保存了两者之间的不同，相当于补丁的作用</li>
+</ul>
+</li>
+</ol>
+<h2 id="复制、删除和移动文件的命令"><a href="#复制、删除和移动文件的命令" class="headerlink" title="复制、删除和移动文件的命令"></a>复制、删除和移动文件的命令</h2><ol>
+<li><font color="red">※cp命令</font><ul>
+<li>用途：用于将源文件或目录复制到目标文件或目录中</li>
+<li>用法：<code>cp [选项] 源文件或目录 目标文件或目录</code></li>
+<li>选项：<ul>
+<li>-v，显示拷贝的详细过程，如果不用-v则只有光标在闪烁</li>
+<li>-R，-r，递归复制目录，即将源目录下的所有文件及其各级子目录都复制到目标位置，此时目标文件必须为一个目录名</li>
+</ul>
+</li>
+<li>特例：<ul>
+<li><code>cp 目录 不存在的文件的文件名</code>会将前边的目录复制为一个新文件夹，命名为后边的文件名</li>
+<li><code>cp -r dir newdir</code>，如果dir已经存在，会将dir放到newdir中；如果newdir不存在，会将dir复制为newdir</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>rm命令<ul>
+<li>用途：用于删除文件或目录</li>
+<li>用法：<code>rm [选项] [文件]</code></li>
+<li>选项：<ul>
+<li>-f，即–force，忽略不存在的文件，并且<strong>不给出提示信息</strong>；但是如果是普通用户删除文件，如果没有删除某个文件的权限，那么即使加了-f也是删不掉的</li>
+<li>-r，-R，即-recursive，递归地删除指定目录及其下属的各级子目录和相应的文件</li>
+<li>-i，交互式地删除文件，即删除文件之前会给出提示并需要用户逐个确认，与-f相反</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>mv命令<ul>
+<li>用途：①对文件或目录重新命名②将文件从一个目录移动到另一个目录中</li>
+<li>用法：<code>mv [选项] 源文件 目标文件</code></li>
+<li>解释：如果目标文件与源文件路径不同，则是移动操作；如果路径相同，就相当于是重命名操作</li>
+</ul>
+</li>
+</ol>
+<h2 id="文件内容统计命令"><a href="#文件内容统计命令" class="headerlink" title="文件内容统计命令"></a>文件内容统计命令</h2><ol>
+<li>wc命令<ul>
+<li>用途：用于统计指定文件的字节数、字数、行数，并将统计结果显示出来</li>
+<li>用法：<code>wc [选项] [文件]</code></li>
+<li>选项：<ul>
+<li>-c，即–bytes，统计字节数</li>
+<li>-l，即–lines，统计行数</li>
+<li>-m，即–chars，统计字符数</li>
+<li>-w，即–words，统计字数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="常用的目录操作命令"><a href="#常用的目录操作命令" class="headerlink" title="常用的目录操作命令"></a>常用的目录操作命令</h2><ol>
+<li>mkdir命令<ul>
+<li>用途：用来创建目录</li>
+<li>用法：<code>mkdir [选项] dirname</code></li>
+<li>选项：-p，即–parents，可以一次建立多个目录，即如果为新建目录所指定的路径dirname中有些父目录尚不存在，此选项可以自动创建它们</li>
+<li>如果要创建一个<strong>名字中带空格</strong>的文件夹，则使用<code>mkdir &quot;a b&quot;</code>或者<code>mkdir a\ b</code></li>
+</ul>
+</li>
+<li>rmdir命令<ul>
+<li>用途：可以从一个目录中删除一个或多个<strong>空的</strong>子目录</li>
+<li>用法：<code>rmdir [选项] dirname</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="改变工作目录和显示目录内容"><a href="#改变工作目录和显示目录内容" class="headerlink" title="改变工作目录和显示目录内容"></a>改变工作目录和显示目录内容</h2><ol>
+<li>cd命令<ul>
+<li>用途：用于改变工作目录</li>
+<li>用法：<code>cd [dirname]</code></li>
+<li>几种用法：<ul>
+<li><code>cd /绝对路径</code> ：cd命令可以跟一个绝对路径</li>
+<li><code>cd ./相对路径</code> ：cd命令也可以跟一个相对路径</li>
+<li><code>cd</code> ：cd后什么都不加或者加一个空格，代表将工作目录改为用户主目录</li>
+<li><code>cd ~</code> ：同上，代表跳回用户主目录</li>
+<li><code>cd ..</code> ：跳回上级目录，<code>..</code>代表上级目录</li>
+<li><code>cd .</code> ：跳回当前目录，其实相当于原地踏步。<code>.</code>代表当前目录</li>
+<li><code>cd -</code> ：后退一步，连续使用则会在两个工作目录之间来回跳转</li>
+</ul>
+</li>
+<li>关于路径的注意点：根目录的<code>.</code>和<code>..</code>是一样的；绝对路径一定是以根目录也就是<code>/</code>开头的</li>
+</ul>
+</li>
+<li><font color="red">※ls命令</font><ul>
+<li>用途：列出指定目录的内容</li>
+<li>用法：<code>ls [选项] [file]</code></li>
+<li>选项：<ul>
+<li>-a，即–all，显示指定目录下所有子目录和文件，包括以<code>.</code>开头的隐藏文件，包括<code>.</code>和<code>..</code></li>
+<li>-d，如果参数是目录，则只显示它的名字（不显示其内容）；往往与-l选项一起使用，以得到该目录本身的详细信息</li>
+<li>-h，一般结合-l选项使用，使文件大小字段带有一个最合适的单位方便用户查看</li>
+<li><font color="red">-l</font>，以长格式显示文件的详细信息，输出的信息分成多列，它们依次是：<font color="green"><strong>文件类型与权限  链接数  文件主  文件组  文件大小  建立或最近修改的时间  文件名</strong></font>，其中，链接数指的是硬链接数，文件组显示的是主组的名称，即文件所属的用户属于哪个组<ul>
+<li>例如：-rw-r–r–  2  mengqc  group  809  12月  27  2008  myfile2</li>
+</ul>
+</li>
+<li>综上所述，<code>ls -lha</code>是一个很常用的命令，用于显示某个目录中所有文件的带单位的详细信息；并且，<code>ls -l</code>这个命令可以简写为<code>ll</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="※关于ls命令中的10个表示文件类型与权限的字符"><a href="#※关于ls命令中的10个表示文件类型与权限的字符" class="headerlink" title="※关于ls命令中的10个表示文件类型与权限的字符"></a><font color="red">※关于ls命令中的10个表示文件类型与权限的字符</font></h2><p><font color="red">头一个字符代表了文件类型</font>，所用字符及含义如下：</p>
+<ul>
+<li><code>-</code>  普通文件</li>
+<li><code>d</code>  即dir，目录文件</li>
+<li><code>b</code>  即block，块设备文件，一般是指能存储数据的，比如硬盘</li>
+<li><code>c</code>  即char，字符设备文件，一般是能够显示字符的，比如打印机和屏幕</li>
+<li><code>l</code>  即link，符号链接文件，也就是软链接</li>
+<li><code>s</code>  套接字文件（socket），一般网络编程会用到</li>
+<li><code>p</code>  命名管道文件（pipe），管道即”|”</li>
+</ul>
+<p><font color="red">随后的九个字符分为三组，每组3个字符，分别代表了三组权限：第一组代表文件所有者的读、写、执行权限；第二组表示同组用户的读、写、执行权限；第三组表示其他用户的读、写、执行权限</font>，在权限部分会有详细讲解，其中</p>
+<ul>
+<li><code>r</code>     即read，读</li>
+<li><code>w</code>  即write，写</li>
+<li><code>x</code>  即execute，执行，对于目录文件则表示该目录可以访问</li>
+<li><code>-</code>  代表没有对应的权限</li>
+<li><code>s</code>  不常见</li>
+<li><code>t</code>  不常见</li>
+</ul>
+<p>权限字段的组合中，<code>rwxrwxrwx</code>的限制是最少的，但是Linux系统中一般不会设置成这样</p>
+<ol>
+<li>ln命令<ul>
+<li>用途：用来创建链接</li>
+<li>用法：<code>ln [选项] 源文件 [目标文件]</code></li>
+<li>选项：-s，即–symbolic，建立符号链接而不是硬链接，如果要创建硬链接就不加-s</li>
+</ul>
+</li>
+</ol>
+<h2 id="改变文件或目录存取权限的命令"><a href="#改变文件或目录存取权限的命令" class="headerlink" title="改变文件或目录存取权限的命令"></a>改变文件或目录存取权限的命令</h2><ol>
+<li>chmod命令<ul>
+<li>用途：即change mode，用于改变或设置文件或目录的存取权限，但是只有文件主或超级用户root才有权用chmod命令改变文件或目录的存取权限</li>
+<li>用法：改变文件权限有两种方法：文字设定法、数字设定法（常用）</li>
+<li>文字设定法：<ul>
+<li>用法：<code>chmod [who] [+|-|=] [mode] filename</code></li>
+<li>例如：<code>chmod o + r file.txt</code>是为其他用户增加file.txt文件的读权限</li>
+<li><strong>操作对象who可以取的值有：</strong><ul>
+<li><strong>u，表示“用户（user）”，即文件或目录的所有者；</strong></li>
+<li><strong>g，表示“同组（group）用户”，即与文件属主有相同组ID的所有用户；</strong></li>
+<li><strong>o，表示“其他（others）用户”；</strong></li>
+<li><strong>a，表示“所有（all）用户”，它是系统默认值</strong></li>
+</ul>
+</li>
+<li><strong>操作符号可以是：</strong><ul>
+<li><strong>+，即添加某个权限；</strong></li>
+<li><strong>-，即取消某个权限；</strong></li>
+<li><strong>=，即赋予给定权限并取消其他所有权限（如果有的话）；</strong></li>
+</ul>
+</li>
+<li><strong>mode所表示的权限可以是下述字母的任意组合：</strong><ul>
+<li><strong>r，可读；</strong></li>
+<li><strong>w，可写；</strong></li>
+<li><strong>x，可执行（或可搜索目录）；</strong></li>
+<li>X，只有该目标文件是目录文件或对某些用户有可执行权限时，才有“可执行/搜索”属性</li>
+<li>s，在文件执行时，把进程的属主或组ID置为该文件的文件属主。方式u+s设置文件的用户ID位，g+s设置组ID位</li>
+<li>t，受限删除标志或粘着位，即程序的文本保存到交换设备上</li>
+<li><strong>u，与文件属主拥有一样的权限；</strong></li>
+<li><strong>g，与和文件属主同组的用户拥有一样的权限；</strong></li>
+<li><strong>o，与其他用户拥有一样的权限；</strong></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -776,6 +986,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/17/Andorid学习笔记/" rel="prev" title="Andorid学习笔记">
+                Andorid学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -861,7 +1075,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -938,7 +1152,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念整理"><span class="nav-number">1.</span> <span class="nav-text">基本概念整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的概念"><span class="nav-number">1.1.</span> <span class="nav-text">操作系统的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的基本功能"><span class="nav-number">1.2.</span> <span class="nav-text">操作系统的基本功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的类型"><span class="nav-number">1.3.</span> <span class="nav-text">操作系统的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的特点"><span class="nav-number">1.4.</span> <span class="nav-text">Linux系统的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的常用版本"><span class="nav-number">1.5.</span> <span class="nav-text">Linux的常用版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux系统基础知识"><span class="nav-number">2.</span> <span class="nav-text">Linux系统基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用工具推荐"><span class="nav-number">2.1.</span> <span class="nav-text">使用工具推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VMware常用功能"><span class="nav-number">2.2.</span> <span class="nav-text">VMware常用功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机中系统的安装（VMware安装64位红帽企业版）"><span class="nav-number">2.3.</span> <span class="nav-text">虚拟机中系统的安装（VMware安装64位红帽企业版）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统中硬盘设备的命名规则"><span class="nav-number">2.4.</span> <span class="nav-text">※Linux系统中硬盘设备的命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统分区规则"><span class="nav-number">2.5.</span> <span class="nav-text">※Linux系统分区规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※在Unix或Linux系统上实现GUI的机制——X-Window"><span class="nav-number">2.6.</span> <span class="nav-text">※在Unix或Linux系统上实现GUI的机制——X Window</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux常用的文件系统"><span class="nav-number">2.7.</span> <span class="nav-text">※Linux常用的文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统常见的压缩文件后缀"><span class="nav-number">2.8.</span> <span class="nav-text">Linux系统常见的压缩文件后缀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的分区表"><span class="nav-number">2.9.</span> <span class="nav-text">Linux系统的分区表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GNOME和KDE桌面"><span class="nav-number">2.10.</span> <span class="nav-text">GNOME和KDE桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些名词"><span class="nav-number">2.11.</span> <span class="nav-text">一些名词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统快捷操作"><span class="nav-number">2.12.</span> <span class="nav-text">Linux系统快捷操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux与Windows在命令行与GUI启动顺序上的差异"><span class="nav-number">2.13.</span> <span class="nav-text">※Linux与Windows在命令行与GUI启动顺序上的差异</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统中根目录下每个文件夹的作用"><span class="nav-number">2.14.</span> <span class="nav-text">※Linux系统中根目录下每个文件夹的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么使用Linux命令行"><span class="nav-number">2.15.</span> <span class="nav-text">为什么使用Linux命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的文件"><span class="nav-number">2.16.</span> <span class="nav-text">Linux系统的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统中的几种文件类型"><span class="nav-number">2.17.</span> <span class="nav-text">Linux系统中的几种文件类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux系统常用命令"><span class="nav-number">3.</span> <span class="nav-text">Linux系统常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell提示符"><span class="nav-number">3.1.</span> <span class="nav-text">Shell提示符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell提示符前面字符串的含义"><span class="nav-number">3.2.</span> <span class="nav-text">shell提示符前面字符串的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统一般命令格式"><span class="nav-number">3.3.</span> <span class="nav-text">Linux系统一般命令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#who命令"><span class="nav-number">3.4.</span> <span class="nav-text">who命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户退出登录"><span class="nav-number">3.5.</span> <span class="nav-text">用户退出登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送消息"><span class="nav-number">3.6.</span> <span class="nav-text">发送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关机"><span class="nav-number">3.7.</span> <span class="nav-text">关机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启"><span class="nav-number">3.8.</span> <span class="nav-text">重启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init命令"><span class="nav-number">3.9.</span> <span class="nav-text">init命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clear命令"><span class="nav-number">3.10.</span> <span class="nav-text">clear命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#passwd命令"><span class="nav-number">3.11.</span> <span class="nav-text">passwd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd命令"><span class="nav-number">3.12.</span> <span class="nav-text">pwd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#su命令"><span class="nav-number">3.13.</span> <span class="nav-text">su命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo命令"><span class="nav-number">3.14.</span> <span class="nav-text">echo命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#date命令"><span class="nav-number">3.15.</span> <span class="nav-text">date命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cal命令"><span class="nav-number">3.16.</span> <span class="nav-text">cal命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file命令"><span class="nav-number">3.17.</span> <span class="nav-text">file命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找"><span class="nav-number">3.18.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的文件操作命令"><span class="nav-number">3.19.</span> <span class="nav-text">常用的文件操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配、排序及显示指定内容的命令"><span class="nav-number">3.20.</span> <span class="nav-text">匹配、排序及显示指定内容的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较文件内容的命令"><span class="nav-number">3.21.</span> <span class="nav-text">比较文件内容的命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#课外知识补充"><span class="nav-number">4.</span> <span class="nav-text">课外知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机概括来讲可以分为几个部分"><span class="nav-number">4.0.1.</span> <span class="nav-text">计算机概括来讲可以分为几个部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机的几种状态"><span class="nav-number">4.0.2.</span> <span class="nav-text">计算机的几种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BIOS"><span class="nav-number">4.0.3.</span> <span class="nav-text">BIOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别内存与外存最直接的方法"><span class="nav-number">4.0.4.</span> <span class="nav-text">区别内存与外存最直接的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装多系统时的安装顺序"><span class="nav-number">4.0.5.</span> <span class="nav-text">安装多系统时的安装顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于文件系统"><span class="nav-number">4.0.6.</span> <span class="nav-text">关于文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows系统相关"><span class="nav-number">4.0.7.</span> <span class="nav-text">windows系统相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux系统版本"><span class="nav-number">4.0.8.</span> <span class="nav-text">Linux系统版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统调用"><span class="nav-number">4.0.9.</span> <span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器的内存泄漏"><span class="nav-number">4.0.10.</span> <span class="nav-text">服务器的内存泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">4.0.11.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念整理"><span class="nav-number">1.</span> <span class="nav-text">基本概念整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的概念"><span class="nav-number">1.1.</span> <span class="nav-text">操作系统的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的基本功能"><span class="nav-number">1.2.</span> <span class="nav-text">操作系统的基本功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的类型"><span class="nav-number">1.3.</span> <span class="nav-text">操作系统的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的特点"><span class="nav-number">1.4.</span> <span class="nav-text">Linux系统的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的常用版本"><span class="nav-number">1.5.</span> <span class="nav-text">Linux的常用版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux系统基础知识"><span class="nav-number">2.</span> <span class="nav-text">Linux系统基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用工具推荐"><span class="nav-number">2.1.</span> <span class="nav-text">使用工具推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VMware常用功能"><span class="nav-number">2.2.</span> <span class="nav-text">VMware常用功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机中系统的安装（VMware安装64位红帽企业版）"><span class="nav-number">2.3.</span> <span class="nav-text">虚拟机中系统的安装（VMware安装64位红帽企业版）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统中硬盘设备的命名规则"><span class="nav-number">2.4.</span> <span class="nav-text">※Linux系统中硬盘设备的命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统分区规则"><span class="nav-number">2.5.</span> <span class="nav-text">※Linux系统分区规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※在Unix或Linux系统上实现GUI的机制——X-Window"><span class="nav-number">2.6.</span> <span class="nav-text">※在Unix或Linux系统上实现GUI的机制——X Window</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux常用的文件系统"><span class="nav-number">2.7.</span> <span class="nav-text">※Linux常用的文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统常见的压缩文件后缀"><span class="nav-number">2.8.</span> <span class="nav-text">Linux系统常见的压缩文件后缀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统的分区表"><span class="nav-number">2.9.</span> <span class="nav-text">※Linux系统的分区表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※GNOME和KDE桌面"><span class="nav-number">2.10.</span> <span class="nav-text">※GNOME和KDE桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些名词"><span class="nav-number">2.11.</span> <span class="nav-text">一些名词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统快捷操作"><span class="nav-number">2.12.</span> <span class="nav-text">Linux系统快捷操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux与Windows在命令行与GUI启动顺序上的差异"><span class="nav-number">2.13.</span> <span class="nav-text">※Linux与Windows在命令行与GUI启动顺序上的差异</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统中根目录下每个文件夹的作用"><span class="nav-number">2.14.</span> <span class="nav-text">※Linux系统中根目录下每个文件夹的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么使用Linux命令行"><span class="nav-number">2.15.</span> <span class="nav-text">为什么使用Linux命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的文件"><span class="nav-number">2.16.</span> <span class="nav-text">Linux系统的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的用户"><span class="nav-number">2.17.</span> <span class="nav-text">Linux系统的用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统中的几种文件类型"><span class="nav-number">2.18.</span> <span class="nav-text">Linux系统中的几种文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统中的路径"><span class="nav-number">2.19.</span> <span class="nav-text">Linux系统中的路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统中的硬链接和软链接"><span class="nav-number">2.20.</span> <span class="nav-text">Linux系统中的硬链接和软链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux系统常用命令"><span class="nav-number">3.</span> <span class="nav-text">Linux系统常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#※Shell提示符"><span class="nav-number">3.1.</span> <span class="nav-text">※Shell提示符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※shell提示符前面字符串的含义"><span class="nav-number">3.2.</span> <span class="nav-text">※shell提示符前面字符串的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统一般命令格式"><span class="nav-number">3.3.</span> <span class="nav-text">Linux系统一般命令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#who命令"><span class="nav-number">3.4.</span> <span class="nav-text">who命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户退出登录"><span class="nav-number">3.5.</span> <span class="nav-text">用户退出登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送消息"><span class="nav-number">3.6.</span> <span class="nav-text">发送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关机"><span class="nav-number">3.7.</span> <span class="nav-text">关机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启"><span class="nav-number">3.8.</span> <span class="nav-text">重启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init命令"><span class="nav-number">3.9.</span> <span class="nav-text">init命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clear命令"><span class="nav-number">3.10.</span> <span class="nav-text">clear命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#passwd命令"><span class="nav-number">3.11.</span> <span class="nav-text">passwd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd命令"><span class="nav-number">3.12.</span> <span class="nav-text">pwd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#su命令"><span class="nav-number">3.13.</span> <span class="nav-text">su命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo命令"><span class="nav-number">3.14.</span> <span class="nav-text">echo命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#date命令"><span class="nav-number">3.15.</span> <span class="nav-text">date命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cal命令"><span class="nav-number">3.16.</span> <span class="nav-text">cal命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file命令"><span class="nav-number">3.17.</span> <span class="nav-text">file命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找"><span class="nav-number">3.18.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的文件操作命令"><span class="nav-number">3.19.</span> <span class="nav-text">常用的文件操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配、排序及显示指定内容的命令"><span class="nav-number">3.20.</span> <span class="nav-text">匹配、排序及显示指定内容的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※文件压缩命令"><span class="nav-number">3.21.</span> <span class="nav-text">※文件压缩命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较文件内容的命令"><span class="nav-number">3.22.</span> <span class="nav-text">比较文件内容的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制、删除和移动文件的命令"><span class="nav-number">3.23.</span> <span class="nav-text">复制、删除和移动文件的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件内容统计命令"><span class="nav-number">3.24.</span> <span class="nav-text">文件内容统计命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的目录操作命令"><span class="nav-number">3.25.</span> <span class="nav-text">常用的目录操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变工作目录和显示目录内容"><span class="nav-number">3.26.</span> <span class="nav-text">改变工作目录和显示目录内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※关于ls命令中的10个表示文件类型与权限的字符"><span class="nav-number">3.27.</span> <span class="nav-text">※关于ls命令中的10个表示文件类型与权限的字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变文件或目录存取权限的命令"><span class="nav-number">3.28.</span> <span class="nav-text">改变文件或目录存取权限的命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#课外知识补充"><span class="nav-number">4.</span> <span class="nav-text">课外知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机概括来讲可以分为几个部分"><span class="nav-number">4.0.1.</span> <span class="nav-text">计算机概括来讲可以分为几个部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机的几种状态"><span class="nav-number">4.0.2.</span> <span class="nav-text">计算机的几种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BIOS"><span class="nav-number">4.0.3.</span> <span class="nav-text">BIOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别内存与外存最直接的方法"><span class="nav-number">4.0.4.</span> <span class="nav-text">区别内存与外存最直接的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装多系统时的安装顺序"><span class="nav-number">4.0.5.</span> <span class="nav-text">安装多系统时的安装顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于文件系统"><span class="nav-number">4.0.6.</span> <span class="nav-text">关于文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows系统相关"><span class="nav-number">4.0.7.</span> <span class="nav-text">windows系统相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux系统版本"><span class="nav-number">4.0.8.</span> <span class="nav-text">Linux系统版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统调用"><span class="nav-number">4.0.9.</span> <span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器的内存泄漏"><span class="nav-number">4.0.10.</span> <span class="nav-text">服务器的内存泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">4.0.11.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
