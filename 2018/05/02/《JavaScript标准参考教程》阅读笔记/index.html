@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="59&#39;s Personal Blog">
 <meta property="og:description" content="整理自阮一峰《JavaScript标准参考教程》  基本语法语句JavaScript 程序的执行单位为行（line），也就是一行一行地执行。一般情况下，每一行就是一个语句。 语句以分号结尾，一个分号就表示一个语句结束。多个语句可以写在一行内。 分号前面可以没有任何内容，JavaScript引擎将其视为空语句。 表达式不需要分号结尾。一旦在表达式后面添加分号，则 JavaScript 引擎就将表达">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-02T13:26:34.965Z">
+<meta property="og:updated_time" content="2018-05-02T13:31:34.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《JavaScript标准参考教程》阅读笔记">
 <meta name="twitter:description" content="整理自阮一峰《JavaScript标准参考教程》  基本语法语句JavaScript 程序的执行单位为行（line），也就是一行一行地执行。一般情况下，每一行就是一个语句。 语句以分号结尾，一个分号就表示一个语句结束。多个语句可以写在一行内。 分号前面可以没有任何内容，JavaScript引擎将其视为空语句。 表达式不需要分号结尾。一旦在表达式后面添加分号，则 JavaScript 引擎就将表达">
@@ -419,23 +419,45 @@
 <p>分号前面可以没有任何内容，JavaScript引擎将其视为空语句。</p>
 <p>表达式不需要分号结尾。一旦在表达式后面添加分号，则 JavaScript 引擎就将表达式视为语句，这样会产生一些没有任何意义的语句。</p>
 <p>语句和表达式的区别在于，前者主要为了进行某种操作，一般情况下不需要返回值；后者则是为了得到返回值，一定会返回一个值。凡是 JavaScript 语言中预期为值的地方，都可以使用表达式。比如，赋值语句的等号右边，预期是一个值，因此可以放置各种表达式。</p>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>变量是对“值”的具名引用。变量就是为“值”起名，然后引用这个名字，就等同于引用这个值。变量的名字就是变量名。<br><strong>注意，JavaScript 的变量名区分大小写，<code>A</code>和<code>a</code>是两个不同的变量。</strong><br>变量的声明和赋值，是分开的两个步骤。如果只是声明变量而没有赋值，则该变量的值是<code>undefined</code>。<code>undefined</code>是一个 JavaScript 关键字，表示“无定义”。<br>如果一个变量没有声明就直接使用，JavaScript 会报错，告诉你变量未定义。<br>JavaScript 是一种<strong>动态类型语言</strong>，也就是说，变量的类型没有限制，变量可以随时更改类型。<br><strong>如果使用var重新声明一个已经存在的变量，是无效的。但是，如果第二次声明的时候还进行了赋值，则会覆盖掉前面的值。</strong></p>
-<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>JavaScript 引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。这造成的结果，就是所有的变量的声明语句，都会被提升到代码的头部，这就叫做变量提升（hoisting）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);</span><br><span class="line">var a = 1;</span><br></pre></td></tr></table></figure></p>
-<p>上面代码首先使用console.log方法，在控制台（console）显示变量a的值。这时变量a还没有声明和赋值，所以这是一种错误的做法，但是实际上不会报错。因为存在变量提升，真正运行的是下面的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a;</span><br><span class="line">console.log(a);</span><br><span class="line">a = 1;</span><br></pre></td></tr></table></figure></p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>变量是对“值”的具名引用。变量就是为“值”起名，然后引用这个名字，就等同于引用这个值。变量的名字就是变量名。</p>
+<p><strong>注意，JavaScript 的变量名区分大小写，<code>A</code>和<code>a</code>是两个不同的变量。</strong></p>
+<p>变量的声明和赋值，是分开的两个步骤。如果只是声明变量而没有赋值，则该变量的值是<code>undefined</code>。<code>undefined</code>是一个 JavaScript 关键字，表示“无定义”。</p>
+<p>如果一个变量没有声明就直接使用，JavaScript 会报错，告诉你变量未定义。</p>
+<p>JavaScript 是一种<strong>动态类型语言</strong>，也就是说，变量的类型没有限制，变量可以随时更改类型。</p>
+<p><strong>如果使用var重新声明一个已经存在的变量，是无效的。但是，如果第二次声明的时候还进行了赋值，则会覆盖掉前面的值。</strong></p>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>JavaScript 引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。这造成的结果，就是所有的变量的声明语句，都会被提升到代码的头部，这就叫做变量提升（hoisting）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);</span><br><span class="line">var a = 1;</span><br></pre></td></tr></table></figure>
+<p>上面代码首先使用console.log方法，在控制台（console）显示变量a的值。这时变量a还没有声明和赋值，所以这是一种错误的做法，但是实际上不会报错。因为存在变量提升，真正运行的是下面的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a;</span><br><span class="line">console.log(a);</span><br><span class="line">a = 1;</span><br></pre></td></tr></table></figure>
 <p>最后的结果是显示undefined，表示变量a已声明，但还未赋值。</p>
-<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><p>标识符（identifier）指的是用来识别各种值的合法名称。最常见的标识符就是变量名，以及后面要提到的函数名。JavaScript 语言的标识符对大小写敏感，所以<code>a</code>和<code>A</code>是两个不同的标识符。<br>标识符有一套命名规则，不符合规则的就是非法标识符。JavaScript 引擎遇到非法标识符，就会报错。<br>简单说，标识符命名规则如下。</p>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><p>标识符（identifier）指的是用来识别各种值的合法名称。最常见的标识符就是变量名，以及后面要提到的函数名。JavaScript 语言的标识符对大小写敏感，所以<code>a</code>和<code>A</code>是两个不同的标识符。</p>
+<p>标识符有一套命名规则，不符合规则的就是非法标识符。JavaScript 引擎遇到非法标识符，就会报错。</p>
+<p>简单说，标识符命名规则如下。</p>
 <blockquote>
-<p>第一个字符，可以是任意 Unicode 字母（包括英文字母和其他语言的字母），以及美元符号（$）和下划线（_）。<br>第二个字符及后面的字符，除了 Unicode 字母、美元符号和下划线，还可以用数字0-9。<br>注意：中文是合法的标识符，可以用作变量名。</p>
+<p>第一个字符，可以是任意 Unicode 字母（包括英文字母和其他语言的字母），以及美元符号（$）和下划线（_）。<br>第二个字符及后面的字符，除了 Unicode 字母、美元符号和下划线，还可以用数字0-9。</p>
 </blockquote>
+<p>注意：中文是合法的标识符，可以用作变量名。</p>
 <p><strong>JavaScript有一些保留字，不能用作标识符：</strong>arguments、break、case、catch、class、const、continue、debugger、default、delete、do、else、enum、eval、export、extends、false、finally、for、function、if、implements、import、in、instanceof、interface、let、new、null、package、private、protected、public、return、static、super、switch、this、throw、true、try、typeof、var、void、while、with、yield。</p>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>源码中被 JavaScript 引擎忽略的部分就叫做注释，它的作用是对代码进行解释。Javascript 提供两种注释的写法：一种是单行注释，用//起头；另一种是多行注释，放在/<em>和</em>/之间。<br>此外，由于历史上 JavaScript 可以兼容 HTML 代码的注释，所以<!--和-->也被视为合法的单行注释。<br>需要注意的是，–&gt;只有在行首，才会被当成单行注释，否则会当作正常的运算。</p>
-<h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><p>JavaScript 使用大括号，将多个相关的语句组合在一起，称为“区块”（block）。<br><strong>对于var命令来说，JavaScript 的区块不构成单独的作用域（scope）。</strong></p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>源码中被 JavaScript 引擎忽略的部分就叫做注释，它的作用是对代码进行解释。Javascript 提供两种注释的写法：一种是单行注释，用<code>//</code>起头；另一种是多行注释，放在<code>/*</code>和<code>*/</code>之间。</p>
+<p>此外，由于历史上 JavaScript 可以兼容 HTML 代码的注释，所以<code>&lt;!--</code>和<code>--&gt;</code>也被视为合法的单行注释。</p>
+<p>需要注意的是，<code>--&gt;</code>只有在行首，才会被当成单行注释，否则会当作正常的运算。</p>
+<h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><p>JavaScript 使用大括号，将多个相关的语句组合在一起，称为“区块”（block）。</p>
+<p><strong>对于var命令来说，JavaScript 的区块不构成单独的作用域（scope）。</strong></p>
 <h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2><p>条件语句包括if和switch。</p>
 <h3 id="if结构"><a href="#if结构" class="headerlink" title="if结构"></a>if结构</h3><p>if结构先判断一个表达式的布尔值，然后根据布尔值的真伪，执行不同的语句。所谓布尔值，往往由一个条件表达式产生，指的是 JavaScript 的两个特殊值，true表示真，false表示伪。</p>
 <p><strong>注意，if后面的表达式之中，不要混淆赋值表达式（=）、严格相等运算符（===）和相等运算符（==）。尤其是赋值表达式不具有比较作用。</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var x = 1;</span><br><span class="line">var y = 2;</span><br><span class="line">if (x = y) &#123;</span><br><span class="line">  console.log(x);</span><br><span class="line">&#125;</span><br><span class="line">// &quot;2&quot;</span><br></pre></td></tr></table></figure>
-<p>上面代码的原意是，当x等于y的时候，才执行相关语句。但是，不小心将严格相等运算符写成赋值表达式，结果变成了将y赋值给变量x，再判断变量x的值（等于2）的布尔值（结果为true）。<br>这种错误可以正常生成一个布尔值，因而不会报错。为了避免这种情况，有些开发者习惯将常量写在运算符的左边，这样的话，一旦不小心将相等运算符写成赋值运算符，就会报错，因为常量不能被赋值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (x = 2) &#123; // 不报错</span><br><span class="line">if (2 = x) &#123; // 报错</span><br></pre></td></tr></table></figure></p>
+<p>上面代码的原意是，当x等于y的时候，才执行相关语句。但是，不小心将严格相等运算符写成赋值表达式，结果变成了将y赋值给变量x，再判断变量x的值（等于2）的布尔值（结果为true）。</p>
+<p>这种错误可以正常生成一个布尔值，因而不会报错。为了避免这种情况，有些开发者习惯将常量写在运算符的左边，这样的话，一旦不小心将相等运算符写成赋值运算符，就会报错，因为常量不能被赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (x = 2) &#123; // 不报错</span><br><span class="line">if (2 = x) &#123; // 报错</span><br></pre></td></tr></table></figure>
 <p>至于为什么优先采用“严格相等运算符”（===），而不是“相等运算符”（==），请参考《运算符》章节。</p>
+<h3 id="if…else-结构"><a href="#if…else-结构" class="headerlink" title="if…else 结构"></a>if…else 结构</h3><p>if代码块后面，还可以跟一个else代码块，表示不满足条件时，所要执行的代码。</p>
+<p>对同一个变量进行多次判断时，多个if…else语句可以连写在一起。</p>
+<p>else代码块总是与离自己最近的那个if语句配对。</p>
+<h2 id="switch结构"><a href="#switch结构" class="headerlink" title="switch结构"></a>switch结构</h2><p>switch结构会根据switch关键字后紧跟的变量或表达式的值，选择执行相应的case。如果所有case都不符合，则执行最后的default部分。需要注意的是，每个case代码块内部的break语句不能少，否则会接下去执行下一个case代码块，而不是跳出switch结构。</p>
+<p>多个if…else连在一起使用的时候，可以转为使用更方便的switch结构。</p>
+<p>switch语句部分和case语句部分，都可以使用表达式。</p>
+<p>需要注意的是，<strong>switch语句后面的表达式，与case语句后面的表示式比较运行结果时，采用的是严格相等运算符（===），而不是相等运算符（==），这意味着比较时不会发生类型转换。</strong></p>
 
       
     </div>
@@ -637,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">1.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">1.1.</span> <span class="nav-text">语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.2.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量提升"><span class="nav-number">1.2.2.</span> <span class="nav-text">变量提升</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标识符"><span class="nav-number">1.3.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">1.4.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块"><span class="nav-number">1.5.</span> <span class="nav-text">区块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件语句"><span class="nav-number">1.6.</span> <span class="nav-text">条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if结构"><span class="nav-number">1.6.1.</span> <span class="nav-text">if结构</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">1.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">1.1.</span> <span class="nav-text">语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.2.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量提升"><span class="nav-number">1.2.2.</span> <span class="nav-text">变量提升</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标识符"><span class="nav-number">1.3.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">1.4.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块"><span class="nav-number">1.5.</span> <span class="nav-text">区块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件语句"><span class="nav-number">1.6.</span> <span class="nav-text">条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if结构"><span class="nav-number">1.6.1.</span> <span class="nav-text">if结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if…else-结构"><span class="nav-number">1.6.2.</span> <span class="nav-text">if…else 结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch结构"><span class="nav-number">1.7.</span> <span class="nav-text">switch结构</span></a></li></ol></li></ol></div>
             
 
           </div>
