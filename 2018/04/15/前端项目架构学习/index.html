@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="59&#39;s Personal Blog">
 <meta property="og:description" content="好的前端工程师和架构师一定是对数据非常敏感的，通过数据可以为用户提供更好的体验。 好的目录组织是一个好的架构的开始。每个目录要做什么事情一定要让它职责分明。除了目录组织的架构之外还有页面组织的架构。views中存放的都是视图代码，views中除了放一些页面之外，还可以将页面都共有的部分放到views/includes文件夹中，然后在其他页面中引入这些视图文件。视图页面一般不会有太复杂的逻辑关系，基">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-15T04:42:06.563Z">
+<meta property="og:updated_time" content="2018-05-02T03:32:23.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端项目架构学习">
 <meta name="twitter:description" content="好的前端工程师和架构师一定是对数据非常敏感的，通过数据可以为用户提供更好的体验。 好的目录组织是一个好的架构的开始。每个目录要做什么事情一定要让它职责分明。除了目录组织的架构之外还有页面组织的架构。views中存放的都是视图代码，views中除了放一些页面之外，还可以将页面都共有的部分放到views/includes文件夹中，然后在其他页面中引入这些视图文件。视图页面一般不会有太复杂的逻辑关系，基">
@@ -421,6 +421,22 @@
 <h3 id="划分命名空间，前端模块拆分的最基本的形式可以认为是闭包的一种应用，但是这种方式对于命名空间的管理过于随意。闭包有一个问题就是在闭包内声明的变量会常驻在内存中，因此要避免在闭包内声明过于大的变量。"><a href="#划分命名空间，前端模块拆分的最基本的形式可以认为是闭包的一种应用，但是这种方式对于命名空间的管理过于随意。闭包有一个问题就是在闭包内声明的变量会常驻在内存中，因此要避免在闭包内声明过于大的变量。" class="headerlink" title="划分命名空间，前端模块拆分的最基本的形式可以认为是闭包的一种应用，但是这种方式对于命名空间的管理过于随意。闭包有一个问题就是在闭包内声明的变量会常驻在内存中，因此要避免在闭包内声明过于大的变量。"></a>划分命名空间，前端模块拆分的最基本的形式可以认为是<strong>闭包</strong>的一种应用，但是这种方式对于命名空间的管理过于随意。闭包有一个问题就是在闭包内声明的变量会常驻在内存中，因此要避免在闭包内声明过于大的变量。</h3><p>其实在实际项目中不会大规模的使用js的继承和扩展，一是因为项目逻辑一般不会那么复杂，二是因为一些类库为我们提供了便利，比如jQuery就提供了一个封装好的extend方法。</p>
 <p>常用的是组件化，比如一个弹出窗口可以做成一个组件。我们可以使用开源框架来完成最终的组件的组织和管理，例如requirejs/seajs，这两个框架遵循了两种规范，一个是cmd规范，一个是amd规范，cmd指明模块是按需加载的，即依赖就近；amd则是依赖关系前置，即使用一个依赖于a,b,c三个模块的组件时，如果使用这个组件会先加载这三个模块，不管这三个模块在组件初始化的过程中用没用到。</p>
 <p>模块化框架基本只用到两个方法，一个是define，也就是定义一个模块；一个是require，也就是使用一个模块。</p>
+<h3 id="前端工程师拿到交互图时应该已经能大致想到整个网站的架子是什么样的，一定要统观全局"><a href="#前端工程师拿到交互图时应该已经能大致想到整个网站的架子是什么样的，一定要统观全局" class="headerlink" title="前端工程师拿到交互图时应该已经能大致想到整个网站的架子是什么样的，一定要统观全局"></a>前端工程师拿到交互图时应该已经能大致想到整个网站的架子是什么样的，一定要统观全局</h3><p>一定要考虑有哪些部分是公用的，考虑一下如何抽象出来，也就是组件化开发。</p>
+<h3 id="当设计图出炉后，应该考虑到api的对接，虽然不能做到百分百精确，但要有一个大概的规划"><a href="#当设计图出炉后，应该考虑到api的对接，虽然不能做到百分百精确，但要有一个大概的规划" class="headerlink" title="当设计图出炉后，应该考虑到api的对接，虽然不能做到百分百精确，但要有一个大概的规划"></a>当设计图出炉后，应该考虑到api的对接，虽然不能做到百分百精确，但要有一个大概的规划</h3><p>要明确哪部分是静态的，哪部分是动态的，并与后台负责人员进行讨论。</p>
+<h3 id="通常来讲首页的性能会影响到用户的留存率，因此首页一定要认真考虑性能方面的问题。"><a href="#通常来讲首页的性能会影响到用户的留存率，因此首页一定要认真考虑性能方面的问题。" class="headerlink" title="通常来讲首页的性能会影响到用户的留存率，因此首页一定要认真考虑性能方面的问题。"></a>通常来讲首页的性能会影响到用户的留存率，因此首页一定要认真考虑性能方面的问题。</h3><h3 id="前端项目目录结构"><a href="#前端项目目录结构" class="headerlink" title="前端项目目录结构"></a>前端项目目录结构</h3><p>创建一个静态目录，其中包括一个css文件夹，一个js文件夹。<br>css文件夹中可以有module文件夹，其中的css文件用于组件，如dialog.js；可以有include文件夹，其中的css用于页面公用部分，如header.css，footer.css等；可以有一个release目录，用于打包之后的文件存放在这里；css文件夹下可以有一个package.json文件来书写打包规则。<br>script文件夹中可以存放页面的js文件，比如common.js；可以有一个widget目录，其中存放一些组件的js；可以有一个release目录，用于打包之后发布在这里；script文件夹下可以有一个package.json文件来书写打包规则。<br>图片文件分两种情况，一种是网站上的静态图片，可以在css文件夹下面创建一个img文件夹，用于存放这些静态图片，但是不要存放太多否则会影响性能；另一种是动态读取的图片，通常是放到服务器上的。</p>
+<h3 id="开发实现流程规范"><a href="#开发实现流程规范" class="headerlink" title="开发实现流程规范"></a>开发实现流程规范</h3><ol>
+<li><p>切图</p>
+</li>
+<li><p>从页面结构上来考虑，把页面中的公用部分抽象出来</p>
+</li>
+<li><p>从css文件上来考虑，抽象出一些公用的css，比如reset.css等</p>
+</li>
+<li><p>可以使用地址来访问css文件</p>
+</li>
+<li><p>如果前端工程要抽象出模板，那么可以有一套模板对开发者友好，有一套模板对用户友好，对用户友好的模板就可以通过自动化工具打包生成</p>
+</li>
+</ol>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>用一个更简洁的形式把页面组装出来展示给用户</p>
 
       
     </div>
@@ -626,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#好的目录组织是一个好的架构的开始。每个目录要做什么事情一定要让它职责分明。"><span class="nav-number">1.</span> <span class="nav-text">好的目录组织是一个好的架构的开始。每个目录要做什么事情一定要让它职责分明。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#除了目录组织的架构之外还有页面组织的架构。"><span class="nav-number">2.</span> <span class="nav-text">除了目录组织的架构之外还有页面组织的架构。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更高级一些的架构设计则包含了组件化和设计模式。这方面主要针对js代码，因为html和css的逻辑性并不是很强。"><span class="nav-number">3.</span> <span class="nav-text">更高级一些的架构设计则包含了组件化和设计模式。这方面主要针对js代码，因为html和css的逻辑性并不是很强。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#划分命名空间，前端模块拆分的最基本的形式可以认为是闭包的一种应用，但是这种方式对于命名空间的管理过于随意。闭包有一个问题就是在闭包内声明的变量会常驻在内存中，因此要避免在闭包内声明过于大的变量。"><span class="nav-number">4.</span> <span class="nav-text">划分命名空间，前端模块拆分的最基本的形式可以认为是闭包的一种应用，但是这种方式对于命名空间的管理过于随意。闭包有一个问题就是在闭包内声明的变量会常驻在内存中，因此要避免在闭包内声明过于大的变量。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#好的目录组织是一个好的架构的开始。每个目录要做什么事情一定要让它职责分明。"><span class="nav-number">1.</span> <span class="nav-text">好的目录组织是一个好的架构的开始。每个目录要做什么事情一定要让它职责分明。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#除了目录组织的架构之外还有页面组织的架构。"><span class="nav-number">2.</span> <span class="nav-text">除了目录组织的架构之外还有页面组织的架构。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更高级一些的架构设计则包含了组件化和设计模式。这方面主要针对js代码，因为html和css的逻辑性并不是很强。"><span class="nav-number">3.</span> <span class="nav-text">更高级一些的架构设计则包含了组件化和设计模式。这方面主要针对js代码，因为html和css的逻辑性并不是很强。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#划分命名空间，前端模块拆分的最基本的形式可以认为是闭包的一种应用，但是这种方式对于命名空间的管理过于随意。闭包有一个问题就是在闭包内声明的变量会常驻在内存中，因此要避免在闭包内声明过于大的变量。"><span class="nav-number">4.</span> <span class="nav-text">划分命名空间，前端模块拆分的最基本的形式可以认为是闭包的一种应用，但是这种方式对于命名空间的管理过于随意。闭包有一个问题就是在闭包内声明的变量会常驻在内存中，因此要避免在闭包内声明过于大的变量。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端工程师拿到交互图时应该已经能大致想到整个网站的架子是什么样的，一定要统观全局"><span class="nav-number">5.</span> <span class="nav-text">前端工程师拿到交互图时应该已经能大致想到整个网站的架子是什么样的，一定要统观全局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当设计图出炉后，应该考虑到api的对接，虽然不能做到百分百精确，但要有一个大概的规划"><span class="nav-number">6.</span> <span class="nav-text">当设计图出炉后，应该考虑到api的对接，虽然不能做到百分百精确，但要有一个大概的规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通常来讲首页的性能会影响到用户的留存率，因此首页一定要认真考虑性能方面的问题。"><span class="nav-number">7.</span> <span class="nav-text">通常来讲首页的性能会影响到用户的留存率，因此首页一定要认真考虑性能方面的问题。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端项目目录结构"><span class="nav-number">8.</span> <span class="nav-text">前端项目目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发实现流程规范"><span class="nav-number">9.</span> <span class="nav-text">开发实现流程规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板"><span class="nav-number">10.</span> <span class="nav-text">模板</span></a></li></ol></div>
             
 
           </div>
