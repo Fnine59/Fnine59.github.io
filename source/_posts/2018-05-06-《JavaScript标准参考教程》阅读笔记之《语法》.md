@@ -1977,8 +1977,19 @@ function add(x, y) {
   return x + y;
 }
 ```
+上面代码中，Function构造函数接受三个参数，除了最后一个参数是`add`函数的“函数体”，其他参数都是`add`函数的参数。
+你**可以传递任意数量的参数给Function构造函数，只有最后一个参数会被当做函数体，如果只有一个参数，该参数就是函数体**。
 
+```
+var foo = new Function(
+  'return "hello world"'
+);
 
+// 等同于
+function foo() {
+  return 'hello world';
+}
+```
 
 
 # 数据类型转换
