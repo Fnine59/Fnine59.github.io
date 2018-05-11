@@ -2843,7 +2843,7 @@ r2.exec(s) // null
 ```
 上面代码中，正则对象`r1`匹配成功，返回一个数组，成员是匹配结果；正则对象`r2`匹配失败，返回`null`。
 
-如果正则表示式包含圆括号（即含有“组匹配”），则返回的数组会包括多个成员。第一个成员是整个匹配成功的结果，后面的成员就是圆括号对应的匹配成功的组。也就是说，第二个成员对应第一个括号，第三个成员对应第二个括号，以此类推。整个数组的`length`属性等于组匹配的数量再加`1`。
+如果正则表示式包含圆括号（即含有“组匹配”），则返回的数组会包括多个成员。第一个成员是整个匹配成功的结果，后面的成员就是圆括号对应的匹配成功的组。也就是说，第二个成员对应第一个括号，第三个成员对应第二个括号，以此类推。整个数组的`length`属性等于组匹配的数量再加`1`。因为除了和圆括号匹配的值之外，还有一个整体匹配的结果。如果整体不匹配那么直接返回`null`，并且不会出现括号内不匹配但整体匹配了的情况。
 
 ```
 var s = '_x_x';
@@ -3073,7 +3073,7 @@ str.split(separator, [limit])
 'a,  b,c, d'.split(/, */, 2)
 [ 'a', 'b' ]
 ```
-上面代码使用正则表达式，去除了子字符串的逗号后面的空格。
+上面代码使用正则表达式，去除了子字符串的逗号后面的空格。上面的第二段代码，是因为匹配到了`,`，并且`,`后跟着的是`0`个或多个空格，因此能够将逗号+空格的字符匹配出来并作为分割符来分割字符串。
 
 ```
 // 例一
@@ -3183,7 +3183,7 @@ str.split(separator, [limit])
 (new RegExp('1\\+1')).test('1+1')
 // true
 ```
-上面代码中，`RegExp`作为构造函数，参数是一个字符串。但是，在字符串内部，反斜杠也是转义字符，所以它会先被反斜杠转义一次，然后再被正则表达式转义一次，因此需要两个反斜杠转义。
+上面代码中，`RegExp`作为构造函数，参数是一个字符串。但是，在字符串内部，反斜杠也是转义字符，所以它会先被反斜杠转义一次，然后再被正则表达式转义一次，因此需要两个反斜杠转义。字符串中使用了一个`\`将`+`转义为`+`本身，此时再放入构造函数中的字符串即为`1\+1`，就能够正常将加号转义。
 
 ### 特殊字符
 
@@ -3315,92 +3315,657 @@ var html = "<b>Hello</b>\n<i>world!</i>";
 
 /[\S\s]*/.exec(html)[0]
 // "<b>Hello</b>\n<i>world!</i>"
+
+/.*\s.*/.exec(html)[0]
+// "<b>Hello</b>\n<i>world!</i>"
+
 ```
 上面代码中，`[\S\s]`指代一切字符。
 
+### 重复类
 
+**模式的精确匹配次数，使用大括号（`{}`）表示。`{n}`表示恰好重复`n`次，`{n,}`表示至少重复`n`次，`{n,m}`表示重复不少于`n`次，不多于`m`次。**
 
+```
+/lo{2}k/.test('look') // true
+/lo{2,5}k/.test('looook') // true
+```
+上面代码中，第一个模式指定o连续出现2次，第二个模式指定o连续出现2次到5次之间。
 
+### 量词符
 
+**量词符用来设定某个模式出现的次数**。
 
+> `?` 问号表示某个模式出现0次或1次，等同于`{0, 1}`。
+> `*` 星号表示某个模式出现0次或多次，等同于`{0,}`。
+> `+` 加号表示某个模式出现1次或多次，等同于`{1,}`。
 
+```
+// t 出现0次或1次
+/t?est/.test('test') // true
+/t?est/.test('est') // true
 
+// t 出现1次或多次
+/t+est/.test('test') // true
+/t+est/.test('ttest') // true
+/t+est/.test('est') // false
 
+// t 出现0次或多次
+/t*est/.test('test') // true
+/t*est/.test('ttest') // true
+/t*est/.test('tttest') // true
+/t*est/.test('est') // true
+```
 
+### 贪婪模式
 
+上一小节的**三个量词符，默认情况下都是最大可能匹配，即匹配直到下一个字符不满足匹配规则为止。这被称为<font color="red">贪婪模式</font>。**
 
+```
+var s = 'aaa';
+s.match(/a+/) // ["aaa"]
+```
 
+上面代码中，模式是`/a+/`，表示匹配1个`a`或多个`a`，那么到底会匹配几个`a`呢？因为默认是贪婪模式，会一直匹配到字符`a`不出现为止，所以匹配结果是3个`a`。
 
+如果想**将贪婪模式改为非贪婪模式，可以在量词符后面加一个问号**。
 
+```
+var s = 'aaa';
+s.match(/a+?/) // ["a"]
+```
+上面代码中，模式结尾添加了一个问号`/a+?/`，这时就改为**<font color="red">非贪婪模式，一旦条件满足，就不再往下匹配</font>**。
 
+除了非贪婪模式的加号，还有非贪婪模式的星号（`*`）。
 
+> `*?`：表示某个模式出现0次或多次，匹配时采用非贪婪模式。
+> `+?`：表示某个模式出现1次或多次，匹配时采用非贪婪模式。
 
+### 修饰符
 
+**修饰符（modifier）表示模式的附加规则，放在正则模式的最尾部**。
 
+**修饰符可以单个使用，也可以多个一起使用。**
 
+```
+// 单个修饰符
+var regex = /test/i;
 
+// 多个修饰符
+var regex = /test/ig;
+```
 
+#### g 修饰符
 
+**默认情况下，第一次匹配成功后，正则对象就停止向下匹配了。<font color="red">`g`修饰符表示全局匹配（global），加上它以后，正则对象将匹配全部符合条件的结果</font>，主要用于搜索和替换**。
 
+```
+var regex = /b/;
+var str = 'abba';
 
+regex.test(str); // true
+regex.test(str); // true
+regex.test(str); // true
+```
+上面代码中，正则模式不含`g`修饰符，每次都是从字符串头部开始匹配。所以，连续做了三次匹配，都返回true。
 
+```
+var regex = /b/g;
+var str = 'abba';
 
+regex.test(str); // true
+regex.test(str); // true
+regex.test(str); // false
+regex.test(str); // true
+```
+上面代码中，正则模式含有`g`修饰符，每次都是从上一次匹配成功处，开始向后匹配。因为字符串`abba`只有两个`b`，所以前两次匹配结果为`true`，第三次匹配结果为`false`。等到下一次匹配时又会变为`true`，因为此时`lastIndex`的值被重置为`0`，即再次从头开始匹配。
 
+#### i 修饰符
 
+**默认情况下，正则对象区分字母的大小写，加上`i`修饰符以后表示忽略大小写**（ignorecase）。
+
+```
+/abc/.test('ABC') // false
+/abc/i.test('ABC') // true
+```
+上面代码表示，加了`i`修饰符以后，不考虑大小写，所以模式`abc`匹配字符串`ABC`。
 
+#### m 修饰符
+
+**`m`修饰符表示多行模式（multiline），会修改`^`和`$`的行为。默认情况下（即不加`m`修饰符时），`^`和`$`匹配字符串的开始处和结尾处，加上`m`修饰符以后，`^`和`$`还会匹配行首和行尾，即`^`和`$`会识别换行符（\n）**。
 
+```
+/world$/.test('hello world\n') // false
+/world$/m.test('hello world\n') // true
+```
+上面的代码中，字符串结尾处有一个换行符。**如果不加`m`修饰符，匹配不成功，因为字符串的结尾不是`world`；加上以后，`$`可以匹配行尾。**
 
+```
+/^b/m.test('a\nb') // true
+```
+上面代码要求匹配行首的`b`，如果不加`m`修饰符，就相当于`b`只能处在字符串的开始处。加上`b`修饰符以后，换行符`\n`也会被认为是一行的开始。
 
+### 组匹配
 
+#### 概述
 
+**正则表达式的括号表示分组匹配，括号中的模式可以用来匹配分组的内容。**
 
+```
+/fred+/.test('fredd') // true
+/(fred)+/.test('fredfred') // true
+```
+上面代码中，第一个模式没有括号，结果`+`只表示重复字母`d`，第二个模式有括号，结果`+`就表示匹配`fred`这个词。
 
+下面是另外一个分组捕获的例子。
+```
+var m = 'abcabc'.match(/(.)b(.)/);
+m
+// ['abc', 'a', 'c']
+```
+上面代码中，正则表达式`/(.)b(.)/`一共使用两个括号，第一个括号捕获`a`，第二个括号捕获`c`。
 
+注意，**使用组匹配时，不宜同时使用`g`修饰符，否则`match`方法不会捕获分组的内容，而只捕获匹配整个表达式的内容**。
 
+```
+var m = 'abcabc'.match(/(.)b(.)/g);
+m // ['abc', 'abc']
+```
+上面代码使用带`g`修饰符的正则表达式，结果`match`方法只捕获了匹配整个表达式的部分。这时必须使用正则表达式的`exec`方法，配合循环，才能读到每一轮匹配的组捕获。
 
+```
+var str = 'abcabc';
+var reg = /(.)b(.)/g;
+while (true) {
+  var result = reg.exec(str);
+  if (!result) break;
+  console.log(result);
+}
+// ["abc", "a", "c"]
+// ["abc", "a", "c"]
+```
+上面的代码使用了`exec`加修饰符`g`，`g`表示`exec`每次执行都从上一次匹配结束的地方继续匹配。`exec`配合圆括号使用，则返回的结果，如果没有成功匹配则返回`null`，如果匹配成功了返回一个数组，其中，第一个值为整体匹配的结果，第二个值为第一个括号匹配的结果，第三个值为第二个括号匹配的结果，依次类推。
 
+正则表达式内部，还**可以用`\n`引用括号匹配的内容，`n`是从`1`开始的自然数，表示对应顺序的括号**。
 
+```
+/(.)b(.)\1b\2/.test("abcabc")
+// true
+```
+上面的代码中，`\1`表示第一个括号匹配的内容（即`a`），`\2`表示第二个括号匹配的内容（即`c`）。
 
+下面是另外一个例子。
+```
+/y(..)(.)\2\1/.test('yabccab') // true
+```
 
+括号还可以嵌套。
 
+```
+/y((..)\2)\1/.test('yabababab') // true
 
+/y((..)a\2)\1/.test('yabaababaab') // true
 
+/y((..)c)\2\1/.test('yabcababcab') // true
+```
+上面代码中，**`\1`指向外层括号，`\2`指向内层括号。**
 
+组匹配非常有用，下面是一个匹配网页标签的例子。
 
+```
+var tagName = /<([^>]+)>[^<]*<\/\1>/;
 
+tagName.exec("<b>bold</b>")[1]
+// 'b'
+```
+上面代码中，圆括号匹配尖括号之中的标签，而`\1`就表示对应的闭合标签。
 
+上面代码略加修改，就能捕获带有属性的标签。
 
+```
+var html = '<b class="hello">Hello</b><i>world</i>';
+var tag = /<(\w+)([^>]*)>(.*?)<\/\1>/g;
 
+var match = tag.exec(html);
 
+match[1] // "b"
+match[2] // " class="hello""
+match[3] // "Hello"
 
+match = tag.exec(html);
 
+match[1] // "i"
+match[2] // ""
+match[3] // "world"
+```
 
+#### 非捕获组
 
+`(?:x)`称为**非捕获组（Non-capturing group），表示不返回该组匹配的内容，即匹配的结果中不计入这个括号**。
 
+非捕获组的作用请考虑这样一个场景，假定需要匹配`foo`或者`foofoo`，正则表达式就应该写成`/(foo){1, 2}/`，但是这样会占用一个组匹配。这时，就可以使用非捕获组，将正则表达式改为`/(?:foo){1, 2}/`，它的作用与前一个正则是一样的，但是**不会单独输出括号内部的内容**。
 
+请看下面的例子。
+```
+var m = 'abc'.match(/(?:.)b(.)/);
+m // ["abc", "c"]
+```
+上面代码中的模式，一共使用了两个括号。其中第一个括号是非捕获组，所以最后返回的结果中没有第一个括号，只有第二个括号匹配的内容。
 
+下面是用来分解网址的正则表达式。
+```
+// 正常匹配
+var url = /(http|ftp):\/\/([^/\r\n]+)(\/[^\r\n]*)?/;
 
+url.exec('http://google.com/');
+// ["http://google.com/", "http", "google.com", "/"]
 
+// 非捕获组匹配
+var url = /(?:http|ftp):\/\/([^/\r\n]+)(\/[^\r\n]*)?/;
 
+url.exec('http://google.com/');
+// ["http://google.com/", "google.com", "/"]
+```
+上面的代码中，前一个正则表达式是正常匹配，第一个括号返回网络协议；后一个正则表达式是非捕获匹配，返回结果中不包括网络协议。
 
+#### 先行断言
 
+`x(?=y)`称为**先行断言（Positive look-ahead），`x`只有在`y`前面才匹配，`y`不会被计入返回结果。比如，要匹配后面跟着百分号的数字，可以写成`/\d+(?=%)/`。**
 
+**“先行断言”中，括号里的部分是不会返回的。**
 
+```
+var m = 'abc'.match(/b(?=c)/);
+m // ["b"]
+```
+上面的代码使用了先行断言，`b`在`c`前面所以被匹配，但是括号对应的`c`不会被返回。
 
+#### 先行否定断言
 
+`x(?!y)`称为**先行否定断言（Negative look-ahead），`x`只有不在`y`前面才匹配，`y`不会被计入返回结果。比如，要匹配后面跟的不是百分号的数字，就要写成`/\d+(?!%)/`。**
 
+```
+/\d+(?!\.)/.exec('3.14')
+// ["14"]
+```
+上面代码中，正则表达式指定，只有不在小数点前面的数字才会被匹配，因此返回的结果就是`14`。
 
+**“先行否定断言”中，括号里的部分是不会返回的。**
 
+```
+var m = 'abd'.match(/b(?!c)/);
+m // ['b']
+```
+上面的代码使用了先行否定断言，`b`不在`c`前面所以被匹配，而且括号对应的`d`不会被返回。
 
+# JSON对象
 
+## JSON 格式
 
+JSON 格式（JavaScript Object Notation 的缩写）是一种用于数据交换的文本格式，2001年由 Douglas Crockford 提出，目的是取代繁琐笨重的 XML 格式。
 
+相比 XML 格式，JSON 格式有两个显著的优点：**书写简单，一目了然；符合 JavaScript 原生语法，可以由解释引擎直接处理，不用另外添加解析代码**。所以，JSON 迅速被接受，已经成为各大网站交换数据的标准格式，并被写入标准。
 
+每个 JSON 对象就是一个值，可能是一个**数组**或**对象**，也可能是一个**原始类型的值**。总之，**只能是一个值，不能是两个或更多的值。**
 
+**<font color="red">JSON 对值的类型和格式有严格的规定</font>**。
 
+1. 复合类型的值只能是数组或对象，不能是函数、正则表达式对象、日期对象。
 
+2. 原始类型的值只有四种：字符串、数值（必须以十进制表示）、布尔值和`null`（不能使用`NaN`, `Infinity`, `-Infinity`和`undefined`）。
 
+3. 字符串必须使用双引号表示，不能使用单引号。
 
+4. 对象的键名必须放在双引号里面。
+
+5. 数组或对象最后一个成员的后面，不能加逗号。
+
+以下都是合法的 JSON。
+
+```
+["one", "two", "three"]
+
+{ "one": 1, "two": 2, "three": 3 }
+
+{"names": ["张三", "李四"] }
+
+[ { "name": "张三"}, {"name": "李四"} ]
+```
+
+以下都是不合法的 JSON。
+
+```
+{ name: "张三", 'age': 32 }  // 属性名必须使用双引号
+
+[32, 64, 128, 0xFFF] // 不能使用十六进制值
+
+{ "name": "张三", "age": undefined } // 不能使用 undefined
+
+{ "name": "张三",
+  "birthday": new Date('Fri, 26 Aug 2011 07:13:10 GMT'),
+  "getName": function () {
+      return this.name;
+  }
+} // 属性值不能使用函数和日期对象
+```
+
+注意，**`null`、空数组和空对象都是合法的 JSON 值**。
+
+## JSON 对象
+
+JSON对象是 JavaScript 的原生对象，用来处理 JSON 格式数据。它有两个静态方法：`JSON.stringify()`和`JSON.parse()`。
+
+## JSON.stringify()
+
+### 基本用法
+
+`JSON.stringify`方法**用于将一个值转为 JSON 字符串。该字符串符合 JSON 格式，并且可以被`JSON.parse`方法还原。**
+
+```
+JSON.stringify('abc') // ""abc""
+JSON.stringify(1) // "1"
+JSON.stringify(false) // "false"
+JSON.stringify([]) // "[]"
+JSON.stringify({}) // "{}"
+
+JSON.stringify([1, "false", false])
+// '[1,"false",false]'
+
+JSON.stringify({ name: "张三" })
+// '{"name":"张三"}'
+```
+上面代码将各种类型的值，转成 JSON 字符串。
+
+注意，**对于原始类型的字符串，转换结果会带双引号。**
+
+```
+JSON.stringify('foo') === "foo" // false
+JSON.stringify('foo') === "\"foo\"" // true
+```
+上面代码中，字符串`foo`，被转成了`"\"foo"\"`。**这是因为将来还原的时候，内层双引号可以让 JavaScript 引擎知道，这是一个字符串，而不是其他类型的值**。
+
+```
+JSON.stringify(false) // "false"
+JSON.stringify('false') // "\"false\""
+```
+上面代码中，如果不是内层的双引号，将来还原的时候，引擎就无法知道原始值是布尔值还是字符串。
+
+如果**<font color="red">对象的属性</font>是`undefined`、函数或 XML 对象，该属性会被`JSON.stringify`过滤**。
+
+```
+var obj = {
+  a: undefined,
+  b: function () {}
+};
+
+JSON.stringify(obj) // "{}"
+```
+上面代码中，对象`obj`的`a`属性是`undefined`，而`b`属性是一个函数，结果都被`JSON.stringify`过滤。
+
+如果**<font color="red">数组的成员</font>是`undefined`、函数或 XML 对象，则这些值被转成`null`。**
+
+```
+var arr = [undefined, function () {}];
+JSON.stringify(arr) // "[null,null]"
+```
+上面代码中，数组`arr`的成员是`undefined`和函数，它们都被转成了`null`。
+
+**正则对象会被转成空对象。**
+
+```
+JSON.stringify(/foo/) // "{}"
+```
+
+`JSON.stringify`方法会**忽略对象的不可遍历属性。**
+
+```
+var obj = {};
+Object.defineProperties(obj, {
+  'foo': {
+    value: 1,
+    enumerable: true
+  },
+  'bar': {
+    value: 2,
+    enumerable: false
+  }
+});
+
+JSON.stringify(obj); // "{"foo":1}"
+```
+上面代码中，`bar`是`obj`对象的不可遍历属性，`JSON.stringify`方法会忽略这个属性。
+
+### 第二个参数
+
+`JSON.stringify`方法还可以接受一个数组，作为**第二个参数，指定需要转成字符串的属性**。
+
+```
+var obj = {
+  'prop1': 'value1',
+  'prop2': 'value2',
+  'prop3': 'value3'
+};
+
+var selectedProperties = ['prop1', 'prop2'];
+
+JSON.stringify(obj, selectedProperties)
+// "{"prop1":"value1","prop2":"value2"}"
+```
+上面代码中，`JSON.stringify`方法的第二个参数指定，只转`prop1`和`prop2`两个属性。
+
+这个类似白名单的数组，**只对对象的属性有效，对数组无效。**
+
+```
+JSON.stringify(['a', 'b'], ['0'])
+// "["a","b"]"
+
+JSON.stringify({0: 'a', 1: 'b'}, ['0'])
+// "{"0":"a"}"
+```
+上面代码中，第二个参数指定 JSON 格式只转`0`号属性，实际上对数组是无效的，只对对象有效。
+
+第二个参数还可以是一个函数，用来更改`JSON.stringify`的返回值。
+
+```
+function f(key, value) {
+  if (typeof value === "number") {
+    value = 2 * value;
+  }
+  return value;
+}
+
+JSON.stringify({ a: 1, b: 2 }, f)
+// '{"a": 2,"b": 4}'
+```
+上面代码中的`f`函数，接受两个参数，分别是被转换的对象的键名和键值。如果键值是数值，就将它乘以2，否则就原样返回。
+
+注意，**这个处理函数是递归处理所有的键**。
+
+```
+var o = {a: {b: 1}};
+
+function f(key, value) {
+  console.log("["+ key +"]:" + value);
+  return value;
+}
+
+JSON.stringify(o, f)
+// []:[object Object]
+// [a]:[object Object]
+// [b]:1
+// '{"a":{"b":1}}'
+```
+上面代码中，对象`o`一共会被`f`函数处理三次，最后那行是`JSON.stringify`的输出。第一次键名为空，键值是整个对象`o`；第二次键名为`a`，键值是`{b: 1}`；第三次键名为`b`，键值为`1`。
+
+递归处理中，每一次处理的对象，都是前一次返回的值。
+
+```
+var o = {a: 1};
+
+function f(key, value) {
+  if (typeof value === 'object') {
+    return {b: 2};
+  }
+  return value * 2;
+}
+
+JSON.stringify(o, f)
+// "{"b": 4}"
+```
+上面代码中，`f`函数修改了对象`o`，接着`JSON.stringify`方法就递归处理修改后的对象`o`。
+
+如果处理函数返回`undefined`或没有返回值，则该属性会被忽略。
+
+```
+function f(key, value) {
+  if (typeof(value) === "string") {
+    return undefined;
+  }
+  return value;
+}
+
+JSON.stringify({ a: "abc", b: 123 }, f)
+// '{"b": 123}'
+```
+上面代码中，`a`属性经过处理后，返回`undefined`，于是该属性被忽略了。
+
+### 第三个参数
+
+`JSON.stringify`还可以接受第三个参数，用于增加返回的 JSON 字符串的可读性。**如果是数字，表示每个属性前面添加的空格（最多不超过10个）；如果是字符串（不超过10个字符），则该字符串会添加在每行前面。**
+
+```
+JSON.stringify({ p1: 1, p2: 2 }, null, 2);
+/*
+"{
+  "p1": 1,
+  "p2": 2
+}"
+*/
+
+JSON.stringify({ p1:1, p2:2 }, null, '|-');
+/*
+"{
+|-"p1": 1,
+|-"p2": 2
+}"
+*/
+```
+
+### 参数对象的 toJSON 方法
+
+如果参数对象有自定义的`toJSON`方法，那么`JSON.stringify`会使用这个方法的返回值作为参数，而忽略原对象的其他属性。
+
+下面是一个普通的对象。
+
+```
+var user = {
+  firstName: '三',
+  lastName: '张',
+
+  get fullName(){
+    return this.lastName + this.firstName;
+  }
+};
+
+JSON.stringify(user)
+// "{"firstName":"三","lastName":"张","fullName":"张三"}"
+```
+
+现在，为这个对象加上`toJSON`方法。
+
+```
+var user = {
+  firstName: '三',
+  lastName: '张',
+
+  get fullName(){
+    return this.lastName + this.firstName;
+  },
+
+  toJSON: function () {
+    return {
+      name: this.lastName + this.firstName
+    };
+  }
+};
+
+JSON.stringify(user)
+// "{"name":"张三"}"
+```
+上面代码中，**`JSON.stringify`发现参数对象有`toJSON`方法，就直接使用这个方法的返回值作为参数，而忽略原对象的其他参数。**
+
+`Date`对象就有一个自己的`toJSON`方法。
+
+```
+var date = new Date('2015-01-01');
+date.toJSON() // "2015-01-01T00:00:00.000Z"
+JSON.stringify(date) // ""2015-01-01T00:00:00.000Z""
+```
+上面代码中，`JSON.stringify`发现处理的是`Date`对象实例，就会调用这个实例对象的`toJSON`方法，将该方法的返回值作为参数。
+
+**`toJSON`方法的一个应用是，将正则对象自动转为字符串。因为`JSON.stringify`默认不能转换正则对象，但是设置了`toJSON`方法以后，就可以转换正则对象了。**
+
+```
+var obj = {
+  reg: /foo/
+};
+
+// 不设置 toJSON 方法时
+JSON.stringify(obj) // "{"reg":{}}"
+
+// 设置 toJSON 方法时
+RegExp.prototype.toJSON = RegExp.prototype.toString;
+JSON.stringify(/foo/) // ""/foo/""
+```
+上面代码在正则对象的原型上面部署了`toJSON`方法，将其指向`toString`方法，因此遇到转换成JSON时，正则对象就先调用`toJSON`方法转为字符串，然后再被`JSON.stingify`方法处理。
+
+## JSON.parse()
+
+`JSON.parse`方法**用于将 JSON 字符串转换成对应的值。**
+
+```
+JSON.parse('{}') // {}
+JSON.parse('true') // true
+JSON.parse('"foo"') // "foo"
+JSON.parse('[1, 5, "false"]') // [1, 5, "false"]
+JSON.parse('null') // null
+
+var o = JSON.parse('{"name": "张三"}');
+o.name // 张三
+```
+
+如果传入的字符串不是有效的 JSON 格式，`JSON.parse`方法将报错。
+
+```
+JSON.parse("'String'") // illegal single quotes
+// SyntaxError: Unexpected token ILLEGAL
+```
+上面代码中，双引号字符串中是一个单引号字符串，**因为单引号字符串不符合 JSON 格式，所以报错**。
+
+为了处理解析错误，可以将`JSON.parse`方法放在`try...catch`代码块中。
+
+```
+try {
+  JSON.parse("'String'");
+} catch(e) {
+  console.log('parsing error');
+}
+```
+
+`JSON.parse`方法可以接受一个处理函数，作为第二个参数，用法与`JSON.stringify`方法类似。
+
+```
+function f(key, value) {
+  if (key === 'a') {
+    return value + 10;
+  }
+  return value;
+}
+
+JSON.parse('{"a": 1, "b": 2}', f)
+// {a: 11, b: 2}
+```
+上面代码中，`JSON.parse`的第二个参数是一个函数，如果键名是`a`，该函数会将键值加上`10`。
 
 
 
