@@ -1,7 +1,8 @@
 ---
 title: 《JavaScript标准参考教程》阅读笔记之《语法》
 date: 2018-05-06 20:53:23
-tags: JavaScript
+tags: "JavaScript"
+categories: "JavaScript标准教程笔记"
 ---
 
 > 整理自阮一峰《JavaScript标准参考教程》，原作者为阮一峰，[github地址](https://github.com/ruanyf/jstutorial)
