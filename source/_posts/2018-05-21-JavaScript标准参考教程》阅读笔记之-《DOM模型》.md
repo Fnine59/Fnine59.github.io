@@ -349,21 +349,69 @@ test.isConnected // true
 ```
 上面代码中，`test`节点是脚本生成的节点，没有插入文档之前，`isConnected`属性返回`false`，插入之后返回`true`。
 
-## 
+## Node 接口的方法
 
+### Node.appendChild()
 
+**`appendChild`方法接受一个节点对象作为参数，将其作为<font color="red">最后一个子节点</font>，插入当前节点。该方法的返回值就是插入文档的子节点**。
 
+```
+var p = document.createElement('p');
+document.body.appendChild(p);
+```
 
+上面代码新建一个`<p>`节点，将其插入`document.body`的尾部。
 
+**<font color="red">如果参数节点是 DOM 已经存在的节点，`appendChild`方法会将其从原来的位置，<font color="green">移动</font>到新位置。</font>**
 
+```
+var element = document
+  .createElement('div')
+  .appendChild(document.createElement('b'));
+```
+上面代码的返回值是`<b></b>`，而不是`<div></div>`。
 
+如果`appendChild`方法的参数是DocumentFragment节点，那么插入的是DocumentFragment的所有子节点，而不是DocumentFragment节点本身。返回值是一个空的DocumentFragment节点。
 
+关于DocumentFragment节点：我们经常使用Javascript来操作DOM元素，比如使用`appendChild()`方法。每次调用该方法时，浏览器都会重新渲染页面。如果大量的更新DOM节点，则会非常消耗性能，影响用户体验。JavaScript提供了一个文档片段DocumentFragment的机制。如果将文档中的节点添加到文档片段中，就会从文档树中移除该节点。把所有要构造的节点都放在文档片段中执行，这样可以不影响文档树，也就不会造成页面渲染。当节点都构造完成后，再将文档片段对象添加到页面中，这时所有的节点都会一次性渲染出来，这样就能减少浏览器负担，提高页面渲染速度。
 
+```
+// 使用DocumentFragment
+var list1 = document.getElementById('list1');
+console.time("time");
+var fragment = document.createDocumentFragment();
+for(var i = 0; i < 500000; i++){
+    fragment.appendChild(document.createElement('li'));
+}
+list1.appendChild(fragment);
+console.timeEnd('time');
 
+// 不使用DocumentFragment
+var list = document.getElementById('list');
+console.time("time");
+for(var i = 0; i < 500000; i++){
+    list.appendChild(document.createElement('li'));
+}
+console.timeEnd('time');
+```
 
+循环50万次的各浏览器结果如下：
+```
+           　使用文档片段        　不使用文档片段
+firefox        402.04ms              469.31ms
+chrome         429.800ms             729.634ms
+```
 
-
-
+循环10万次的各浏览器结果如下：
+```
+             使用文档片段        　不使用文档片段
+IE11        　　2382.15ms             2204.47ms
+IE10        　　2404.239ms            2225.721ms
+IE9             2373ms                 2255ms
+IE8             4464ms                 4210ms
+IE7             5887ms                 5394ms
+```
+从以上结果可以看出，如果使用IE浏览器，则使用文档片段DocumentFragment的性能并不会更好，反而变差；若使用chrome和firefox浏览器，使用文档片段DocumentFragment可以提升性能。
 
 
 
