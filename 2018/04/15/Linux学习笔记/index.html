@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本篇文章整理自《Linux系统概述》课堂笔记，会有一些与Linux无关的课外知识补充。考试重点在标题前用※标注，十分重要的点会标为彩色。Linux常用命令部分为避免符号混淆，不使用※标注重点，重点直接标为彩色，并且凡是该命令列出的选项均为常用或重点的选项。  基本概念整理操作系统的概念操作系统是控制和管理计算机系统内各种硬件和软件资源、有效地组织多道程序运行的系统软件（或程序集合），是用户与计算">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习笔记">
+<meta property="og:url" content="http://fnine59.top/2018/04/15/Linux学习笔记/index.html">
+<meta property="og:site_name" content="59&#39;s Personal Blog">
+<meta property="og:description" content="本篇文章整理自《Linux系统概述》课堂笔记，会有一些与Linux无关的课外知识补充。考试重点在标题前用※标注，十分重要的点会标为彩色。Linux常用命令部分为避免符号混淆，不使用※标注重点，重点直接标为彩色，并且凡是该命令列出的选项均为常用或重点的选项。  基本概念整理操作系统的概念操作系统是控制和管理计算机系统内各种硬件和软件资源、有效地组织多道程序运行的系统软件（或程序集合），是用户与计算">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/04/16/CeBkx1.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/04/16/CeBiG9.md.png">
+<meta property="og:updated_time" content="2018-09-25T06:08:11.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux学习笔记">
+<meta name="twitter:description" content="本篇文章整理自《Linux系统概述》课堂笔记，会有一些与Linux无关的课外知识补充。考试重点在标题前用※标注，十分重要的点会标为彩色。Linux常用命令部分为避免符号混淆，不使用※标注重点，重点直接标为彩色，并且凡是该命令列出的选项均为常用或重点的选项。  基本概念整理操作系统的概念操作系统是控制和管理计算机系统内各种硬件和软件资源、有效地组织多道程序运行的系统软件（或程序集合），是用户与计算">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/04/16/CeBkx1.md.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fnine59.top/2018/04/15/Linux学习笔记/"/>
+
+
+
+
+
+  <title>Linux学习笔记 | 59's Personal Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/Fnine59"><img style="position: absolute; top: 0; right: 0; 
+	border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
+	alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">59's Personal Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just coding.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fnine59.top/2018/04/15/Linux学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fnine59">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="59's Personal Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T18:32:00+08:00">
+                2018-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/15/Linux学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/15/Linux学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2018/04/15/Linux学习笔记/" class="leancloud_visitors" data-flag-title="Linux学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本篇文章整理自《Linux系统概述》课堂笔记，会有一些与Linux无关的课外知识补充。考试重点在标题前用※标注，十分重要的点会标为彩色。Linux常用命令部分为避免符号混淆，不使用※标注重点，重点直接标为彩色，并且凡是该命令列出的选项均为常用或重点的选项。</p>
+</blockquote>
+<h1 id="基本概念整理"><a href="#基本概念整理" class="headerlink" title="基本概念整理"></a>基本概念整理</h1><h2 id="操作系统的概念"><a href="#操作系统的概念" class="headerlink" title="操作系统的概念"></a>操作系统的概念</h2><p>操作系统是控制和管理计算机系统内各种硬件和软件资源、有效地组织多道程序运行的系统软件（或程序集合），是用户与计算机之间的接口。</p>
+<h2 id="操作系统的基本功能"><a href="#操作系统的基本功能" class="headerlink" title="操作系统的基本功能"></a>操作系统的基本功能</h2><p>包括存储管理、进程和处理及管理、文件管理、设备管理和用户接口服务。</p>
+<h2 id="操作系统的类型"><a href="#操作系统的类型" class="headerlink" title="操作系统的类型"></a>操作系统的类型</h2><ol>
+<li>批处理系统</li>
+<li>分时系统：很普遍</li>
+<li>实时系统：典型的实时系统如VxWorks</li>
+<li>网络操作系统</li>
+<li>分布式操作系统</li>
+</ol>
+<h2 id="Linux系统的特点"><a href="#Linux系统的特点" class="headerlink" title="Linux系统的特点"></a>Linux系统的特点</h2><ol>
+<li>与Unix兼容</li>
+<li>自由软件，源码公开</li>
+<li>性能高，安全性强</li>
+<li>便于定制和再开发</li>
+<li>互操作性高</li>
+<li>全面的多任务和真正的32位操作系统</li>
+</ol>
+<h2 id="Linux的常用版本"><a href="#Linux的常用版本" class="headerlink" title="Linux的常用版本"></a>Linux的常用版本</h2><ol>
+<li>核心版本：主要是Linux的内核，由Linus等人不断开发和推出新的内核。内核版本号格式：x.y.zz-www，x为主版本号，y为次版本号，z为修订版本号。</li>
+<li>发行版本：是各个公司推出的版本，与核心版是各自独立发展的，发行版是一些基于Linux核心的软件包。</li>
+</ol>
+<h1 id="Linux系统基础知识"><a href="#Linux系统基础知识" class="headerlink" title="Linux系统基础知识"></a>Linux系统基础知识</h1><h2 id="使用工具推荐"><a href="#使用工具推荐" class="headerlink" title="使用工具推荐"></a>使用工具推荐</h2><pre><code>虚拟机：VMware（本文使用）、Virtualbox（免费）
+
+虚拟机使用注意事项：
+同时开启的所有虚拟机占用内存不要超过真实内存的一半。
+一般来讲，建立一个win7内存至少1G+，而建立一个Linux系统内存1G即可，有些版本的Linux系统可能500M+也可以。
+但内存也不要过小，否则虚拟机的性能将十分低，导致运行速度过慢。
+
+虚拟机的运行：虚拟机与真实设备共用外存和CPU，内存则划分一块真实内存来使用，硬盘实际上是一个硬盘文件。
+
+
+系统镜像（*.iso）：红帽企业版、CentOS、debian、openSUSE等，本文均使用红帽企业版。
+</code></pre><h2 id="VMware常用功能"><a href="#VMware常用功能" class="headerlink" title="VMware常用功能"></a>VMware常用功能</h2><ul>
+<li>快照功能：虚拟机 —— 快照 —— 拍摄快照/快照管理器；用于记录当前配置环境，后续操作过程中如果出现错误可以随时还原；在快照管理器中右键点击 —— 转到快照，可以使系统还原到该快照；</li>
+<li>克隆功能：虚拟机 —— 管理 —— 克隆；用于快速复制一个相同的虚拟机；</li>
+<li>VMware Tools的安装：虚拟机 —— 重新安装VMware Tools，则安装包会以虚拟光驱的形式出现在虚拟机中，是一个压缩包，使用命令将它解压到/tmp中，然后执行安装</li>
+<li>VMware Tools的几个明显的功能：①屏幕自动调整；②可以在真机和虚拟机之间复制文件；③提高游戏性能，是对VMware的增强</li>
+</ul>
+<h2 id="虚拟机中系统的安装（VMware安装64位红帽企业版）"><a href="#虚拟机中系统的安装（VMware安装64位红帽企业版）" class="headerlink" title="虚拟机中系统的安装（VMware安装64位红帽企业版）"></a>虚拟机中系统的安装（VMware安装64位红帽企业版）</h2><ol>
+<li><p>在VMware中选择创建新的虚拟机 —— 配置类型选择典型 —— 选择稍后安装操作系统 —— 选择Linux系统 —— 选择green Hat Enterprise版本（这里其实就是个名字，并没有什么实际影响） —— 指定存储路径 —— 指定磁盘容量使用默认配置即可，默认将虚拟磁盘拆分为多个文件即可 —— 选择自定义硬件做最后的调整 —— 完成</p>
+</li>
+<li><p>开机进行系统安装，开机前保证虚拟光驱中放入了系统镜像（.iso）文件</p>
+</li>
+<li><p>系统安装部分</p>
+<ul>
+<li>选择Test this media &amp; install green Hat Enterprise Linux 7.4，然后根据系统提示安装即可</li>
+<li>注意安装时选择带GUI的服务器，并勾选开发工具选项保证gcc可以使用</li>
+</ul>
+</li>
+</ol>
+<p>注意事项：</p>
+<ul>
+<li>有些电脑主板不支持开启VT，这样的电脑不能使用64位虚拟机。</li>
+<li>如果是安装服务器用的Linux，先不要选择中文，服务器是没有GUI的，因为真实终端刚安装好的时候看不到中文，会全部显示乱码，此时就没办法使用了。</li>
+<li>服务器一般为了性能，是不会使用GUI的。</li>
+</ul>
+<h2 id="※Linux系统中硬盘设备的命名规则"><a href="#※Linux系统中硬盘设备的命名规则" class="headerlink" title="※Linux系统中硬盘设备的命名规则"></a><font color="green">※Linux系统中硬盘设备的命名规则</font></h2><p>Linux通过字母和数字的组合来标志硬盘分区。前两个字母表示分区所在的设备的类型，如hd表示IDE硬盘即并口硬盘，sd表示SCSI/SATA/USB硬盘即串口硬盘，第三个字母表示分区在哪个设备上，如hda表示第一块IDE硬盘，hdb表示第二块IDE硬盘，sdc表示第三块串口硬盘等；最后的数字表示分区的次序，如数字1~4表示主分区或扩展分区，而逻辑分区从5开始。如果没有对磁盘分区，则一律不加数字，表示整块磁盘。<br>例：<code>/dev/sda5</code><br>其中，<code>dev</code>是Linux系统中硬盘设备文件所在的目录；<br><code>sd</code>表示为串口硬盘，相对的，hd表示为并口硬盘；<br><code>a</code>表示硬盘的顺序号；<br><code>5</code>表示分区的顺序号；<br>综上所述，上述命名表示Linux系统中第一块串口硬盘的第5个分区。</p>
+<h2 id="※Linux系统分区规则"><a href="#※Linux系统分区规则" class="headerlink" title="※Linux系统分区规则"></a><font color="green">※Linux系统分区规则</font></h2><ul>
+<li>默认必须有一个<code>/</code>即<font color="green">根分区</font>，也就相当于Windows系统中的C盘；</li>
+<li>默认必须有一个<font color="green">swap分区</font>即交换空间，它用作虚拟内存，通常为内存的1-1.5倍大小甚至2倍。（补充：windows系统的虚拟内存为pagefile.sys，存储在C盘是个隐藏文件。虚拟内存防止所有内存空间突然全部用完的情况，虽然虚拟内存速度很慢，但可以预防紧急情况；还有一种情况是电脑突然待机，此时会把数据放到虚拟内存中）</li>
+<li>/boot分区是用于保证即使根分区出现问题也能启动计算机的，可以没有。<ul>
+<li><font color="green">Linux中的主分区至少有1个，最多有4个（由于分区表大小限制）；</font></li>
+<li><font color="green">扩展分区可以没有，最多1个；</font></li>
+<li><font color="green">逻辑分区建立在扩展分区之下，可以有多个；</font></li>
+<li>综上所述，主分区+扩展分区（逻辑分区1+逻辑分区2+…+逻辑分区n）=硬盘容量。</li>
+</ul>
+</li>
+</ul>
+<h2 id="※在Unix或Linux系统上实现GUI的机制——X-Window"><a href="#※在Unix或Linux系统上实现GUI的机制——X-Window" class="headerlink" title="※在Unix或Linux系统上实现GUI的机制——X Window"></a>※在Unix或Linux系统上实现GUI的机制——X Window</h2><p>X Window模型如下图：<br><img src="https://s1.ax1x.com/2018/04/16/CeBkx1.md.png" alt="X Window" title="X Window"></p>
+<p>Window系统上鼠标点击时是由被点击的应用程序直接获得鼠标点击事件，而Linux系统上则不然，Linux系统在点击后首先通知X Server服务器，X Server收到后，根据大概的位置推算出被点击的是哪个应用程序，再通过X协议告知该应用程序。因此，Windows系统的GUI比Linux稍快。</p>
+<font color="green"><strong>※整个X Window由三个部分组成：</strong><br><br>X Server<br>X Client<br>X protocol:X Server与X Client之间的通信协议</font>
+
+<p>其中X Server与X Client可以不在同一台机器上。在启动X Window时，首先启动X Server，然后启动X Client，最后建立通信。</p>
+<h2 id="※Linux常用的文件系统"><a href="#※Linux常用的文件系统" class="headerlink" title="※Linux常用的文件系统"></a><font color="green">※Linux常用的文件系统</font></h2><p>Linux常用的文件系统有ext4、xfs、f2fs、zfs、btrfs<br>补充：</p>
+<ul>
+<li>windows常用的文件系统有FAT32、NTFS、exFat</li>
+<li>ios常用的文件系统APFS</li>
+</ul>
+<h2 id="Linux系统常见的压缩文件后缀"><a href="#Linux系统常见的压缩文件后缀" class="headerlink" title="Linux系统常见的压缩文件后缀"></a>Linux系统常见的压缩文件后缀</h2><ul>
+<li>.tar.gz</li>
+<li>.bz2</li>
+<li>.zip</li>
+<li>.gz</li>
+<li>.tar.bz2</li>
+</ul>
+<h2 id="※Linux系统的分区表"><a href="#※Linux系统的分区表" class="headerlink" title="※Linux系统的分区表"></a><font color="green">※Linux系统的分区表</font></h2><p>分区表有两种形式</p>
+<ul>
+<li>MBR：最多支持4个主分区，或者3个主分区以及一个扩展分区，扩展分区下可以划分出若干个逻辑分区</li>
+<li>GPT：支持几乎无限个分区数量，但Windows系统最多支持128个GPT分区</li>
+</ul>
+<h2 id="※GNOME和KDE桌面"><a href="#※GNOME和KDE桌面" class="headerlink" title="※GNOME和KDE桌面"></a>※GNOME和KDE桌面</h2><ul>
+<li>GNOME：用GTK、GTK+等应用程序开发包开发的；而GTK是用C语言开发的</li>
+<li>KDE：用Qt库开发的，而Qt由c++开发。</li>
+</ul>
+<h2 id="一些名词"><a href="#一些名词" class="headerlink" title="一些名词"></a>一些名词</h2><ul>
+<li>虚拟控制台</li>
+<li>虚拟终端</li>
+<li>控制台</li>
+<li>命令行</li>
+<li>终端</li>
+<li>CLI(Commender Line Interface)<br>这些在Linux系统上指代的都是同一样东西，也就是可以输入命令行的窗口或界面。放在Windows系统上来讲就是cmd。<br>其中<strong>虚拟控制台</strong>和<strong>虚拟终端</strong>稍有特殊，它们指代的是图形用户界面中的命令行窗口。</li>
+</ul>
+<h2 id="Linux系统快捷操作"><a href="#Linux系统快捷操作" class="headerlink" title="Linux系统快捷操作"></a>Linux系统快捷操作</h2><ul>
+<li>在Linux系统中使用<code>ctrl+alt+Fn</code>（n=1,2,3..n）来切换到第n个终端，也有些发行版采用快捷键<code>alt+Fn</code></li>
+<li><code>ctrl+shift+t</code>可以在终端窗口中新建标签</li>
+<li>命令行快捷方式<ul>
+<li>输入一个很长的文件名时，可以先输入头几个字母，然后按tab键补全；系统补全操作会在出现其他可能的选择时停下来，此时要么再输入一位；要么再按tab键出现可能选择后，在对照着可能的选择中你要的那个文件名多输入一位，然后再按tab补全</li>
+<li>↑重复运行过的命令中的上一条命令，↓查找运行过的命令中的下一条命令</li>
+<li>.bash_history记录之前输入的命令，默认为1000条。使用方法：按ctrl+R，命令提示符会变为(reverse-i-search)，此时输入的东西会去之前输入过的命令中匹配，找到后按回车键即可执行</li>
+</ul>
+</li>
+</ul>
+<h2 id="※Linux与Windows在命令行与GUI启动顺序上的差异"><a href="#※Linux与Windows在命令行与GUI启动顺序上的差异" class="headerlink" title="※Linux与Windows在命令行与GUI启动顺序上的差异"></a>※Linux与Windows在命令行与GUI启动顺序上的差异</h2><ul>
+<li>Linux是先启动命令行，在启动到黑底白字的终端界面后所有功能已经能够正常使用，<strong><font color="green">GUI只是在Linux系统之上运行的一套应用程序</font></strong>，GUI上又提供了可以使用命令行的虚拟终端；（红帽企业版默认在第一个终端上运行GUI）</li>
+<li>Windows系统的GUI与系统内核是高度集成的，它首先启动GUI，<strong><font color="green">命令行只是运行在GUI上的一个应用程序</font></strong>。</li>
+</ul>
+<h2 id="※Linux系统中根目录下每个文件夹的作用"><a href="#※Linux系统中根目录下每个文件夹的作用" class="headerlink" title="※Linux系统中根目录下每个文件夹的作用"></a><font color="green">※Linux系统中根目录下每个文件夹的作用</font></h2><ul>
+<li><font color="green"><strong>/bin</strong></font> ：即Binary（二进制）的缩写，用于存放一些命令文件</li>
+<li><font color="green"><strong>/sbin</strong></font> ：s代表super user，用于存放root用户专用的一些命令文件</li>
+<li><font color="green"><strong>/boot</strong></font> ：boot意为启动、引导，如果不为Linux系统单独建立一个分区则会生成一个boot文件夹，用于存放操作系统的内核以及启动时必需的文件</li>
+<li><font color="green"><strong>/dev</strong></font> ：device的缩写，用于存放一些硬件设备</li>
+<li><font color="green"><strong>/proc</strong></font> ：内存的映射，如果要修改内存中的数据就通过proc修改，因此备份系统的时候，proc文件夹是不需要备份的</li>
+<li><font color="green"><strong>/etc</strong></font> ：存放各种程序的配置文件，这个文件夹一般体积较小，但很重要</li>
+<li><font color="green"><strong>/lib(或/lib64)</strong></font> ：用于存放动态链接；相当于Windows系统中的dll文件，程序是以功能片段+共享库的形式运行的，Linux系统中这样的文件后缀名一般为.so或.a</li>
+<li><strong>/lost+found</strong> ：系统的“失物招领处”，非法关机后这里会存有一些文件，一般不会用到，但数据恢复的时候可能会需要找这个文件夹中的文件</li>
+<li><font color="green"><strong>/mnt</strong></font> ：mount的缩写，即挂载。挂载操作都需要一个挂载点，Linux系统中的挂载点通常放在这个目录下</li>
+<li><font color="green"><strong>/root</strong></font> ：root用户的主目录/家目录，只能root用户自己查看和操作，普通用户没有权限</li>
+<li><font color="green"><strong>/home</strong></font> ：普通用户用来存放自己的数据，即普通用户的主目录/家目录。比如有一个名为stu的用户，则它的主目录为/home/stu</li>
+<li><strong>/var</strong> ：放一些经常发生变化的文件，比如日志文件、缓存文件等</li>
+<li><font color="green"><strong>/tmp</strong></font> ：存放一些临时文件，重要的文件一定不要放在tmp文件夹里，因为这个文件夹要么定时自动清理，要么开机自动清理，重要文件放在这里容易丢失</li>
+<li>/usr ：这个文件夹体积非常大，会放很多东西，比如应用程序的文件之类</li>
+<li><strong>/media</strong> ：作用同mnt文件夹，区别在于，mnt文件夹下一般存放手动挂载设备的挂载点，而media文件夹下一般存放自动挂载设备（如U盘、移动硬盘等）的挂载点</li>
+<li>/opt ：option的缩写，意为“选择”，这个文件夹是一个可选的文件夹</li>
+</ul>
+<h2 id="为什么使用Linux命令行"><a href="#为什么使用Linux命令行" class="headerlink" title="为什么使用Linux命令行"></a>为什么使用Linux命令行</h2><p>因为一般执行远程操作管理的时候都是进入文本环境，GUI会消耗很多不必要的流量；而且使用命令行对做技术支持的人来说十分便利</p>
+<h2 id="Linux系统的文件"><a href="#Linux系统的文件" class="headerlink" title="Linux系统的文件"></a>Linux系统的文件</h2><ul>
+<li>Linux系统的文件名几乎可以有ASCII字符的任意组合构成，文件名最长可多达255个字符</li>
+<li>Linux上可以有形式上的扩展名，扩展名有没有都可以；Linux是通过文件的头信息来识别文件类型的，扩展名在Linux系统上并不起作用，顶多可以由图形用户界面识别扩展名并显示对应的图标而已，再者是为了使文件在不同的文件系统中能够统一类型；</li>
+<li>Linux中的文件有三个时间信息：<ul>
+<li>ctime：即create time，创建时间</li>
+<li>mtime：即modify time，修改时间，对文件内容进行修改或者对文件附属数据进行修改时会更新这个值</li>
+<li>atime：访问时间，使用touch命令可以更新这个值</li>
+</ul>
+</li>
+<li>很多配置文件只能root用户修改</li>
+<li>Linux系统中的所有文件都有权限和主人</li>
+</ul>
+<h2 id="Linux系统的用户"><a href="#Linux系统的用户" class="headerlink" title="Linux系统的用户"></a>Linux系统的用户</h2><ul>
+<li>用户注册信息存放在/etc/passwd文件中，编号1000之后的是用户创建的用户，1000之前的是系统默认创建的用户</li>
+<li>Linux系统中要删除用户，实际上就是删除/etc/passwd中该用户的那一行信息，并删除<code>/home/用户名</code>这个用户主目录</li>
+<li>一般来讲，Linux系统上的home文件夹会单独放在一个分区，就如同windows系统中的D、E、F盘那样，因为重装系统时会格式化根分区，Windows会格式化C盘，将home单独放在一个分区可以避免用户数据丢失</li>
+<li>如果Linux的用户改名，主目录是不会改名的</li>
+</ul>
+<h2 id="Linux系统中的几种文件类型"><a href="#Linux系统中的几种文件类型" class="headerlink" title="Linux系统中的几种文件类型"></a><strong>Linux系统中的几种文件类型</strong></h2><ol>
+<li>普通文件</li>
+<li>目录文件：即文件夹</li>
+<li>设备文件</li>
+<li>符号链接文件：分为软链接和硬链接</li>
+</ol>
+<h2 id="Linux系统中的路径"><a href="#Linux系统中的路径" class="headerlink" title="Linux系统中的路径"></a>Linux系统中的路径</h2><ul>
+<li>绝对路径，以根目录即<code>/</code>开头</li>
+<li>相对路径，以目录名开头或以<code>./</code>开头，比如<code>./etc/</code>也就相当于<code>etc/</code>，代表当前目录下有个etc文件夹</li>
+</ul>
+<h2 id="Linux系统中的硬链接和软链接"><a href="#Linux系统中的硬链接和软链接" class="headerlink" title="Linux系统中的硬链接和软链接"></a>Linux系统中的硬链接和软链接</h2><ul>
+<li>硬链接：不可以跨分区</li>
+<li>软链接：相当于windows系统中的快捷方式，可以跨分区，也称为符号链接</li>
+</ul>
+<h1 id="Linux系统常用命令"><a href="#Linux系统常用命令" class="headerlink" title="Linux系统常用命令"></a>Linux系统常用命令</h1><h2 id="※Shell提示符"><a href="#※Shell提示符" class="headerlink" title="※Shell提示符"></a><font color="green">※Shell提示符</font></h2><ul>
+<li>root用户： <code>#</code></li>
+<li>其他用户： <code>$</code></li>
+</ul>
+<h2 id="※shell提示符前面字符串的含义"><a href="#※shell提示符前面字符串的含义" class="headerlink" title="※shell提示符前面字符串的含义"></a><font color="green">※shell提示符前面字符串的含义</font></h2><p><code>[root@localhost home]#</code></p>
+<ul>
+<li>root代表当前登录的用户的用户名</li>
+<li>localhost代表当前登录的主机名</li>
+<li>home代表当前所在目录</li>
+<li><code>#</code> 是root用户的shell提示符</li>
+</ul>
+<p>注意：命令行中输入密码时是<strong>没有回显</strong>的</p>
+<h2 id="Linux系统一般命令格式"><a href="#Linux系统一般命令格式" class="headerlink" title="Linux系统一般命令格式"></a>Linux系统一般命令格式</h2><p><strong>命令名 [选项] [参数]</strong><br>通常情况下选项是一个短横线加一个字母，如-a、-x、-b，这三个选项也可以略写为-axb；<br>通常两个短横线之后跟一个完整的单词，如–all，则all是一个单词，是一个选项，而不是三个选项；<br>通常来讲会是这样，但并不绝对。</p>
+<p>命令名必须是小写的英文字母，并且往往是表示相应功能的英文单词或单词的缩写；<br>命令名、选项和参数彼此间必须用空格或制表符隔开，不能连在一起，连续的空格会被shell解释为单个空格</p>
+<h2 id="who命令"><a href="#who命令" class="headerlink" title="who命令"></a>who命令</h2><p>用于显示当前已注册到系统的所有用户名、所用终端名和注册到系统的时间。<br><code>tty</code>即为真实终端，是无图形用户界面的终端。<br><code>pts</code>指的是虚拟终端，是GUI中运行的终端窗口。<br>who am i命令将列出使用该命令的当前用户的相关信息</p>
+<h2 id="用户退出登录"><a href="#用户退出登录" class="headerlink" title="用户退出登录"></a>用户退出登录</h2><ul>
+<li>logout</li>
+<li>exit</li>
+<li>ctrl+P</li>
+</ul>
+<h2 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h2><ul>
+<li>shutdown -k <time> <message> 不关机，只发送消息给所有用户</message></time></li>
+</ul>
+<h2 id="关机"><a href="#关机" class="headerlink" title="关机"></a>关机</h2><ul>
+<li>halt</li>
+<li>shutdown <strong><font color="green">-h</font></strong> <time>  （time可以写为now，代表立刻关机）<ul>
+<li>例：<code>shutdown -h 11:00 &lt;message&gt;</code> 在11点关机并发送消息message</li>
+</ul>
+</time></li>
+<li>poweroff</li>
+</ul>
+<p>注意：有的发行版只有root用户可以关机</p>
+<h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><ul>
+<li>reboot</li>
+<li>shutdown <strong><font color="green">-r</font></strong> <time></time></li>
+<li>ctrl+alt+del</li>
+<li>ctrl+alt+backspace —— 重启GUI</li>
+</ul>
+<h2 id="init命令"><a href="#init命令" class="headerlink" title="init命令"></a>init命令</h2><p>涉及到init命令，首先要了解几个运行级别</p>
+<ul>
+<li>0 —— 表示关机</li>
+<li>6 —— 表示重启<br>则命令<code>init 0</code>即表示关机</li>
+</ul>
+<h2 id="clear命令"><a href="#clear命令" class="headerlink" title="clear命令"></a>clear命令</h2><p>用于清除屏幕上的信息，类似于dos中的cls命令。</p>
+<h2 id="passwd命令"><a href="#passwd命令" class="headerlink" title="passwd命令"></a>passwd命令</h2><p>用于修改密码。root用户使用<code>passwd 用户名</code>可以不需要原密码就修改该用户的密码</p>
+<h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><ul>
+<li>用于显示当前工作路径，可以使用cd命令来切换工作路径</li>
+<li>选项：<ul>
+<li>-P 显示实际路径，即，如果路径中有链接文件，-P会将链接文件替换为真实文件</li>
+<li>-L 显示逻辑路径</li>
+</ul>
+</li>
+</ul>
+<h2 id="su命令"><a href="#su命令" class="headerlink" title="su命令"></a>su命令</h2><ul>
+<li>用于切换用户身份，用法<code>su username</code>，如果不加用户名则默认切换到root用户</li>
+<li>root用户切换到普通用户不需要密码，但普通用户切换到root用户需要密码</li>
+<li><strong>不建议</strong>从root用户用su命令切换到其他用户，因为这样相当于root用户穿了普通用户的马甲，一旦退出无需密码直接退回到root用户，这样有可能会导致一定的安全问题；建议使用exit命令退出root用户同时退回普通用户</li>
+</ul>
+<h2 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h2><ul>
+<li>用于将命令行中的参数回显到标准输出（即屏幕）上，如<code>echo $PATH</code>会显示环境变量PATH的值；而<code>echo 字符串A</code>会显示字符串A</li>
+<li>选项：<ul>
+<li>-n ：表示输出字符串String之后光标不换行</li>
+</ul>
+</li>
+</ul>
+<h2 id="date命令"><a href="#date命令" class="headerlink" title="date命令"></a>date命令</h2><ul>
+<li>用于在屏幕上显示或设置系统的日期和时间</li>
+<li>date显示的日期信息中，有一列CST意为China Standard Time，中国标准时间，即北京时间</li>
+<li>date %y%m%d%H%M%S 可以显示年月日时分秒格式的日期</li>
+</ul>
+<h2 id="cal命令"><a href="#cal命令" class="headerlink" title="cal命令"></a>cal命令</h2><ul>
+<li>用于显示日历，一般格式为 cal [选项] [[[day]month]year]</li>
+<li>如：<code>cal 2008</code>会显示08年的日历，<code>cal 03 2020</code>会显示2020年3月的日历</li>
+</ul>
+<h2 id="file命令"><a href="#file命令" class="headerlink" title="file命令"></a>file命令</h2><p>使用<code>file 文件名</code>可以查看文件的头信息</p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><ol>
+<li>find ：用于在<strong>硬盘</strong>中查找文件的位置，用法<code>find 路径 -name *example</code>，其中*example代表以example结尾的文件</li>
+<li>locate ：用于查找文件的位置，但在文件量特别大的情况下速度比find快，因为locate有一个小型的数据库并建立了索引，所以查找很快，但最新生成的文件可能查找不到因为还没有加入索引中</li>
+<li>grep ：用法<code>grep 字符串 文件名</code>，显示文件中包含该字符串的行，通常作为过滤器使用，如<code>cat fstab | grep fs</code>命令会将管道（即<code>|</code>）前面命令的输出作为管道后边命令的输入，前半部分命令用于输出文件全部内容，则fstab文件的所有内容作为后半部分命令的输入，最终得到fstab中包含fs的行</li>
+</ol>
+<h2 id="常用的文件操作命令"><a href="#常用的文件操作命令" class="headerlink" title="常用的文件操作命令"></a>常用的文件操作命令</h2><ol>
+<li><font color="green">cat命令</font><ul>
+<li>用途：用于显示文件的所有内容；用于链接两个或多个文件</li>
+<li>选项：-n，即–number，从1开始对所有输出行编号</li>
+<li>举例： <code>cat f1 f2&gt;f3</code>会将f1和f2的内容合并起来，然后通过输出重定向符号&gt;的作用，将它们放入文件f3中。</li>
+</ul>
+</li>
+<li>more命令<ul>
+<li>用途：显示文件内容，每次显示一屏；按空格键显示下一屏，按enter键显示下一行内容；文件浏览完毕后自动退出；是一次性读取整个文件；</li>
+</ul>
+</li>
+<li>less命令<ul>
+<li>用途：与more类似也用于显示文件内容，但是区别在于，less允许用户向前或向后浏览文件，而more命令只能向前浏览。less命令在开始显示之前，不必读入整个文件，是部分读取，适合用于大文件；用pageup键上翻页，用pagedown键向下翻页，退出可以按q或Q，或者:q，:Q，或者ZZ均可。</li>
+</ul>
+</li>
+<li>head命令<ul>
+<li>用途：用于在屏幕上显示指定文件的开头若干行，默认为前10行</li>
+<li>用法：<code>head [选项] [文件]</code></li>
+<li>选项：-n，即–lines=N，显示指定文件的前面N行</li>
+</ul>
+</li>
+<li>tail命令<ul>
+<li>用途：用于在屏幕上显示指定文件的末尾部分</li>
+<li>用法：<code>tail [选项] [FILE]</code></li>
+<li>选项：<ul>
+<li>-f，当文件增长时输出附加的数据</li>
+<li>-n，即–lines=N，输出最后的N行，而不是默认的10行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>touch命令<ul>
+<li>用途：用于修改文件的时间标签（即更新文件的atime）或者创建一个空文件</li>
+<li>用法：<code>touch [选项] file</code>，如果file不存在则新建一个文件；如果file已经存在则会更新文件的访问时间</li>
+</ul>
+</li>
+<li>file命令<ul>
+<li>用途：用于确定文件类型</li>
+<li>用法：<code>file [选项] 文件名</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="匹配、排序及显示指定内容的命令"><a href="#匹配、排序及显示指定内容的命令" class="headerlink" title="匹配、排序及显示指定内容的命令"></a>匹配、排序及显示指定内容的命令</h2><ol>
+<li><font color="green">grep命令</font><ul>
+<li>用途：用于在文本文件中查找指定模式的词或短语，并在标准输出上显示包括给定字符串模式的所有行</li>
+<li>用法：<code>grep [选项] 模式 [文件...]</code></li>
+<li>选项：-i，即–ignore-case，匹配比较时不区分字母的大小写</li>
+</ul>
+</li>
+<li>sort命令<ul>
+<li>用途：用于对文本文件的各行进行排序</li>
+<li>用法：<code>sort [选项] [文件]</code></li>
+</ul>
+</li>
+<li>uniq命令<ul>
+<li>用途：用于从排好序的文件中去除重复行，需要注意的一点是，uniq比较的是相邻的行</li>
+<li>用法：` uniq [选项] [输入文件[输出文件]]</li>
+</ul>
+</li>
+</ol>
+<h2 id="※文件压缩命令"><a href="#※文件压缩命令" class="headerlink" title="※文件压缩命令"></a><font color="red">※文件压缩命令</font></h2><ol>
+<li>Linux常见的压缩格式<ul>
+<li>filename.tar.gz（最普通）</li>
+<li>filename.tar.bz2</li>
+<li>filename.tar.xz（最常用）</li>
+<li>.zip（通用，zip压缩包在各个系统上均可使用）</li>
+</ul>
+</li>
+<li><strong>filename.tar.gz</strong><ul>
+<li>压缩：tar <font color="red"><strong>z</strong></font><font color="green"><strong>c</strong></font>vf filename.tar.gz some_file_dirs</li>
+<li>解压：tar <font color="red"><strong>z</strong></font><font color="green"><strong>x</strong></font>vf filename.tar.gz (-c /路径)</li>
+<li>解释：z选项指定了用于gz包；c选项和x选项分别指定了压缩和解压；v选项指定了需要显示详细信息，这个选项可以省略；f选项指明文件；解压命令中的-C选项可以指明解压到指定路径</li>
+</ul>
+</li>
+<li><strong>filename.tar.bz2</strong><ul>
+<li>压缩：tar <font color="red"><strong>j</strong></font><font color="green"><strong>c</strong></font>vf filename.tar.bz2 some_file_dirs</li>
+<li>解压：tar <font color="red"><strong>j</strong></font><font color="green"><strong>x</strong></font>vf filename.tar.bz2</li>
+</ul>
+</li>
+<li><strong>filename.tar.xz</strong><ul>
+<li>压缩：tar <font color="red"><strong>J</strong></font><font color="green"><strong>c</strong></font>vf filename.tar.xz some_file_dirs</li>
+<li>解压：tar <font color="red"><strong>J</strong></font><font color="green"><strong>x</strong></font>vf filename.tar.xz</li>
+</ul>
+</li>
+<li><strong>filename.zip</strong><ul>
+<li>解压：unzip filename.zip</li>
+</ul>
+</li>
+<li>一点知识补充，其实现在微软的无论docx还是pptx格式的文件，只要这些后缀名带x的，实际上就是zip文件，是可以解压的</li>
+</ol>
+<h2 id="比较文件内容的命令"><a href="#比较文件内容的命令" class="headerlink" title="比较文件内容的命令"></a>比较文件内容的命令</h2><ol>
+<li>comm命令（一般不用，一般会用vimdiff）<ul>
+<li>用途：用于对两个已经排序的文件进行逐行比较</li>
+<li>用法：<code>comm [选项] 文件1 文件2</code></li>
+</ul>
+</li>
+<li>diff命令<ul>
+<li>用途：用来比较两个文本文件，并找出他们的不同</li>
+<li>用法：<code>diff [选项] 文件1 文件2</code></li>
+<li>注：diff命令会生成一个patch文件，这个文件保存了两者之间的不同，相当于补丁的作用</li>
+</ul>
+</li>
+</ol>
+<h2 id="复制、删除和移动文件的命令"><a href="#复制、删除和移动文件的命令" class="headerlink" title="复制、删除和移动文件的命令"></a>复制、删除和移动文件的命令</h2><ol>
+<li><font color="red">※cp命令</font><ul>
+<li>用途：用于将源文件或目录复制到目标文件或目录中</li>
+<li>用法：<code>cp [选项] 源文件或目录 目标文件或目录</code></li>
+<li>选项：<ul>
+<li>-v，显示拷贝的详细过程，如果不用-v则只有光标在闪烁</li>
+<li>-R，-r，递归复制目录，即将源目录下的所有文件及其各级子目录都复制到目标位置，此时目标文件必须为一个目录名</li>
+</ul>
+</li>
+<li>特例：<ul>
+<li><code>cp 目录 不存在的文件的文件名</code>会将前边的目录复制为一个新文件夹，命名为后边的文件名</li>
+<li><code>cp -r dir newdir</code>，如果dir已经存在，会将dir放到newdir中；如果newdir不存在，会将dir复制为newdir</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>rm命令<ul>
+<li>用途：用于删除文件或目录</li>
+<li>用法：<code>rm [选项] [文件]</code></li>
+<li>选项：<ul>
+<li>-f，即–force，忽略不存在的文件，并且<strong>不给出提示信息</strong>；但是如果是普通用户删除文件，如果没有删除某个文件的权限，那么即使加了-f也是删不掉的</li>
+<li>-r，-R，即-recursive，递归地删除指定目录及其下属的各级子目录和相应的文件</li>
+<li>-i，交互式地删除文件，即删除文件之前会给出提示并需要用户逐个确认，与-f相反</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>mv命令<ul>
+<li>用途：①对文件或目录重新命名②将文件从一个目录移动到另一个目录中</li>
+<li>用法：<code>mv [选项] 源文件 目标文件</code></li>
+<li>解释：如果目标文件与源文件路径不同，则是移动操作；如果路径相同，就相当于是重命名操作</li>
+</ul>
+</li>
+</ol>
+<h2 id="文件内容统计命令"><a href="#文件内容统计命令" class="headerlink" title="文件内容统计命令"></a>文件内容统计命令</h2><ol>
+<li>wc命令<ul>
+<li>用途：用于统计指定文件的字节数、字数、行数，并将统计结果显示出来</li>
+<li>用法：<code>wc [选项] [文件]</code></li>
+<li>选项：<ul>
+<li>-c，即–bytes，统计字节数</li>
+<li>-l，即–lines，统计行数</li>
+<li>-m，即–chars，统计字符数</li>
+<li>-w，即–words，统计字数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="常用的目录操作命令"><a href="#常用的目录操作命令" class="headerlink" title="常用的目录操作命令"></a>常用的目录操作命令</h2><ol>
+<li>mkdir命令<ul>
+<li>用途：用来创建目录</li>
+<li>用法：<code>mkdir [选项] dirname</code></li>
+<li>选项：-p，即–parents，可以一次建立多个目录，即如果为新建目录所指定的路径dirname中有些父目录尚不存在，此选项可以自动创建它们</li>
+<li>如果要创建一个<strong>名字中带空格</strong>的文件夹，则使用<code>mkdir &quot;a b&quot;</code>或者<code>mkdir a\ b</code></li>
+</ul>
+</li>
+<li>rmdir命令<ul>
+<li>用途：可以从一个目录中删除一个或多个<strong>空的</strong>子目录</li>
+<li>用法：<code>rmdir [选项] dirname</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="改变工作目录和显示目录内容"><a href="#改变工作目录和显示目录内容" class="headerlink" title="改变工作目录和显示目录内容"></a>改变工作目录和显示目录内容</h2><ol>
+<li>cd命令<ul>
+<li>用途：用于改变工作目录</li>
+<li>用法：<code>cd [dirname]</code></li>
+<li>几种用法：<ul>
+<li><code>cd /绝对路径</code> ：cd命令可以跟一个绝对路径</li>
+<li><code>cd ./相对路径</code> ：cd命令也可以跟一个相对路径</li>
+<li><code>cd</code> ：cd后什么都不加或者加一个空格，代表将工作目录改为用户主目录</li>
+<li><code>cd ~</code> ：同上，代表跳回用户主目录</li>
+<li><code>cd ..</code> ：跳回上级目录，<code>..</code>代表上级目录</li>
+<li><code>cd .</code> ：跳回当前目录，其实相当于原地踏步。<code>.</code>代表当前目录</li>
+<li><code>cd -</code> ：后退一步，连续使用则会在两个工作目录之间来回跳转</li>
+</ul>
+</li>
+<li>关于路径的注意点：根目录的<code>.</code>和<code>..</code>是一样的；绝对路径一定是以根目录也就是<code>/</code>开头的</li>
+</ul>
+</li>
+<li><font color="red">※ls命令</font><ul>
+<li>用途：列出指定目录的内容</li>
+<li>用法：<code>ls [选项] [file]</code></li>
+<li>选项：<ul>
+<li>-a，即–all，显示指定目录下所有子目录和文件，包括以<code>.</code>开头的隐藏文件，包括<code>.</code>和<code>..</code></li>
+<li>-d，如果参数是目录，则只显示它的名字（不显示其内容）；往往与-l选项一起使用，以得到该目录本身的详细信息</li>
+<li>-h，一般结合-l选项使用，使文件大小字段带有一个最合适的单位方便用户查看</li>
+<li><font color="red">-l</font>，以长格式显示文件的详细信息，输出的信息分成多列，它们依次是：<font color="green"><strong>文件类型与权限  链接数  文件主  文件组  文件大小  建立或最近修改的时间  文件名</strong></font>，其中，链接数指的是硬链接数，文件组显示的是主组的名称，即文件所属的用户属于哪个组<ul>
+<li>例如：-rw-r–r–  2  mengqc  group  809  12月  27  2008  myfile2</li>
+</ul>
+</li>
+<li>综上所述，<code>ls -lha</code>是一个很常用的命令，用于显示某个目录中所有文件的带单位的详细信息；并且，<code>ls -l</code>这个命令可以简写为<code>ll</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="※关于ls命令中的10个表示文件类型与权限的字符"><a href="#※关于ls命令中的10个表示文件类型与权限的字符" class="headerlink" title="※关于ls命令中的10个表示文件类型与权限的字符"></a><font color="red">※关于ls命令中的10个表示文件类型与权限的字符</font></h2><p><font color="red">头一个字符代表了文件类型</font>，所用字符及含义如下：</p>
+<ul>
+<li><code>-</code>  普通文件</li>
+<li><code>d</code>  即dir，目录文件</li>
+<li><code>b</code>  即block，块设备文件，一般是指能存储数据的，比如硬盘</li>
+<li><code>c</code>  即char，字符设备文件，一般是能够显示字符的，比如打印机和屏幕</li>
+<li><code>l</code>  即link，符号链接文件，也就是软链接</li>
+<li><code>s</code>  套接字文件（socket），一般网络编程会用到</li>
+<li><code>p</code>  命名管道文件（pipe），管道即”|”</li>
+</ul>
+<p><font color="red">随后的九个字符分为三组，每组3个字符，分别代表了三组权限：第一组代表文件所有者的读、写、执行权限；第二组表示同组用户的读、写、执行权限；第三组表示其他用户的读、写、执行权限</font>，在权限部分会有详细讲解，其中</p>
+<ul>
+<li><code>r</code>     即read，读</li>
+<li><code>w</code>  即write，写</li>
+<li><code>x</code>  即execute，执行，对于目录文件则表示该目录可以访问</li>
+<li><code>-</code>  代表没有对应的权限</li>
+<li><code>s</code>  不常见</li>
+<li><code>t</code>  不常见</li>
+</ul>
+<p>权限字段的组合中，<code>rwxrwxrwx</code>的限制是最少的，但是Linux系统中一般不会设置成这样</p>
+<ol start="3">
+<li>ln命令<ul>
+<li>用途：用来创建链接</li>
+<li>用法：<code>ln [选项] 源文件 [目标文件]</code></li>
+<li>选项：-s，即–symbolic，建立符号链接而不是硬链接，如果要创建硬链接就不加-s</li>
+</ul>
+</li>
+</ol>
+<h2 id="※改变文件或目录存取权限的命令"><a href="#※改变文件或目录存取权限的命令" class="headerlink" title="※改变文件或目录存取权限的命令"></a><font color="red">※改变文件或目录存取权限的命令</font></h2><h3 id="chmod命令"><a href="#chmod命令" class="headerlink" title="chmod命令"></a>chmod命令</h3><ul>
+<li>用途：即change mode，用于改变或设置文件或目录的存取权限，但是只有文件主或超级用户root才有权用chmod命令改变文件或目录的存取权限</li>
+<li>用法：改变文件权限有两种方法：文字设定法、数字设定法（常用）</li>
+</ul>
+<h4 id="文字设定法"><a href="#文字设定法" class="headerlink" title="文字设定法"></a>文字设定法</h4><p>用法：<code>chmod [who] [+|-|=] [mode] filename</code></p>
+<p>例如：<code>chmod o + r file.txt</code>是为其他用户增加file.txt文件的读权限</p>
+<p><strong>操作对象who可以取的值有：</strong></p>
+<ul>
+<li><strong>u，表示“用户（user）”，即文件或目录的所有者；</strong></li>
+<li><strong>g，表示“同组（group）用户”，即与文件属主有相同组ID的所有用户；</strong></li>
+<li><strong>o，表示“其他（others）用户”；</strong></li>
+<li><strong>a，表示“所有（all）用户”，它是系统默认值（<code>a=u+g+o</code>）</strong></li>
+</ul>
+<p><strong>操作符号可以是：</strong></p>
+<ul>
+<li><strong>+，即添加某个权限；</strong></li>
+<li><strong>-，即取消某个权限；</strong></li>
+<li><strong>=，即赋予给定权限并取消其他所有权限（如果有的话）；</strong></li>
+</ul>
+<p><strong>mode所表示的权限可以是下述字母的任意组合：</strong></p>
+<ul>
+<li><strong>r，可读；（对于目录<code>r</code>权限表示可以用<code>ls</code>命令查看内容）</strong></li>
+<li><strong>w，可写；</strong></li>
+<li><strong>x，可执行（或可搜索目录）；（对于目录x权限表示进入权限，即能够对该目录使用<code>cd</code>命令）</strong></li>
+<li>X，只有该目标文件是目录文件或对某些用户有可执行权限时，才有“可执行/搜索”属性</li>
+<li>s，在文件执行时，把进程的属主或组ID置为该文件的文件属主。方式u+s设置文件的用户ID位，g+s设置组ID位</li>
+<li>t，受限删除标志或粘着位，即程序的文本保存到交换设备上</li>
+<li><strong>u，与文件属主拥有一样的权限；</strong></li>
+<li><strong>g，与和文件属主同组的用户拥有一样的权限；</strong></li>
+<li><strong>o，与其他用户拥有一样的权限；</strong></li>
+</ul>
+<p><strong>例题</strong></p>
+<ul>
+<li><code>$ chmod a-x mm.txt</code>、<code>chmod -x mm.txt</code>、<code>$ chmod ugo-x mm.txt</code>这三种形式均为<strong>为所有用户取消对mm.txt文件的执行权限</strong></li>
+<li><code>$ chmod ug+w,o-x text</code> 为文件所有者和同组用户添加可写权限，为其他用户取消可执行权限</li>
+<li><code>$ chmod a+x sort</code> 为所有用户添加sort文件的执行权限</li>
+<li><code>$ chmod a=rx sort</code> 直接指定权限为r,x</li>
+</ul>
+<h4 id="※数字设定法（常用）"><a href="#※数字设定法（常用）" class="headerlink" title="※数字设定法（常用）"></a><font color="red">※数字设定法（常用）</font></h4><ul>
+<li><strong><code>0</code> 表示没有权限</strong></li>
+<li><strong><code>1</code> 表示可执行，即<code>x</code>，对目录表示可进入权限，也就是可以对该目录使用<code>cd</code>命令</strong></li>
+<li><strong><code>2</code> 表示可写权限，即<code>w</code></strong></li>
+<li><strong><code>4</code> 表示可读权限，即<code>r</code>，对于目录表示可以使用<code>ls</code>命令查看该目录的内容</strong></li>
+</ul>
+<p>用法：将数字相加则表示文件的权限</p>
+<p>例如：读、写权限即为<code>4+2=6</code>（读/写）</p>
+<p><strong>通常有了r，即读权限才能有其他权限</strong><br>例题：</p>
+<ul>
+<li><code>$ chmod 644 mm.txt</code></li>
+<li><code>$ chmod 750 wch.txt</code></li>
+<li>上述例题中的三个数字分别对应着<code>u</code>、<code>g</code>、<code>o</code>用户</li>
+</ul>
+<h3 id="Linux系统有2种用户，3类人，3种权限"><a href="#Linux系统有2种用户，3类人，3种权限" class="headerlink" title="Linux系统有2种用户，3类人，3种权限"></a>Linux系统有2种用户，3类人，3种权限</h3><p>其中，2种用户指的是root用户及其他用户；<br>3类人指的是user，group，other；<br>3种权限指的是读权限r、写权限w、执行权限x。</p>
+<h3 id="linux命令行中文件的颜色"><a href="#linux命令行中文件的颜色" class="headerlink" title="linux命令行中文件的颜色"></a>linux命令行中文件的颜色</h3><p>白色 —— 普通；<br>蓝色 —— 目录；<br>绿色 —— 可执行；<br>红色 —— 压缩文件；<br>浅蓝色 —— 链接文件；<br>红色闪烁 —— 链接的文件有问题；<br>黄色 —— 设备文件；<br>灰色 —— 其他文件；</p>
+<h1 id="课外知识补充"><a href="#课外知识补充" class="headerlink" title="课外知识补充"></a>课外知识补充</h1><h3 id="计算机概括来讲可以分为几个部分"><a href="#计算机概括来讲可以分为几个部分" class="headerlink" title="计算机概括来讲可以分为几个部分"></a>计算机概括来讲可以分为几个部分</h3><p>硬件、软件、<strong>固件</strong>。<br>软件分为几类：系统软件、支撑软件、应用软件。<br>固件是安装在硬件（比如主板内）上的软件，它引导操作系统的运行。它可以完成比如开机时显示厂商的界面和设置启动顺序等的界面等。</p>
+<h3 id="计算机的几种状态"><a href="#计算机的几种状态" class="headerlink" title="计算机的几种状态"></a>计算机的几种状态</h3><p>关机；<br>休眠：windows将内存中的文件生成镜像文件存放在一个.sys文件中；Linux系统将内存中的文件生成镜像放入交换空间中，如果交换空间大小小于内存的大小，则不支持这种模式；休眠后执行关机操作，再开机时会直接读取镜像。<br>睡眠：可唤醒的状态。</p>
+<h3 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h3><p>BIOS即Basic Input Output System，基本输入输出系统。BIOS负责在系统通电时进行自检并且找到引导程序grub，grub再去硬盘上找到系统内核kernel。<br>tips：为什么引导程序普遍使用grub而不使用Lilo：因为Lilo要求内核必须放在硬盘的1024柱前面。</p>
+<h3 id="区别内存与外存最直接的方法"><a href="#区别内存与外存最直接的方法" class="headerlink" title="区别内存与外存最直接的方法"></a><strong>区别内存与外存</strong>最直接的方法</h3><p>断电后数据丢失的就是内存，而断电后数据仍旧可以保存的则是外存。用这种方法可以明显得知，现在普遍流传的“手机内存”的叫法其实是错误的。</p>
+<h3 id="安装多系统时的安装顺序"><a href="#安装多系统时的安装顺序" class="headerlink" title="安装多系统时的安装顺序"></a>安装多系统时的安装顺序</h3><p>低版本→高版本，Windows→Linux。而lilo（或grub）负责多系统的引导，应当最后安装到MBR（分区表）中。</p>
+<h3 id="关于文件系统"><a href="#关于文件系统" class="headerlink" title="关于文件系统"></a>关于<strong>文件系统</strong></h3><p>ISO9660 —— 光盘文件系统，其中除了存储的数据之外还有其他信息，夹带了这些信息可以用于防盗版，因为这样软件只能通过光盘安装，单纯的复制文件光盘中的内容是无法安装的。而.iso文件就相当于虚拟光盘，需要虚拟光驱来运行。<br>FAT32 —— 此种文件系统不支持超过4G的文件，常应用在手机存储卡，win98，U盘等。<br>NTFS —— 即NT FIle System（NT文件系统），是windows系统常用的文件系统。</p>
+<h3 id="windows系统相关"><a href="#windows系统相关" class="headerlink" title="windows系统相关"></a>windows系统相关</h3><ol>
+<li>windows系统的内核：windows NT</li>
+<li>windows使用的文件系统：NTFS也就是NT File System</li>
+</ol>
+<h3 id="Linux系统版本"><a href="#Linux系统版本" class="headerlink" title="Linux系统版本"></a>Linux系统版本</h3><ul>
+<li>Fedora是红帽9.0后可以免费使用的发行版，而rhel是9.0后为企业准备的发行版。</li>
+<li>Android内核使用的是Linux系统</li>
+</ul>
+<h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>是操作系统内核与用户程序、应用程序之间的接口。在Unix/Linux系统上，系统调用以C函数的形式出现，比如用于打开一个文件的open函数。<br>结构如下图：<br><img src="https://s1.ax1x.com/2018/04/16/CeBiG9.md.png" alt="系统调用" title="系统调用"></p>
+<h3 id="服务器的内存泄漏"><a href="#服务器的内存泄漏" class="headerlink" title="服务器的内存泄漏"></a>服务器的内存泄漏</h3><p>指服务器上运行的软件不释放内存，因为服务器上运行的软件都是不经常关闭的，最后程序占用的内存会越来越大，导致内存泄漏。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>1752年9月没有3号-13号</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/15/前端项目架构学习/" rel="next" title="前端项目架构学习">
+                <i class="fa fa-chevron-left"></i> 前端项目架构学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/17/Andorid学习笔记/" rel="prev" title="Andorid学习笔记">
+                Andorid学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Fnine59" />
+            
+              <p class="site-author-name" itemprop="name">Fnine59</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Fnine59" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5746592281?refer_flag=1005055010_" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fnine59@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念整理"><span class="nav-number">1.</span> <span class="nav-text">基本概念整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的概念"><span class="nav-number">1.1.</span> <span class="nav-text">操作系统的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的基本功能"><span class="nav-number">1.2.</span> <span class="nav-text">操作系统的基本功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的类型"><span class="nav-number">1.3.</span> <span class="nav-text">操作系统的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的特点"><span class="nav-number">1.4.</span> <span class="nav-text">Linux系统的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的常用版本"><span class="nav-number">1.5.</span> <span class="nav-text">Linux的常用版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux系统基础知识"><span class="nav-number">2.</span> <span class="nav-text">Linux系统基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用工具推荐"><span class="nav-number">2.1.</span> <span class="nav-text">使用工具推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VMware常用功能"><span class="nav-number">2.2.</span> <span class="nav-text">VMware常用功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机中系统的安装（VMware安装64位红帽企业版）"><span class="nav-number">2.3.</span> <span class="nav-text">虚拟机中系统的安装（VMware安装64位红帽企业版）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统中硬盘设备的命名规则"><span class="nav-number">2.4.</span> <span class="nav-text">※Linux系统中硬盘设备的命名规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统分区规则"><span class="nav-number">2.5.</span> <span class="nav-text">※Linux系统分区规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※在Unix或Linux系统上实现GUI的机制——X-Window"><span class="nav-number">2.6.</span> <span class="nav-text">※在Unix或Linux系统上实现GUI的机制——X Window</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux常用的文件系统"><span class="nav-number">2.7.</span> <span class="nav-text">※Linux常用的文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统常见的压缩文件后缀"><span class="nav-number">2.8.</span> <span class="nav-text">Linux系统常见的压缩文件后缀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统的分区表"><span class="nav-number">2.9.</span> <span class="nav-text">※Linux系统的分区表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※GNOME和KDE桌面"><span class="nav-number">2.10.</span> <span class="nav-text">※GNOME和KDE桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些名词"><span class="nav-number">2.11.</span> <span class="nav-text">一些名词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统快捷操作"><span class="nav-number">2.12.</span> <span class="nav-text">Linux系统快捷操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux与Windows在命令行与GUI启动顺序上的差异"><span class="nav-number">2.13.</span> <span class="nav-text">※Linux与Windows在命令行与GUI启动顺序上的差异</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※Linux系统中根目录下每个文件夹的作用"><span class="nav-number">2.14.</span> <span class="nav-text">※Linux系统中根目录下每个文件夹的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么使用Linux命令行"><span class="nav-number">2.15.</span> <span class="nav-text">为什么使用Linux命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的文件"><span class="nav-number">2.16.</span> <span class="nav-text">Linux系统的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的用户"><span class="nav-number">2.17.</span> <span class="nav-text">Linux系统的用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统中的几种文件类型"><span class="nav-number">2.18.</span> <span class="nav-text">Linux系统中的几种文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统中的路径"><span class="nav-number">2.19.</span> <span class="nav-text">Linux系统中的路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统中的硬链接和软链接"><span class="nav-number">2.20.</span> <span class="nav-text">Linux系统中的硬链接和软链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux系统常用命令"><span class="nav-number">3.</span> <span class="nav-text">Linux系统常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#※Shell提示符"><span class="nav-number">3.1.</span> <span class="nav-text">※Shell提示符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※shell提示符前面字符串的含义"><span class="nav-number">3.2.</span> <span class="nav-text">※shell提示符前面字符串的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统一般命令格式"><span class="nav-number">3.3.</span> <span class="nav-text">Linux系统一般命令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#who命令"><span class="nav-number">3.4.</span> <span class="nav-text">who命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户退出登录"><span class="nav-number">3.5.</span> <span class="nav-text">用户退出登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送消息"><span class="nav-number">3.6.</span> <span class="nav-text">发送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关机"><span class="nav-number">3.7.</span> <span class="nav-text">关机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启"><span class="nav-number">3.8.</span> <span class="nav-text">重启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init命令"><span class="nav-number">3.9.</span> <span class="nav-text">init命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clear命令"><span class="nav-number">3.10.</span> <span class="nav-text">clear命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#passwd命令"><span class="nav-number">3.11.</span> <span class="nav-text">passwd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd命令"><span class="nav-number">3.12.</span> <span class="nav-text">pwd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#su命令"><span class="nav-number">3.13.</span> <span class="nav-text">su命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo命令"><span class="nav-number">3.14.</span> <span class="nav-text">echo命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#date命令"><span class="nav-number">3.15.</span> <span class="nav-text">date命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cal命令"><span class="nav-number">3.16.</span> <span class="nav-text">cal命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file命令"><span class="nav-number">3.17.</span> <span class="nav-text">file命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找"><span class="nav-number">3.18.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的文件操作命令"><span class="nav-number">3.19.</span> <span class="nav-text">常用的文件操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配、排序及显示指定内容的命令"><span class="nav-number">3.20.</span> <span class="nav-text">匹配、排序及显示指定内容的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※文件压缩命令"><span class="nav-number">3.21.</span> <span class="nav-text">※文件压缩命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较文件内容的命令"><span class="nav-number">3.22.</span> <span class="nav-text">比较文件内容的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制、删除和移动文件的命令"><span class="nav-number">3.23.</span> <span class="nav-text">复制、删除和移动文件的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件内容统计命令"><span class="nav-number">3.24.</span> <span class="nav-text">文件内容统计命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的目录操作命令"><span class="nav-number">3.25.</span> <span class="nav-text">常用的目录操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变工作目录和显示目录内容"><span class="nav-number">3.26.</span> <span class="nav-text">改变工作目录和显示目录内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※关于ls命令中的10个表示文件类型与权限的字符"><span class="nav-number">3.27.</span> <span class="nav-text">※关于ls命令中的10个表示文件类型与权限的字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#※改变文件或目录存取权限的命令"><span class="nav-number">3.28.</span> <span class="nav-text">※改变文件或目录存取权限的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#chmod命令"><span class="nav-number">3.28.1.</span> <span class="nav-text">chmod命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文字设定法"><span class="nav-number">3.28.1.1.</span> <span class="nav-text">文字设定法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#※数字设定法（常用）"><span class="nav-number">3.28.1.2.</span> <span class="nav-text">※数字设定法（常用）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux系统有2种用户，3类人，3种权限"><span class="nav-number">3.28.2.</span> <span class="nav-text">Linux系统有2种用户，3类人，3种权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux命令行中文件的颜色"><span class="nav-number">3.28.3.</span> <span class="nav-text">linux命令行中文件的颜色</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#课外知识补充"><span class="nav-number">4.</span> <span class="nav-text">课外知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机概括来讲可以分为几个部分"><span class="nav-number">4.0.1.</span> <span class="nav-text">计算机概括来讲可以分为几个部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机的几种状态"><span class="nav-number">4.0.2.</span> <span class="nav-text">计算机的几种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BIOS"><span class="nav-number">4.0.3.</span> <span class="nav-text">BIOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别内存与外存最直接的方法"><span class="nav-number">4.0.4.</span> <span class="nav-text">区别内存与外存最直接的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装多系统时的安装顺序"><span class="nav-number">4.0.5.</span> <span class="nav-text">安装多系统时的安装顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于文件系统"><span class="nav-number">4.0.6.</span> <span class="nav-text">关于文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#windows系统相关"><span class="nav-number">4.0.7.</span> <span class="nav-text">windows系统相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux系统版本"><span class="nav-number">4.0.8.</span> <span class="nav-text">Linux系统版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统调用"><span class="nav-number">4.0.9.</span> <span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器的内存泄漏"><span class="nav-number">4.0.10.</span> <span class="nav-text">服务器的内存泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">4.0.11.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fnine59</span>
+  
+</div>
+
+  <div class="powered-by">Powerd by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 102854, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 102854, xid: "2018/04/15/Linux学习笔记/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/102854/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("QTeKY0jLRTzpECO9LofVA2eq-gzGzoHsz", "ls92zfSW8iXNYPQ5b2COG6L4");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
