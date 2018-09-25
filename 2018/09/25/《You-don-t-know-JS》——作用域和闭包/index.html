@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="内容概述本书上卷的第一部分主要讲解了作用域和闭包。作者深入解析了作用域、编译器以及引擎在JavaScript代码运行前及运行时具体做了哪些事情，在读者对各部分的职责有所了解之后，深入讲解了JavaScript中的各种作用域以及JavaScript中的提升，最终在读者对作用域有了深入的理解之后，引出了闭包。这一部分在内容安排上层层递进，前一部分为后一部分的理解做了很好的铺垫，有助于读者真正理解类似“">
+<meta name="description" content="本文来自《You don&amp;apos;t know JS》一书，所用引用内容禁止商用。 内容概述本书上卷的第一部分主要讲解了作用域和闭包。作者深入解析了作用域、编译器以及引擎在JavaScript代码运行前及运行时具体做了哪些事情，在读者对各部分的职责有所了解之后，深入讲解了JavaScript中的各种作用域以及JavaScript中的提升，最终在读者对作用域有了深入的理解之后，引出了闭包。这一部分">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《You don&#39;t know JS》——作用域和闭包">
 <meta property="og:url" content="http://fnine59.top/2018/09/25/《You-don-t-know-JS》——作用域和闭包/index.html">
 <meta property="og:site_name" content="59&#39;s Personal Blog">
-<meta property="og:description" content="内容概述本书上卷的第一部分主要讲解了作用域和闭包。作者深入解析了作用域、编译器以及引擎在JavaScript代码运行前及运行时具体做了哪些事情，在读者对各部分的职责有所了解之后，深入讲解了JavaScript中的各种作用域以及JavaScript中的提升，最终在读者对作用域有了深入的理解之后，引出了闭包。这一部分在内容安排上层层递进，前一部分为后一部分的理解做了很好的铺垫，有助于读者真正理解类似“">
+<meta property="og:description" content="本文来自《You don&amp;apos;t know JS》一书，所用引用内容禁止商用。 内容概述本书上卷的第一部分主要讲解了作用域和闭包。作者深入解析了作用域、编译器以及引擎在JavaScript代码运行前及运行时具体做了哪些事情，在读者对各部分的职责有所了解之后，深入讲解了JavaScript中的各种作用域以及JavaScript中的提升，最终在读者对作用域有了深入的理解之后，引出了闭包。这一部分">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-25T08:55:27.088Z">
+<meta property="og:updated_time" content="2018-09-25T09:01:31.849Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《You don&#39;t know JS》——作用域和闭包">
-<meta name="twitter:description" content="内容概述本书上卷的第一部分主要讲解了作用域和闭包。作者深入解析了作用域、编译器以及引擎在JavaScript代码运行前及运行时具体做了哪些事情，在读者对各部分的职责有所了解之后，深入讲解了JavaScript中的各种作用域以及JavaScript中的提升，最终在读者对作用域有了深入的理解之后，引出了闭包。这一部分在内容安排上层层递进，前一部分为后一部分的理解做了很好的铺垫，有助于读者真正理解类似“">
+<meta name="twitter:description" content="本文来自《You don&amp;apos;t know JS》一书，所用引用内容禁止商用。 内容概述本书上卷的第一部分主要讲解了作用域和闭包。作者深入解析了作用域、编译器以及引擎在JavaScript代码运行前及运行时具体做了哪些事情，在读者对各部分的职责有所了解之后，深入讲解了JavaScript中的各种作用域以及JavaScript中的提升，最终在读者对作用域有了深入的理解之后，引出了闭包。这一部分">
 
 
 
@@ -411,7 +411,8 @@
       
 
       
-        <h2 id="内容概述"><a href="#内容概述" class="headerlink" title="内容概述"></a>内容概述</h2><p>本书上卷的第一部分主要讲解了作用域和闭包。作者深入解析了作用域、编译器以及引擎在JavaScript代码运行前及运行时具体做了哪些事情，在读者对各部分的职责有所了解之后，深入讲解了JavaScript中的各种作用域以及JavaScript中的提升，最终在读者对作用域有了深入的理解之后，引出了闭包。这一部分在内容安排上层层递进，前一部分为后一部分的理解做了很好的铺垫，有助于读者真正理解类似“提升”、“闭包”等概念的本质。</p>
+        <pre><code>本文来自《You don&apos;t know JS》一书，所用引用内容禁止商用。
+</code></pre><h2 id="内容概述"><a href="#内容概述" class="headerlink" title="内容概述"></a>内容概述</h2><p>本书上卷的第一部分主要讲解了作用域和闭包。作者深入解析了作用域、编译器以及引擎在JavaScript代码运行前及运行时具体做了哪些事情，在读者对各部分的职责有所了解之后，深入讲解了JavaScript中的各种作用域以及JavaScript中的提升，最终在读者对作用域有了深入的理解之后，引出了闭包。这一部分在内容安排上层层递进，前一部分为后一部分的理解做了很好的铺垫，有助于读者真正理解类似“提升”、“闭包”等概念的本质。</p>
 <p>这一部分的英语原文见<a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="noopener">github地址</a>。</p>
 <h2 id="引擎、编译器与作用域"><a href="#引擎、编译器与作用域" class="headerlink" title="引擎、编译器与作用域"></a>引擎、编译器与作用域</h2><h3 id="关于JavaScript"><a href="#关于JavaScript" class="headerlink" title="关于JavaScript"></a>关于JavaScript</h3><p>首先要明确的一个概念是，尽管通常将JavaScript归类为“动态”或“解释执行”语言，但JavaScript实际上是一门编译语言，但它与传统的编译语言不同，JavaScript不是提前编译的，编译结果也不能在分布式系统中进行移植。</p>
 <p>尽管如此，JavaScript引擎进行编译的步骤和传统的编译语言非常相似。</p>
