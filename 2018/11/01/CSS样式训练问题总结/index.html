@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CSS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言在完成纯css实现中台首页样式这个练习的过程中，遇到了一系列问题，现总结如下。 外边距（margin）塌陷问题描述在编写左侧导航栏的过程中，发现了这样的情况。  外边距塌陷是什么？经过查询，发现上面这种情况被称为“外边距塌陷”或“外边距重叠”，它是指，两个或多个盒子（可能相邻也可能嵌套）的相邻边界（其间没有任何非空内容、补白、边框）重合在一起而形成一个单一边界。 通过图示可以直观的理解外边距塌">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS样式训练问题总结">
+<meta property="og:url" content="http://fnine59.top/2018/11/01/CSS样式训练问题总结/index.html">
+<meta property="og:site_name" content="59&#39;s Personal Blog">
+<meta property="og:description" content="前言在完成纯css实现中台首页样式这个练习的过程中，遇到了一系列问题，现总结如下。 外边距（margin）塌陷问题描述在编写左侧导航栏的过程中，发现了这样的情况。  外边距塌陷是什么？经过查询，发现上面这种情况被称为“外边距塌陷”或“外边距重叠”，它是指，两个或多个盒子（可能相邻也可能嵌套）的相邻边界（其间没有任何非空内容、补白、边框）重合在一起而形成一个单一边界。 通过图示可以直观的理解外边距塌">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006gU7ahly1fwri52j3yoj30nk08ewen.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5122957-d05334d7408c00ba.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/504/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5122957-3618d6539fccf3a5.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/504/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5122957-4be1f7259d975334.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/481/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5122957-d50a10b102caa892.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/355/format/webp">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjja9tjmj309109v3ye.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjlh09hlj30kr0990sv.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjn7ckf3j309k08qq2t.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjq06gcvj30er074q2w.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjshvna5j311y0epdh5.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjtu6a67j311y0gvdhk.jpg">
+<meta property="og:image" content="http://www.w3school.com.cn/i/ct_css_positioning_floating_clear_div.gif">
+<meta property="og:image" content="http://www.w3school.com.cn/i/ct_css_positioning_floating_clear_div.gif">
+<meta property="og:updated_time" content="2018-11-01T10:17:21.206Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS样式训练问题总结">
+<meta name="twitter:description" content="前言在完成纯css实现中台首页样式这个练习的过程中，遇到了一系列问题，现总结如下。 外边距（margin）塌陷问题描述在编写左侧导航栏的过程中，发现了这样的情况。  外边距塌陷是什么？经过查询，发现上面这种情况被称为“外边距塌陷”或“外边距重叠”，它是指，两个或多个盒子（可能相邻也可能嵌套）的相邻边界（其间没有任何非空内容、补白、边框）重合在一起而形成一个单一边界。 通过图示可以直观的理解外边距塌">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006gU7ahly1fwri52j3yoj30nk08ewen.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fnine59.top/2018/11/01/CSS样式训练问题总结/"/>
+
+
+
+
+
+  <title>CSS样式训练问题总结 | 59's Personal Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/Fnine59"><img style="position: absolute; top: 0; right: 0; 
+	border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
+	alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">59's Personal Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just coding.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fnine59.top/2018/11/01/CSS样式训练问题总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Fnine59">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="59's Personal Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS样式训练问题总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T18:16:34+08:00">
+                2018-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/01/CSS样式训练问题总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/11/01/CSS样式训练问题总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2018/11/01/CSS样式训练问题总结/" class="leancloud_visitors" data-flag-title="CSS样式训练问题总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在完成纯css实现中台首页样式这个练习的过程中，遇到了一系列问题，现总结如下。</p>
+<h3 id="外边距（margin）塌陷"><a href="#外边距（margin）塌陷" class="headerlink" title="外边距（margin）塌陷"></a>外边距（margin）塌陷</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>在编写左侧导航栏的过程中，发现了这样的情况。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006gU7ahly1fwri52j3yoj30nk08ewen.jpg" alt="问题描述"></p>
+<h4 id="外边距塌陷是什么？"><a href="#外边距塌陷是什么？" class="headerlink" title="外边距塌陷是什么？"></a>外边距塌陷是什么？</h4><p>经过查询，发现上面这种情况被称为“外边距塌陷”或“外边距重叠”，它是指，<em>两个或多个盒子（可能相邻也可能嵌套）的相邻边界（其间没有任何非空内容、补白、边框）重合在一起而形成一个单一边界</em>。</p>
+<p>通过图示可以直观的理解外边距塌陷的几种情况。</p>
+<ol>
+<li>当一个元素出现在另一个元素上面时，第一个元素的底边界与第二个元素的顶边界发生合并：</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/5122957-d05334d7408c00ba.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/504/format/webp" alt="图示1.1"></p>
+<ol start="2">
+<li>当一个元素包含在另一个元素中时（假设没有内边距或边框把外边距分隔开），它们的顶和底边界也发生合并：</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/5122957-3618d6539fccf3a5.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/504/format/webp" alt="图示1.2"></p>
+<ol start="3">
+<li>假设有一个空元素，它有边界，但是没有边框或填充。在这种情况下，顶边界与底边界就碰到了一起，它们会发生叠加：</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/5122957-4be1f7259d975334.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/481/format/webp" alt="图示1.3"></p>
+<h4 id="为什么存在外边距塌陷？"><a href="#为什么存在外边距塌陷？" class="headerlink" title="为什么存在外边距塌陷？"></a>为什么存在外边距塌陷？</h4><p>外边界塌陷乍看上去可能显得有些奇怪，但它是有实际意义的。以由几个段落组成的典型文本页面为例（见下图）。第一个段落上面的空间等于段落的顶边界。如果没有边界叠加，后续所有段落之间的边界将是相邻顶边界和底边界的和。这意味着段落之间的空间是页面顶部的两倍。如果发生边界叠加，段落之间的顶边界和底边界就叠加在一起，这样各处的距离就一致了。简单来说，当我们上下排列一系列规则的块级元素（如段落P）时，那么块元素之间因为外边距重叠的存在，就不会产生双倍的距离。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5122957-d50a10b102caa892.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/355/format/webp" alt="图示1.4"></p>
+<h4 id="不会出现外边距塌陷的情况"><a href="#不会出现外边距塌陷的情况" class="headerlink" title="不会出现外边距塌陷的情况"></a>不会出现外边距塌陷的情况</h4><ol>
+<li>水平边距永远不会重合。</li>
+<li><p>在规范文档中，2个或以上的块级盒模型相邻的垂直<code>margin</code>会重叠。最终的<code>margin</code>值计算方法如下：</p>
+<ol>
+<li>全部都为正值，取最大者；</li>
+<li>不全是正值，则都取绝对值，然后用正值减去最大值；</li>
+<li><p>没有正值，则都取绝对值，然后用0减去最大值。</p>
+<p>注意：相邻的盒模型可能由DOM元素动态产生并没有相邻或继承关系。</p>
+</li>
+</ol>
+</li>
+<li>相邻的盒模型中，如果其中的一个是浮动的（<code>float</code>），垂直<code>margin</code>不会重叠，并且浮动的盒模型和它的子元素之间也是这样。</li>
+<li>设置了<code>overflow</code>属性的元素和它的子元素之间的<code>margin</code>不被重叠（<code>overflow</code>取值为<code>visible</code>除外）。</li>
+<li>设置了绝对定位（<code>position:absolute</code>）的盒模型，垂直<code>margin</code>不会被重叠，并且和他们的子元素之间也是一样。</li>
+<li>设置了<code>display:inline-block</code>的元素，垂直<code>margin</code>不会重叠，甚至和他们的子元素之间也是一样。</li>
+<li><p>如果一个盒模型的上下<code>margin</code>相邻，这时它的<code>margin</code>可能重叠覆盖（collapse through）它。在这种情况下，元素的位置（<code>position</code>）取决于它的相邻元素的<code>margin</code>是否重叠。</p>
+<ol>
+<li>如果元素的<code>margin</code>和它的父元素的<code>margin-top</code>重叠在一起，盒模型<code>border-top</code>的边界定义和它的父元素相同。</li>
+<li>另外，任意元素的父元素不参与<code>margin</code>的重叠，或者说只有父元素的<code>margin-bottom</code>是参与计算的。如果元素的<code>border-top</code>非零，那么元素的<code>border-top</code>边界位置和原来一样。</li>
+<li><p>一个应用了清除操作的元素的<code>margin-top</code>绝不会和它的块级父元素的<code>margin-bottom</code>重叠。</p>
+<p>注意，那些已经被重叠覆盖的元素的位置对其他已经重叠的元素的位置没有任何影响；只有在对这些元素的子元素定位时，<code>border-top</code>边界位置才是必需的。</p>
+</li>
+</ol>
+</li>
+<li>根元素的垂直<code>margin</code>不会被重叠。</li>
+</ol>
+<h4 id="外边距塌陷时的解决方法"><a href="#外边距塌陷时的解决方法" class="headerlink" title="外边距塌陷时的解决方法"></a>外边距塌陷时的解决方法</h4><p>虽然外边距的重叠有一定的意义，但有时候我们在设计上却不想让元素之间产生重叠，那么可以有如下几个建议可供参考：</p>
+<ul>
+<li>外层元素<code>padding</code>代替</li>
+<li>内层元素透明边框<code>border:1px solid transparent;</code></li>
+<li>内层元素绝对定位<code>postion:absolute;</code></li>
+<li>外层元素<code>overflow:hidden;</code></li>
+<li>内层元素加<code>float:left;</code>或<code>display:inline-block;</code></li>
+<li>内层元素<code>padding:1px;</code></li>
+<li>底部元素设置为浮动<code>float:left;</code></li>
+<li>底部元素的<code>position</code>的值为<code>absolute/fixed</code></li>
+<li>在设置<code>margin-top/bottom</code>值时统一设置上或下</li>
+</ul>
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a href="http://www.hujuntao.com/web/css/css-margin-overlap.html" target="_blank" rel="noopener">CSS 外边距(margin)重叠及防止方法 —— blog</a></p>
+<p><a href="https://www.jianshu.com/p/669c6aef425c" target="_blank" rel="noopener">什么是外边距重叠，重叠的结果是什么？ —— 简书</a></p>
+<p><a href="http://developer.51cto.com/art/201008/221940_all.htm" target="_blank" rel="noopener">CSS中margin边界叠加问题及解决方案 —— 51CTO</a></p>
+<p><a href="https://juejin.im/entry/59c3be3e6fb9a00a571d39e4" target="_blank" rel="noopener">CSS外边距(margin)重叠及防止方法 —— 掘金</a></p>
+<p><a href="https://www.zhihu.com/question/19823139" target="_blank" rel="noopener">如何解决外边距叠加的问题？ —— 知乎</a></p>
+<h3 id="子元素的margin-top影响父元素"><a href="#子元素的margin-top影响父元素" class="headerlink" title="子元素的margin-top影响父元素"></a>子元素的margin-top影响父元素</h3><h4 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h4><p>因为当时的代码没有保留，我们写一个最简单的例子来重现这种情况。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    *&#123;</span></span><br><span class="line"><span class="undefined">      margin: 0px;</span></span><br><span class="line"><span class="undefined">      padding: 0px; </span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    html, body &#123;</span></span><br><span class="line"><span class="undefined">      background-color: #cccccc;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    .container&#123;</span></span><br><span class="line"><span class="undefined">      width: 200px;</span></span><br><span class="line"><span class="undefined">      height: 200px;</span></span><br><span class="line"><span class="undefined">      background-color: #999999;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    .container h2&#123;</span></span><br><span class="line"><span class="undefined">      margin-top: 50px;</span></span><br><span class="line"><span class="undefined">      border: 10px solid red;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>sub content<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面这段代码运行后，展现的效果如下图。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjja9tjmj309109v3ye.jpg" alt="图示2.1"></p>
+<p>只有一张图也许不够清晰，我们添加一些标注：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjlh09hlj30kr0990sv.jpg" alt="图示2.2"></p>
+<p>我们为h2添加一个border，可以更加直观地看到问题。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0px</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#cccccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#999999</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-tag">h2</span>&#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">10px</span> solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjn7ckf3j309k08qq2t.jpg" alt="图示2.3"></p>
+<p>很明显，我们并没有为深灰色的父级元素添加<code>margin-top</code>属性，明明是将<code>margin-top</code>属性添加到了红色边框的部分，但展现出来的效果却像是为父元素添加了<code>margin-top</code>属性。</p>
+<p>上面的代码，我们预期得到的效果如下图。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjq06gcvj30er074q2w.jpg" alt="图示2.4"></p>
+<p>我们通过chrome开发者工具来查看父元素和子元素。</p>
+<p>父元素：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjshvna5j311y0epdh5.jpg" alt="图示2.5"></p>
+<p>子元素：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006gU7ahly1fwrjtu6a67j311y0gvdhk.jpg" alt="图示2.6"></p>
+<p>可以发现，这个50px的<code>margin-top</code>依旧属于子元素。</p>
+<h4 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h4><p>来看css2.1盒模型中规定的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In this specification, the expression collapsing margins means that adjoining margins (no non-empty content, padding or border areas or clearance separate them) of two or more boxes (which may be next to one another or nested) combine to form a single margin.</span><br><span class="line"></span><br><span class="line">所有毗邻的两个或更多盒元素的margin将会合并为一个margin共享之。毗邻的定义为：同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。</span><br></pre></td></tr></table></figure>
+<p>可以发现，这个问题属于第一个问题中的父子元素外边距塌陷问题。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li><p>父级元素或子元素使用浮动或者绝对定位<code>absolute</code>（因为浮动或绝对定位不参与<code>margin</code>的折叠）</p>
+</li>
+<li><p>父级元素<code>overflow:hidden;</code></p>
+</li>
+<li><p>父级元素设置<code>padding</code>（破坏父子元素的外边距之间没有非空内容的折叠条件）</p>
+</li>
+<li><p>父级元素设置<code>border</code>（破坏父子元素的外边距之间没有非空内容的折叠条件）</p>
+</li>
+</ol>
+<p>我们采取上述任意一种解决方案，都可以发现显示效果恢复正常。</p>
+<h4 id="参考文章-1"><a href="#参考文章-1" class="headerlink" title="参考文章"></a>参考文章</h4><p><a href="https://blog.csdn.net/sinat_27088253/article/details/52954688" target="_blank" rel="noopener">子元素margin-top为何会影响父元素？ —— CSDN</a></p>
+<p><a href="http://www.cnblogs.com/hejia/archive/2013/05/26/3099697.html" target="_blank" rel="noopener">子元素应用margin-top为何会影响父元素【转】</a></p>
+<h3 id="子元素浮动导致父元素高度塌陷"><a href="#子元素浮动导致父元素高度塌陷" class="headerlink" title="子元素浮动导致父元素高度塌陷"></a>子元素浮动导致父元素高度塌陷</h3><p>在使用<code>float</code>属性的时候，我们经常可以碰到如下图所示这种父元素高度塌陷的情况。</p>
+<p><img src="http://www.w3school.com.cn/i/ct_css_positioning_floating_clear_div.gif" alt="图示3.1"></p>
+<p>想要理解这种情况，首先要理解浮动是什么。</p>
+<h4 id="关于浮动"><a href="#关于浮动" class="headerlink" title="关于浮动"></a>关于浮动</h4><p>浮动是样式编写中经常使用到的一个属性，对于浮动的理解简单来说就是五个字：“<strong>脱离文档流</strong>”。来看一下官方对于浮动的解释：</p>
+<pre><code>浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得就像浮动框不存在一样。
+</code></pre><h4 id="子元素浮动导致的父元素高度塌陷"><a href="#子元素浮动导致的父元素高度塌陷" class="headerlink" title="子元素浮动导致的父元素高度塌陷"></a>子元素浮动导致的父元素高度塌陷</h4><p>如果对浮动有了一个清晰的认识，也就不难理解父元素为什么会“塌陷”。子元素脱离了普通文档流而父元素没有，因此处于普通文档流中的父元素就会“<em>表现得就像浮动框不存在一样</em>”，对于父元素来说，它的子元素就像不存在一样，因此高度也就“塌陷”了。</p>
+<p>一旦出现了这种父元素高度塌陷问题，应该如何解决？</p>
+<p><strong>方法一：为某个子元素设置clear属性</strong></p>
+<p>如下图右侧示例。</p>
+<p><img src="http://www.w3school.com.cn/i/ct_css_positioning_floating_clear_div.gif" alt="图示3.2"></p>
+<p>这种方法能够实现我们希望的效果，但通常出现高度塌陷的父元素，其子元素基本均是浮动元素，如果找不到一个可以应用清理的元素，我们就只能添加一个空元素并且对它应用清理，这部分代码实际上是多余的。</p>
+<p><strong>方法二：对容器 div 进行浮动</strong></p>
+<p>这种方法是最容易理解的方法了。既然子元素浮动后脱离了普通文档流从而导致处于普通文档流中的父元素高度塌陷，那么只要让父元素也一起浮动，它就可以再次感知到子元素的存在了，高度自然也会被子元素撑开。但这种方法也有不尽人意的地方，那就是下一个处于普通文档流中的父元素也会受到这个浮动元素的影响。</p>
+<p>要解决这个问题，可以对布局中的所有东西进行浮动，然后使用适当的有意义的元素（常常是站点的页脚）对这些浮动进行清理。这有助于减少或消除不必要的标记，并且能够实现我们想要的效果。</p>
+<p><strong>方法三：为float元素的父元素添加overflow:hidden</strong></p>
+<p>为浮动元素的父元素添加<code>overflow:hidden;</code>即可解决这种塌陷问题。</p>
+<p>只要给外面大容器加上<code>overflow:hidden</code>的属性，可以解决IE7和火狐浏览器下的清除浮动问题，但是IE6下不生效，所以我们还需要使用<code>zoom</code>这个IE的私有属性来达到彻底清除浮动的兼容效果，代码如下。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#container</span> &#123;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid green;</span><br><span class="line">	<span class="attribute">overflow</span>: hidden;</span><br><span class="line">	<span class="attribute">zoom</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>方法四：使用after伪对象清除浮动</strong></p>
+<p>代码如下。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#container</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">	<span class="attribute">content</span>: <span class="string">"."</span>;</span><br><span class="line">	<span class="attribute">display</span>: block;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">clear</span>: both;</span><br><span class="line">	<span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考文章-2"><a href="#参考文章-2" class="headerlink" title="参考文章"></a>参考文章</h4><p><a href="http://www.w3school.com.cn/css/css_positioning_floating.asp" target="_blank" rel="noopener">CSS 浮动 —— w3school</a></p>
+<p><a href="https://blog.csdn.net/liuliuliu_666/article/details/70847566" target="_blank" rel="noopener">CSS中子元素浮动导致父元素高度塌陷解决方案 —— CSDN</a></p>
+<p><a href="https://www.zhihu.com/question/21911352" target="_blank" rel="noopener">HTML的文档流和文本流分别是什么？ —— 知乎</a></p>
+<p><a href="http://www.w3school.com.cn/cssref/pr_class_clear.asp" target="_blank" rel="noopener">clear属性 —— w3school</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/25/《You-don-t-know-JS》——作用域和闭包/" rel="next" title="《You don't know JS》——作用域和闭包">
+                <i class="fa fa-chevron-left"></i> 《You don't know JS》——作用域和闭包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Fnine59" />
+            
+              <p class="site-author-name" itemprop="name">Fnine59</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Fnine59" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5746592281?refer_flag=1005055010_" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fnine59@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外边距（margin）塌陷"><span class="nav-number">1.1.</span> <span class="nav-text">外边距（margin）塌陷</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外边距塌陷是什么？"><span class="nav-number">1.1.2.</span> <span class="nav-text">外边距塌陷是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么存在外边距塌陷？"><span class="nav-number">1.1.3.</span> <span class="nav-text">为什么存在外边距塌陷？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不会出现外边距塌陷的情况"><span class="nav-number">1.1.4.</span> <span class="nav-text">不会出现外边距塌陷的情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外边距塌陷时的解决方法"><span class="nav-number">1.1.5.</span> <span class="nav-text">外边距塌陷时的解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文章"><span class="nav-number">1.1.6.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子元素的margin-top影响父元素"><span class="nav-number">1.2.</span> <span class="nav-text">子元素的margin-top影响父元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题分析"><span class="nav-number">1.2.2.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">1.2.3.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文章-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">参考文章</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子元素浮动导致父元素高度塌陷"><span class="nav-number">1.3.</span> <span class="nav-text">子元素浮动导致父元素高度塌陷</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于浮动"><span class="nav-number">1.3.1.</span> <span class="nav-text">关于浮动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子元素浮动导致的父元素高度塌陷"><span class="nav-number">1.3.2.</span> <span class="nav-text">子元素浮动导致的父元素高度塌陷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文章-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">参考文章</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fnine59</span>
+  
+</div>
+
+  <div class="powered-by">Powerd by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 102854, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 102854, xid: "2018/11/01/CSS样式训练问题总结/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/102854/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("QTeKY0jLRTzpECO9LofVA2eq-gzGzoHsz", "ls92zfSW8iXNYPQ5b2COG6L4");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
