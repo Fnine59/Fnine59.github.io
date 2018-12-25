@@ -4,9 +4,7 @@ date: 2018-12-25 13:18:55
 tags: 
 - "Nodejs"
 - "React"
-categories: 
-- "Nodejs"
-- "React"
+categories: "技术"
 ---
 # 前言
 
