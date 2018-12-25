@@ -1,8 +1,12 @@
 ---
 title: React+Nodejs项目搭建记录
 date: 2018-12-25 13:18:55
-tags: ["Nodejs", "React"]
-categories: ["Nodejs", "React"]
+tags: 
+- "Nodejs"
+- "React"
+categories: 
+- "Nodejs"
+- "React"
 ---
 # 前言
 
